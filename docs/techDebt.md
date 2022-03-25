@@ -10,7 +10,22 @@ Test Pass:
 ![Test Pass](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/test_pass.png "Pass")
 
 --- CURRENT DEPENDENCIES / IMPORTS ---
-Pyside6 – GUI
-PyTest - Unit testing for python
-Virtual Environment – pipenv
-Python – latest version 3.10
+
+Ship:
+
+- [X] Python – latest version 3.10
+
+- [X] Pyside6 – GUI
+
+Dev:
+
+- [X] PyTest - Unit testing for python
+
+- [X] Virtual Environment – pipenv
+
+
+
+
+
+
+
