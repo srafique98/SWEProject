@@ -1,2 +1,2 @@
-def firstTest():
-    return False
+def test_first():
+    return True
