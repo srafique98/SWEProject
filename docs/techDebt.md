@@ -36,5 +36,6 @@ Engineering practices:
 Process: 
 
 - [x] Camel case naming for variables and functions, pascal case for classes
+- [x] Design in an OOP paradigm 
 
 
