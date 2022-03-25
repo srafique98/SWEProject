@@ -26,9 +26,14 @@ Dev:
 
 --- ADDITIONAL TOOLS / PROCESSES / ENGINEERING PRACTICES  ---
 
+Additional Tools: 
 
+- [X] Visual Studio   
 
+Engineering practices:
+- [X] Scrum - framework 
 
+Process: 
 
 
 
