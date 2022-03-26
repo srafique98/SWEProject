@@ -38,3 +38,6 @@ Engineering practices:
 - [x] Camel case naming for variables and functions, pascal case for classes
 
 --- CONFIGURED MACHINES  ---
+
+Jesus Torres:
+![Jesus_Torres](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/configured_machine_jt.png)
