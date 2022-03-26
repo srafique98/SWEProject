@@ -32,5 +32,9 @@ Additional Tools:
 
 Engineering practices:
 - [X] Scrum - framework 
+
 - [x] Design in an OOP paradigm 
+
 - [x] Camel case naming for variables and functions, pascal case for classes
+
+--- CONFIGURED MACHINES  ---
