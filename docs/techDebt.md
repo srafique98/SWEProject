@@ -41,3 +41,7 @@ Engineering practices:
 
 Jesus Torres:
 ![Jesus_Torres](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/configured_machine_jt.png)
+
+Sean Higley:
+![Sean Higley](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/configured_machine_sh.png)
+
