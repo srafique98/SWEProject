@@ -48,3 +48,6 @@ Sean Higley:
 David Leavenworth:
 ![David Leavenworth machine config](media/configured_machine_dl.png)
 
+Shan Rafique:
+![Shan Rafique machine config](media/configured_machine_sr.png)
+
