@@ -1,13 +1,13 @@
 Github Actions Integration
-![Workflow/GithubActions](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/workflow_pass_fail.png "Actions Setup")
+![Workflow/GithubActions](media/workflow_pass_fail.png "Actions Setup")
 
 Pytests Action Integration
 
 Test Fail:
-![Test Fail](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/test_fail.png "Fail")
+![Test Fail](media/test_fail.png "Fail")
 
 Test Pass:
-![Test Pass](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/test_pass.png "Pass")
+![Test Pass](media/test_pass.png "Pass")
 
 --- CURRENT DEPENDENCIES / IMPORTS ---
 
@@ -40,8 +40,11 @@ Engineering practices:
 --- CONFIGURED MACHINES  ---
 
 Jesus Torres:
-![Jesus_Torres](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/configured_machine_jt.png)
+![Jesus_Torres machine config](media/configured_machine_jt.png)
 
 Sean Higley:
-![Sean Higley](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/media/configured_machine_sh.png)
+![Sean Higley machine config](media/configured_machine_sh.png)
+
+David Leavenworth:
+![David Leavenworth machine config](media/configured_machine_dl.png)
 
