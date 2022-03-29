@@ -29,6 +29,8 @@ Dev:
 Additional Tools: 
 
 - [X] Visual Studio   
+- [X] Mongo DB
+- [x] Mongo DB Compass
 
 Engineering practices:
 - [X] Scrum - framework 
