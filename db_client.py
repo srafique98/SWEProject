@@ -20,9 +20,9 @@ class DB_Client:
     def fil_location(self,in_str):
         loc_query = {"location" : {"$regex":in_str}}
         fil_document = self.dbCollection.find(loc_query)
-        #return fil_document
+        return fil_document
 
-        #test
-        for x in fil_document:
-            print(x)
-    
+    def fil_sect_profession(self,in_str):
+        loc_query = {"job_title" : {"$regex":in_str}}
+        fil_document = self.dbCollection.find(loc_query)
+        return fil_document

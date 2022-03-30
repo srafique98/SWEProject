@@ -14,3 +14,11 @@ def test_db_location_filter():
         return True
     except:
         return False
+
+def test_db_profession_filter():
+    newDB = DB_Client(True)
+    try:
+        newDB.fil_sect_profession("Engineer")
+        return True
+    except:
+        return False 
