@@ -6,7 +6,8 @@ name = "pypi"
 [packages]
 pyside6 = "*"
 pytest = "*"
-pymongo = "*"
+pymongo = {extras = ["srv"], version = "*"}
+certifi = "*"
 
 [dev-packages]
 
