@@ -23,14 +23,17 @@ Dev:
 
 - [X] Virtual Environment – pipenv
 
+- [X] [PyMongo](https://www.mongodb.com/docs/drivers/python/) - Mongo DB driver for python application
+
 
 --- ADDITIONAL TOOLS / PROCESSES / ENGINEERING PRACTICES  ---
 
 Additional Tools: 
 
-- [X] Visual Studio   
+- [X] Visual Studio  
 - [X] Mongo DB
-- [x] Mongo DB Compass
+- [x] [Mongo DB Compass](https://www.mongodb.com/products/compass) - Viewing the DB
+- [x] [Qt Creator](https://www.qt.io/offline-installers) - Widget toolkit for creating GUIs in Pyside6
 
 Engineering practices:
 - [X] Scrum - framework 
