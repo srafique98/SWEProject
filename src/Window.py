@@ -1,21 +1,27 @@
-from PySide6.QtWidgets import *
+import sys
+from PySide6.QtCore import QFile, QIODevice
+from PySide6.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QMainWindow
 
 
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.title = "Job project"
-        self.top = 100
-        self.left = 100
-        self.width = 970
-        self.height = 690
 
-    def mainWindow(self):
-        self.setWindowTitle(self.title)
-        self.setGeometry(self.top, self.left, self.width, self.height)
-        self.show()
+    def windowInit(self, uiFileName, where=None):
+        uiFile = QFile(uiFileName)
+        if not uiFile.open(QIODevice.ReadOnly):
+            print(f"Cannot open {uiFileName}: {uiFile.errorString()}")
+            sys.exit(-1)
+        loader = QUiLoader()
+        window = loader.load(uiFile, where)
+        uiFile.close()
+        if not window:
+            print(loader.errorString())
+            sys.exit(-1)
+        window.show()
+        return window
 
-    def nextWindow(self, nextWindow):
-        self.w = nextWindow
+    def nextWindow(self, previousWindow):
+        previousWindow.hide()
         self.hide()
-        self.w.show()
