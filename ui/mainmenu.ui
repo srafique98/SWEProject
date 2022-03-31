@@ -6,31 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1744</width>
-    <height>1232</height>
+    <width>1523</width>
+    <height>1111</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tableWidget">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>240</y>
-      <width>1041</width>
-      <height>741</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>90</y>
-      <width>301</width>
-      <height>81</height>
+      <x>620</x>
+      <y>130</y>
+      <width>341</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -39,7 +29,20 @@
      </font>
     </property>
     <property name="text">
-     <string>Job listings</string>
+     <string>Welcome to jobs!</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="startButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>270</y>
+      <width>161</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start application</string>
     </property>
    </widget>
   </widget>
@@ -48,7 +51,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1744</width>
+     <width>1523</width>
      <height>22</height>
     </rect>
    </property>

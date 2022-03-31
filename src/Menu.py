@@ -1,15 +1,17 @@
-from PySide6.QtWidgets import *
-from PySide6.QtGui import QFont
-from src.Window import Window
+from Window import Window
+from Listing import Listing
 
 
 class Menu(Window):
     def __init__(self):
+        uiFileName = "../ui/mainmenu.ui"
         super().__init__()
-        self.menuWindow()
+        self.window = super().windowInit(uiFileName, self)
+        self.window.startButton.clicked.connect(self.start)
+        #self.window.show()
 
-    def menuWindow(self):
-        self.label = QLabel("Rayquaza project!", self)
-        self.label.setGeometry(50, 100, 900, 100)
-        self.label.setVisible(True)
-        self.label.setFont(QFont('Arial', 50))
+
+    def start(self):
+        self.close()
+        self.nextWindow = Listing()
+        super().nextWindow(self.window)
