@@ -1,7 +1,4 @@
 from src.db_client import DB_Client
-from src.Menu import Menu
-from PySide6.QtWidgets import QApplication
-import sys
 
 
 def test_first():
