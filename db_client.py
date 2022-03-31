@@ -14,7 +14,7 @@ class DB_Client:
         self.CONNECT_STRING = "mongodb+srv://root:"+self.dbPassword+"@cluster0.ehbu1.mongodb.net/Jobs?retryWrites=true&w=majority"
         self.clientConnection = pymongo.MongoClient(self.CONNECT_STRING, tlsCAFile=certifi.where())
         self.dbName = self.clientConnection["Jobs"]
-        self.dbCollection = self.dbName["Jobs"]
+        self.dbCollection = self.dbName["NewJobs"]
         self.intitialized = initialized
 
     def fil_location(self,in_str):
