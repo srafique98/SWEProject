@@ -1,5 +1,5 @@
-from Window import Window
-from Listing import Listing
+from src.Window import Window
+from src.Listing import Listing
 
 
 class Menu(Window):

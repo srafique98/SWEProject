@@ -1,5 +1,7 @@
 from src.db_client import DB_Client
-from src.Window import Window
+from src.Menu import Menu
+from PySide6.QtWidgets import QApplication
+import sys
 
 
 def test_first():
@@ -31,9 +33,10 @@ def test_DbProfessionFilter():
 
 def test_windowInit():
     testFile = "../ui/mainmenu.ui"
-
     try:
-        testWindow = Window()
+        app = QApplication(sys.argv)
+        testWindow = Menu()
         testWindow.windowInit(testFile)
+        return True
     except SystemExit:
         return False
