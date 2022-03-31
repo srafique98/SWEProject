@@ -31,12 +31,12 @@ def test_DbProfessionFilter():
         return False
 
 
-def test_windowInit():
-    testFile = "../ui/mainmenu.ui"
-    try:
-        app = QApplication(sys.argv)
-        testWindow = Menu()
-        testWindow.windowInit(testFile)
-        return True
-    except SystemExit:
-        return False
+#def test_windowInit():
+#    testFile = "../ui/mainmenu.ui"
+#    try:
+#        app = QApplication(sys.argv)
+#        testWindow = Menu()
+#        testWindow.windowInit(testFile)
+#        return True
+#    except SystemExit:
+#        return False
