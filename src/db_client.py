@@ -26,3 +26,8 @@ class DB_Client:
         loc_query = {"job_title" : {"$regex":in_str}}
         fil_document = self.dbCollection.find(loc_query)
         return fil_document
+    
+    def fil_salary_range(self, min_sal, max_sal):
+        loc_query = {"$and": [{"min_salary_range":{"$gte":min_sal}},{"max_salary_range":{"$lte":max_sal}}]}
+        fil_document = self.dbCollection.find(loc_query)
+        return fil_document
