@@ -1,4 +1,4 @@
-from src.Window import Window
+from Window import Window
 
 class Listing(Window):
     def __init__(self):
