@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1744</width>
-    <height>1232</height>
+    <width>1523</width>
+    <height>1111</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,6 +55,15 @@
       <pointsize>16</pointsize>
      </font>
     </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
     <property name="html">
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -91,9 +100,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QTextEdit" name="filter">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>40</x>
       <y>170</y>
-      <width>300</width>
+      <width>221</width>
       <height>63</height>
      </rect>
     </property>
@@ -112,9 +121,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QTextEdit" name="filter_2">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>400</x>
       <y>170</y>
-      <width>300</width>
+      <width>221</width>
       <height>63</height>
      </rect>
     </property>
@@ -133,9 +142,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QTextEdit" name="filter_3">
     <property name="geometry">
      <rect>
-      <x>1100</x>
+      <x>840</x>
       <y>170</y>
-      <width>300</width>
+      <width>221</width>
       <height>63</height>
      </rect>
     </property>
@@ -169,23 +178,10 @@ p, li { white-space: pre-wrap; }
      <string>Job Description</string>
     </property>
    </widget>
-   <widget class="QLabel" name="selectedDecriptionLabel">
-    <property name="geometry">
-     <rect>
-      <x>872</x>
-      <y>360</y>
-      <width>812</width>
-      <height>800</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="jobTypeButton">
     <property name="geometry">
      <rect>
-      <x>399</x>
+      <x>180</x>
       <y>169</y>
       <width>179</width>
       <height>65</height>
@@ -210,7 +206,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="locationTypeButton">
     <property name="geometry">
      <rect>
-      <x>899</x>
+      <x>620</x>
       <y>169</y>
       <width>179</width>
       <height>65</height>
@@ -235,7 +231,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="salaryTypeButton">
     <property name="geometry">
      <rect>
-      <x>1399</x>
+      <x>1060</x>
       <y>169</y>
       <width>179</width>
       <height>65</height>
@@ -260,7 +256,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>40</x>
       <y>150</y>
       <width>181</width>
       <height>16</height>
@@ -273,7 +269,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>400</x>
       <y>150</y>
       <width>181</width>
       <height>16</height>
@@ -286,7 +282,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>1100</x>
+      <x>840</x>
       <y>150</y>
       <width>181</width>
       <height>16</height>
@@ -315,7 +311,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1744</width>
+     <width>1523</width>
      <height>21</height>
     </rect>
    </property>
