@@ -8,7 +8,7 @@ from Menu import Menu
 def main():
     app = QApplication(sys.argv)
     window = Menu()
-    #window.show()
+    window.show()
     sys.exit(app.exec())
 
 
