@@ -1,10 +1,10 @@
-from Window import Window
-from Listing import Listing
+from src.Window import Window
+from src.Listing import Listing
 
 
 class Menu(Window):
     def __init__(self):
-        uiFileName = "../ui/mainmenu.ui"
+        uiFileName = "ui/mainmenu.ui"
         super().__init__()
         self.window = super().windowInit(uiFileName, self)
         self.window.startButton.clicked.connect(self.start)
