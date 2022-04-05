@@ -41,6 +41,13 @@ Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza
   - [ ] Story 11: Employer's Perspective
   - [ ] Story 12: Returning User
 
+## Customer interaction with the application
+1. Not deployable as of right now
+2. Will host DB on the cloud (24/7 access from the cloud rather than our local host)
+3. Will interact through an executable
+    - For Windows, it be packaged as a .exe file
+    - For Macs, it will be packaged as a .app file
+    - For Linux, it will be packaged as a Linux distribution
 
 # Software needed to run the application
 1. Install [Python 3.10](https://www.python.org/downloads/release/python-3104/)
