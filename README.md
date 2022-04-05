@@ -1,6 +1,8 @@
 # This is the repo for Rayquaza
 Technical debt assignment found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/techDebt.md)
 
+Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/CustomerNotes.md)
+
 
 # Sprint 1 March 29th - April 5th:
 ## What was Completed:
