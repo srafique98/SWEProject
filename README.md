@@ -47,4 +47,4 @@ Technical debt assignment found [here](https://github.com/comp129/customer-proje
 4. [PyMongo](https://pypi.org/project/pymongo/)
 5. [Certifi](https://pypi.org/project/certifi/)
 
-All of these packages can be installed by running ``pipenv shell && pipenv install`` when in the root directory from a CLI.
+All of these packages can be installed by running ``pipenv shell && pipenv install`` when in the root directory of this project from a CLI.
