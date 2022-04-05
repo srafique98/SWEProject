@@ -1,12 +1,13 @@
 from sqlite3 import Cursor
-from Window import Window
-from db_client import DB_Client
+from src.Window import Window
+from src.db_client import DB_Client
 from PySide6.QtWidgets import *
 from PySide6.QtCore import Slot
 
+
 class Listing(Window):
     def __init__(self):
-        uiFile = "../ui/mainwindow.ui"
+        uiFile = "ui/mainwindow.ui"
         super().__init__()
         self.window = super().windowInit(uiFile, self)
         # self.window.show()
@@ -37,6 +38,8 @@ class Listing(Window):
         self.salaryFilter = self.findChild(QLineEdit, "filter_3")
         self.salaryButton = self.findChild(QPushButton,"salaryTypeButton") # From mainwindow.ui
         self.salaryButton.clicked.connect(self.getSalaryFilter)
+
+        #self.jobTable = self.findChild(QTableView, "jobListing")
 
 
 
