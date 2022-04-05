@@ -22,9 +22,9 @@ class Listing(Window):
         self.searchButton.clicked.connect(self.getSearch)
 
         # Field filter text and button
-        self.fieldFilter = self.findChild(QLineEdit, "filter")
+        self.jobFilter = self.findChild(QLineEdit, "filter")
         self.jobTypeButton = self.findChild(QPushButton, "jobTypeButton")  # From mainwindow.ui
-        self.jobTypeButton.clicked.connect(self.getFieldFilter)
+        self.jobTypeButton.clicked.connect(self.getJobFilter)
 
         # Location filter text and button
         self.locFilter = self.findChild(QLineEdit, "filter_2")
@@ -65,16 +65,27 @@ class Listing(Window):
     # Stores text field
     def getLocFilter(self):
         locKeyword = self.locFilter.text()
-        print(locKeyword)
+        document = self.connection.fil_location(locKeyword)
+        for field in document:
+            print(field["job_title"], field["location"])
+        #print(locKeyword)
 
     # Stores text field
     def getSalaryFilter(self):
         salaryKeyword = self.salaryFilter.text()
-        print(salaryKeyword)
-
-    def getFieldFilter(self):
-        fieldKeyword = self.fieldFilter.text()
-        print(fieldKeyword)
+        min_sal, max_sal = salaryKeyword.split('-', 1)
+        #print(min_sal,max_sal)
+        document = self.connection.fil_salary_range(min_sal, max_sal)
+        for field in document:
+            print(field["job_title"], field["location"], field["min_salary_range"], field["max_salary_range"])
+        #print(salaryKeyword)
+    
+    def getJobFilter(self):
+        fieldKeyword = self.jobFilter.text()
+        document = self.connection.fil_sect_profession(fieldKeyword)
+        for field in document:
+            print(field["job_title"], field["location"])
+        #(fieldKeyword)
 
     @Slot()
     def getJobs(self):
