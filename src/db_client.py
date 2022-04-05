@@ -1,6 +1,6 @@
 import pymongo
 import certifi
-import src.db_library as dblib
+import db_library as dblib
 class DB_Client:
     dbPassword = None
     CONNECT_STRING = None

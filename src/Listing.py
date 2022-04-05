@@ -10,7 +10,7 @@ class Listing(Window):
         self.window = super().windowInit(uiFile, self)
         # self.window.show()
 
-        self.connection = DB_Client(True)
+        self.connection = DB_Client(True,"Jobs","NewJobs")
         self.jobButton = self.findChild(QPushButton,"pushButton") # From mainwindow.ui
         self.cursor = self.connection.dbCollection.find({})
 
