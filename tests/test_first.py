@@ -1,4 +1,4 @@
-from src.db_client import DB_Client
+from db_client import DB_Client
 
 def test_first():
     return True
