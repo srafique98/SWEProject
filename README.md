@@ -45,8 +45,8 @@ Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza
 # Software needed to run the application
 1. Install [Python 3.10](https://www.python.org/downloads/release/python-3104/)
 2. Install [Pipenv](https://pypi.org/project/pipenv/) via ``pip install pipenv``
-4. [PySide6](https://pypi.org/project/PySide6/) 
-5. [PyMongo](https://pypi.org/project/pymongo/)
-6. [Certifi](https://pypi.org/project/certifi/)
+3. [PySide6](https://pypi.org/project/PySide6/) 
+4. [PyMongo](https://pypi.org/project/pymongo/)
+5. [Certifi](https://pypi.org/project/certifi/)
 
-Packages 4-6 can be installed by running ``pipenv shell && pipenv install`` from a CLI when in the root directory of this project.
+Packages 3-5 can be installed by running ``pipenv shell && pipenv install`` from a CLI when in the root directory of this project.
