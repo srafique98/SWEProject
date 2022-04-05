@@ -19,9 +19,9 @@ class DB_Client:
         self.dbCollection = self.dbName[db_collection]
         self.intitialized = initialized
 
-    def general_search(self, general_text):
+    def general_search(self, general_text, projection):
         loc_query = { "$or": [ { "job_title" : {"$regex":general_text}}, { "description": {"$regex":general_text}},{ "location" : {"$regex":general_text}} ] }
-        fil_document = self.dbCollection.find(loc_query)
+        fil_document = self.dbCollection.find(loc_query, projection)
         return fil_document
 
     def fil_location(self,in_str):
