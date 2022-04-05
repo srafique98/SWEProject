@@ -57,9 +57,9 @@ class Listing(Window):
         newDB = DB_Client(True, "Jobs","NewJobs")
         searchKeyword = self.searchBar.text()
         #print(searchKeyword)
-        document = newDB.fil_sect_profession(searchKeyword)
+        document = newDB.general_search(searchKeyword)
         for field in document:
-            print(field)  # or do something with the document
+            print(field["job_title"],field["location"])  # or do something with the document
 
     
      # Stores text field
