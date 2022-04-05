@@ -38,7 +38,7 @@ class Listing(Window):
         self.salaryButton = self.findChild(QPushButton,"salaryTypeButton") # From mainwindow.ui
         self.salaryButton.clicked.connect(self.getSalaryFilter)
 
-        self.jobTable = self.findChild(QTableView, "jobListing")
+        #self.jobTable = self.findChild(QTableView, "jobListing")
 
 
 
