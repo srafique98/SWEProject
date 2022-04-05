@@ -1,3 +1,4 @@
+from tokenize import Double
 from src.Window import Window
 from src.db_client import DB_Client
 from PySide6.QtWidgets import *
@@ -75,6 +76,8 @@ class Listing(Window):
         salaryKeyword = self.salaryFilter.text()
         min_sal, max_sal = salaryKeyword.split('-', 1)
         #print(min_sal,max_sal)
+        min_sal = float(min_sal)
+        max_sal = float(max_sal)
         document = self.connection.fil_salary_range(min_sal, max_sal)
         for field in document:
             print(field["job_title"], field["location"], field["min_salary_range"], field["max_salary_range"])
