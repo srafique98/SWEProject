@@ -14,9 +14,6 @@ class Listing(Window):
         self.connection = DB_Client(True,"Jobs","NewJobs")
         self.jobButton = self.findChild(QPushButton,"pushButton") # From mainwindow.ui
         self.cursor = self.connection.dbCollection.find({})
-
-        # DO Something
-        self.jobButton.clicked.connect(self.displayAJob)
          
         # Search text and button
         self.searchBar = self.findChild(QLineEdit, "searchBar")
@@ -38,7 +35,19 @@ class Listing(Window):
         self.salaryButton = self.findChild(QPushButton,"salaryTypeButton") # From mainwindow.ui
         self.salaryButton.clicked.connect(self.getSalaryFilter)
 
-        #self.jobTable = self.findChild(QTableView, "jobListing")
+        self.jobs = self.getJobs()
+        print(self.jobs)
+
+        self.jobTable = self.findChild(QTableWidget, "jobListings")
+        self.jobTable.setRowCount(1)
+        self.jobTable.setColumnCount(3)
+        self.newTitle = QTableWidgetItem(self.jobs["job_title"])
+        self.newSector = QTableWidgetItem(self.jobs["sector"])
+        self.newSalary = QTableWidgetItem('{minSal} - {maxSal}'.format(minSal=self.jobs["min_salary_range"],
+                                                                       maxSal=self.jobs["max_salary_range"]))
+        self.jobTable.setItem(0, 0, self.newTitle)
+        self.jobTable.setItem(0, 1, self.newSector)
+        self.jobTable.setItem(0, 2, self.newSalary)
 
 
 
@@ -62,7 +71,8 @@ class Listing(Window):
         print(fieldKeyword) 
 
     @Slot()
-    def displayAJob(self):
+    def getJobs(self):
         obj = next(self.cursor, None)
         if obj:
             print(obj)
+            return obj
