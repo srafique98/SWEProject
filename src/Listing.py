@@ -1,3 +1,4 @@
+from sqlite3 import Cursor
 from Window import Window
 from db_client import DB_Client
 from PySide6.QtWidgets import *
@@ -41,9 +42,14 @@ class Listing(Window):
 
     # Stores text field
     def getSearch(self):
+        newDB = DB_Client(True, "Jobs","NewJobs")
         searchKeyword = self.searchBar.text()
-        print(searchKeyword)
+        #print(searchKeyword)
+        document = newDB.fil_sect_profession(searchKeyword)
+        for field in document:
+            print(field)  # or do something with the document
 
+    
      # Stores text field
     def getLocFilter(self):
         locKeyword = self.locFilter.text()
