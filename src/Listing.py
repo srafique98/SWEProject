@@ -18,22 +18,22 @@ class Listing(Window):
         self.jobButton.clicked.connect(self.displayAJob)
          
         # Search text and button
-        self.searchBar = self.findChild(QTextEdit, "searchBar")
+        self.searchBar = self.findChild(QLineEdit, "searchBar")
         self.searchButton = self.findChild(QPushButton,"searchButton") # From mainwindow.ui
         self.searchButton.clicked.connect(self.getSearch)
         
         # Field filter text and button
-        self.fieldFilter = self.findChild(QTextEdit, "filter")
+        self.fieldFilter = self.findChild(QLineEdit, "filter")
         self.jobTypeButton = self.findChild(QPushButton,"jobTypeButton") # From mainwindow.ui
         self.jobTypeButton.clicked.connect(self.getFieldFilter)
         
         # Location filter text and button
-        self.locFilter = self.findChild(QTextEdit, "filter_2")
+        self.locFilter = self.findChild(QLineEdit, "filter_2")
         self.locationTypeButton = self.findChild(QPushButton,"locationTypeButton") # From mainwindow.ui
         self.locationTypeButton.clicked.connect(self.getLocFilter)
         
         # Salary filter  text and button
-        self.salaryFilter = self.findChild(QTextEdit, "filter_3")
+        self.salaryFilter = self.findChild(QLineEdit, "filter_3")
         self.salaryButton = self.findChild(QPushButton,"salaryTypeButton") # From mainwindow.ui
         self.salaryButton.clicked.connect(self.getSalaryFilter)
 
@@ -41,21 +41,21 @@ class Listing(Window):
 
     # Stores text field
     def getSearch(self):
-        searchKeyword = self.searchBar.toPlainText()
+        searchKeyword = self.searchBar.text()
         print(searchKeyword)
 
      # Stores text field
     def getLocFilter(self):
-        locKeyword = self.locFilter.toPlainText()
+        locKeyword = self.locFilter.text()
         print(locKeyword)
 
     # Stores text field
     def getSalaryFilter(self):
-        salaryKeyword = self.salaryFilter.toPlainText()
+        salaryKeyword = self.salaryFilter.text()
         print(salaryKeyword)    
     
     def getFieldFilter(self):
-        fieldKeyword = self.fieldFilter.toPlainText()
+        fieldKeyword = self.fieldFilter.text()
         print(fieldKeyword) 
 
     @Slot()

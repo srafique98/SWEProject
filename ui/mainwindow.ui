@@ -35,43 +35,6 @@
      <enum>Qt::PlainText</enum>
     </property>
    </widget>
-   <widget class="QTextEdit" name="searchBar">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>31</y>
-      <width>461</width>
-      <height>63</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>16777215</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="inputMethodHints">
-     <set>Qt::ImhNone</set>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="searchButton">
     <property name="geometry">
      <rect>
@@ -97,69 +60,6 @@ p, li { white-space: pre-wrap; }
      <string>Search</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="filter">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>170</y>
-      <width>221</width>
-      <height>63</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>16777215</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="filter_2">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>170</y>
-      <width>221</width>
-      <height>63</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>16777215</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="filter_3">
-    <property name="geometry">
-     <rect>
-      <x>840</x>
-      <y>170</y>
-      <width>221</width>
-      <height>63</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>16777215</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-   </widget>
    <widget class="QLabel" name="descriptionLabel">
     <property name="geometry">
      <rect>
@@ -181,7 +81,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="jobTypeButton">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>260</x>
       <y>169</y>
       <width>179</width>
       <height>65</height>
@@ -206,7 +106,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="locationTypeButton">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>680</x>
       <y>169</y>
       <width>179</width>
       <height>65</height>
@@ -231,7 +131,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="salaryTypeButton">
     <property name="geometry">
      <rect>
-      <x>1060</x>
+      <x>1100</x>
       <y>169</y>
       <width>179</width>
       <height>65</height>
@@ -253,7 +153,7 @@ p, li { white-space: pre-wrap; }
      <string>Apply Filter</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="promptJob">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -266,10 +166,10 @@ p, li { white-space: pre-wrap; }
      <string>Enter Job Filter...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="promptLocation">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>460</x>
       <y>150</y>
       <width>181</width>
       <height>16</height>
@@ -279,10 +179,10 @@ p, li { white-space: pre-wrap; }
      <string>Enter Location Filter...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="promptSalary">
     <property name="geometry">
      <rect>
-      <x>840</x>
+      <x>890</x>
       <y>150</y>
       <width>181</width>
       <height>16</height>
@@ -303,6 +203,94 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="profilePicture">
+    <property name="geometry">
+     <rect>
+      <x>1240</x>
+      <y>10</y>
+      <width>101</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../Downloads/download (2).png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="searchBar">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>31</y>
+      <width>461</width>
+      <height>63</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="filter">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>170</y>
+      <width>221</width>
+      <height>63</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="filter_2">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>170</y>
+      <width>221</width>
+      <height>63</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="filter_3">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>170</y>
+      <width>221</width>
+      <height>63</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
