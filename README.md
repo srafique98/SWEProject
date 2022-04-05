@@ -38,3 +38,12 @@ Technical debt assignment found [here](https://github.com/comp129/customer-proje
   - [ ] Story 10: Quick Apply
   - [ ] Story 11: Employer's Perspective
   - [ ] Story 12: Returning User
+
+
+# Software needed to run the application
+1. [Python 3.10](https://www.python.org/downloads/release/python-3104/)
+2. [Pipenv](https://pypi.org/project/pipenv/)
+3. [PySide6](https://pypi.org/project/PySide6/) 
+4. [PyMongo](https://pypi.org/project/pymongo/)
+5. [Certifi](https://pypi.org/project/certifi/)
+All of these packages can be installed by running ``pipenv shell && pipenv install`` when in the root directory from a CLI.
