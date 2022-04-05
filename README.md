@@ -25,8 +25,12 @@ Technical debt assignment found [here](https://github.com/comp129/customer-proje
   - [x] [5 points]User Collection MongoDB
 
   - store user information in an online collection on the cluster
+  
+  ```
   Estimated Story Points: 6 Stories for 55 Points
-  Copmleted : 7 Stories for 60 points
+  
+  Completed : 7 Stories for 60 points 
+  ```
 ## What was NOT Completed:
   - [ ] Story 7: User Class
   - [ ] Story 8: User Interface
