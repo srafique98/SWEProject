@@ -1,6 +1,3 @@
-from multiprocessing import connection
-
-
 connection_strings = {
     "db_string" : "mongodb+srv://root:trx9bsx2oGhtz4DJ@cluster0.ehbu1.mongodb.net/Jobs?retryWrites=true&w=majority",
     "pw"        : "trx9bsx2oGhtz4DJ"

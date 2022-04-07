@@ -1,6 +1,6 @@
 import pymongo
 import certifi
-from . import db_library as dblib
+import src.db_library as dblib
 
 
 class DB_Client:
