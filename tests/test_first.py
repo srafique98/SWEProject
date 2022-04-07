@@ -1,8 +1,9 @@
-from src.db_client import DB_Client
+from src.db_clientt import DB_Client
 
 def test_first():
     return True
 
+# JOB db tests
 def test_dbConnectionJobs():
     newDB = DB_Client(True, "Jobs","NewJobs")
     return newDB.intitialized
@@ -28,8 +29,10 @@ def test_DbProfessionFilter():
     except:
         return False
 
+
+# DB USER fetch TESTS
 def test_dbGetNameByID():
-    newDB = newDB = DB_Client(True, "Jobs","users")
+    newDB = DB_Client(True, "Jobs","users")
     names = []
     try:
         for i in range(3):
@@ -38,12 +41,3 @@ def test_dbGetNameByID():
         return True
     except:
         return False
-#def test_windowInit():
-#    testFile = "../ui/mainmenu.ui"
-#    try:
-#        app = QApplication(sys.argv)
-#        testWindow = Menu()
-#        testWindow.windowInit(testFile)
-#        return True
-#    except SystemExit:
-#        return False
