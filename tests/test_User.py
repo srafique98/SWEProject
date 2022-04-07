@@ -38,5 +38,3 @@ def test_UserCorrectSignIn():
         assert temp_user.signed_in == False, ae["usi"]
     
     return True
-test_UserIncorrectSignIn()
-test_UserCorrectSignIn()
