@@ -19,10 +19,14 @@ class Job(QWidget):
 
 		self.jobTitle = QLabel(jobTitle)
 		self.jobTitle.setFont(self.jobFont)
+
 		self.salary = QLabel(salary)
 		self.salary.setFont(self.salaryFont)
+		self.salary.setIndent(16)
+
 		self.sector = QLabel(sector)
 		self.sector.setFont(self.sectorFont)
+		self.sector.setIndent(16)
 
 		self.vert.addWidget(self.jobTitle)
 		self.vert.addWidget(self.salary)

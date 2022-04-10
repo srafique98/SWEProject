@@ -40,7 +40,7 @@ class Listing(Window):
         self.maxSalaryFilter = self.findChild(QComboBox, "maxComboBox")
         self.salaryButton = self.findChild(QPushButton, "salaryTypeButton")  # From mainwindow.ui
         self.salaryButton.clicked.connect(self.getSalaryFilter)
-
+        
         # Error message
         self.invalidSalary = self.findChild(QLabel, "invalidSalaryLabel")
         self.invalidSalary.hide()
