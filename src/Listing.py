@@ -21,26 +21,35 @@ class Listing(Window):
 
         # Search text and button
         self.searchBar = self.findChild(QLineEdit, "searchBar")
+
         self.searchButton = self.findChild(QPushButton, "searchButton")  # From mainwindow.ui
         self.searchButton.clicked.connect(self.getSearch)
 
         # Field filter text and button
-        self.jobFilter = self.findChild(QLineEdit, "filter")
+        self.jobFilter = self.findChild(QLineEdit, "searchJobFilter")
         self.jobTypeButton = self.findChild(QPushButton, "jobTypeButton")  # From mainwindow.ui
         self.jobTypeButton.clicked.connect(self.getJobFilter)
 
         # Location filter text and button
-        self.locFilter = self.findChild(QLineEdit, "filter_2")
+        self.locFilter = self.findChild(QLineEdit, "searchLocationFilter")
         self.locationTypeButton = self.findChild(QPushButton, "locationTypeButton")  # From mainwindow.ui
         self.locationTypeButton.clicked.connect(self.getLocFilter)
 
-        # Salary filter  text and button
-        self.salaryFilter = self.findChild(QLineEdit, "filter_3")
+        # Salary min and max filter text and button
+        self.minSalaryFilter = self.findChild(QComboBox, "minComboBox")
+        self.maxSalaryFilter = self.findChild(QComboBox, "maxComboBox")
         self.salaryButton = self.findChild(QPushButton, "salaryTypeButton")  # From mainwindow.ui
         self.salaryButton.clicked.connect(self.getSalaryFilter)
 
+        # Error message
+        self.invalidSalary = self.findChild(QLabel, "invalidSalaryLabel")
+        self.invalidSalary.hide()
+
         self.scrollArea = self.findChild(QScrollArea, "scrollArea")
         self.vertJobs = self.findChild(QVBoxLayout, "jobDisplay")
+
+        # self.jobs = self.getJobs()
+        print(self.jobs)
 
         for count, document in enumerate(self.jobs.collection.find()):
             newTitle = document["job_title"]
@@ -69,15 +78,22 @@ class Listing(Window):
 
     # Stores text field
     def getSalaryFilter(self):
-        salaryKeyword = self.salaryFilter.text()
-        min_sal, max_sal = salaryKeyword.split('-', 1)
-        #print(min_sal,max_sal)
-        min_sal = float(min_sal)
-        max_sal = float(max_sal)
-        document = self.connection.fil_salary_range(min_sal, max_sal)
-        for field in document:
-            print(field["job_title"], field["location"], field["min_salary_range"], field["max_salary_range"])
-        #print(salaryKeyword)
+        minSalaryKeyword = self.minSalaryFilter.currentText()
+        minSalary = minSalaryKeyword.replace(',', "")
+        minSalary = float(minSalary)
+        
+        maxSalaryKeyword = self.maxSalaryFilter.currentText()
+        maxSalary = maxSalaryKeyword.replace(',', "") 
+        maxSalary = float(maxSalary)
+        print(minSalary,maxSalary)
+        # Max must be higher
+        if(minSalary < maxSalary):
+            self.invalidSalary.hide()
+            document = self.connection.fil_salary_range(minSalary, maxSalary)
+            for field in document:
+                print(field["job_title"], field["location"], field["min_salary_range"], field["max_salary_range"])
+        else: 
+            self.invalidSalary.show()
 
     def getJobFilter(self):
         fieldKeyword = self.jobFilter.text()
