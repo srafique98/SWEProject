@@ -2,7 +2,9 @@ from tokenize import Double
 from src.Window import Window
 from src.db_client import DB_Client
 from PySide6.QtWidgets import *
-from PySide6.QtCore import Slot
+#from PySide6.QtCore import *
+from PySide6 import QtCore
+from src.Job import Job
 
 
 class Listing(Window):
@@ -10,12 +12,12 @@ class Listing(Window):
         uiFile = "ui/mainwindow.ui"
         super().__init__()
         self.window = super().windowInit(uiFile, self)
-        # self.window.show()
 
         self.connection = DB_Client(True, "Jobs", "NewJobs")
         self.jobButton = self.findChild(QPushButton, "pushButton")  # From mainwindow.ui
         self.jobs = self.connection.general_search({""}, {"job_title": 1, "sector": 1, "min_salary_range": 1,
                                                           "max_salary_range": 1})
+        self.jobSummaries = []
 
         # Search text and button
         self.searchBar = self.findChild(QLineEdit, "searchBar")
@@ -37,24 +39,18 @@ class Listing(Window):
         self.salaryButton = self.findChild(QPushButton, "salaryTypeButton")  # From mainwindow.ui
         self.salaryButton.clicked.connect(self.getSalaryFilter)
 
-        # self.jobs = self.getJobs()
-        print(self.jobs)
+        self.scrollArea = self.findChild(QScrollArea, "scrollArea")
+        self.vertJobs = self.findChild(QVBoxLayout, "jobDisplay")
 
-        self.numJobs = self.jobs.collection.count_documents({})
-        self.jobTable = self.findChild(QTableWidget, "jobListings")
-        self.jobTable.setRowCount(self.numJobs)
-        self.jobTable.setColumnCount(3)
-        print(self.numJobs)
-        print(self.jobs)
         for count, document in enumerate(self.jobs.collection.find()):
-            newTitle = QTableWidgetItem(document["job_title"])
-            newSector = QTableWidgetItem(document["sector"])
-            newSalary = QTableWidgetItem('{minSal} - {maxSal}'.format(minSal=document["min_salary_range"],
-                                                                      maxSal=document["max_salary_range"]))
+            newTitle = document["job_title"]
+            newSector = document["sector"] if document["sector"] else "Sector not reported"
+            newSalary = '{minSal} - {maxSal}'.format(minSal=document["min_salary_range"],
+                                                     maxSal=document["max_salary_range"])
+            self.jobSummaries.append(Job(newTitle, newSector, newSalary))
 
-            self.jobTable.setItem(count, 0, newTitle)
-            self.jobTable.setItem(count, 1, newSector)
-            self.jobTable.setItem(count, 2, newSalary)
+        for i in range(0, 20):
+            self.vertJobs.addWidget(self.jobSummaries[i])
 
     # Stores text field
     def getSearch(self):
@@ -82,17 +78,10 @@ class Listing(Window):
         for field in document:
             print(field["job_title"], field["location"], field["min_salary_range"], field["max_salary_range"])
         #print(salaryKeyword)
-    
+
     def getJobFilter(self):
         fieldKeyword = self.jobFilter.text()
         document = self.connection.fil_sect_profession(fieldKeyword)
         for field in document:
             print(field["job_title"], field["location"])
         #(fieldKeyword)
-
-    @Slot()
-    def getJobs(self):
-        obj = next(self.jobs, None)
-        if obj:
-            print(obj)
-            return obj

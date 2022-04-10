@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1523</width>
-    <height>1111</height>
+    <width>1763</width>
+    <height>1137</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -280,54 +280,45 @@
      <string/>
     </property>
    </widget>
-   <widget class="QTableWidget" name="jobListings">
+   <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>350</y>
-      <width>621</width>
-      <height>711</height>
+      <y>340</y>
+      <width>661</width>
+      <height>771</height>
      </rect>
     </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
-    <property name="alternatingRowColors">
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="widgetResizable">
      <bool>true</bool>
     </property>
-    <attribute name="horizontalHeaderVisible">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="horizontalHeaderCascadingSectionResizes">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="horizontalHeaderStretchLastSection">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderCascadingSectionResizes">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderStretchLastSection">
-     <bool>false</bool>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>Job Title</string>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>645</width>
+       <height>769</height>
+      </rect>
      </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Sector</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Salary</string>
-     </property>
-    </column>
+     <layout class="QVBoxLayout" name="verticalLayout_10">
+      <item>
+       <layout class="QVBoxLayout" name="jobDisplay"/>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -335,8 +326,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1523</width>
-     <height>22</height>
+     <width>1763</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

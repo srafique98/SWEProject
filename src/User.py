@@ -1,6 +1,8 @@
 import socket
 from datetime import datetime
-from src.db_client import DBClient
+from src.db_client import DB_Client
+
+
 class User:
     """Generic placeholder for user interactive class"""
     signed_in = False
@@ -19,5 +21,5 @@ class User:
         self.profile_info["last_logged"] = datetime.now()
 
     def login(email,pw):
-        new_db = DBClient(True,"Jobs","users")
+        new_db = DB_Client(True,"Jobs","users")
         # to be continued
