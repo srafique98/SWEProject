@@ -100,7 +100,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Apply Filter</string>
+     <string>Search</string>
     </property>
    </widget>
    <widget class="QPushButton" name="locationTypeButton">
@@ -125,7 +125,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Apply Filter</string>
+     <string>Search</string>
     </property>
    </widget>
    <widget class="QLabel" name="promptMin">
@@ -346,6 +346,12 @@
       <underline>false</underline>
      </font>
     </property>
+    <property name="currentText">
+     <string>100,000</string>
+    </property>
+    <property name="currentIndex">
+     <number>9</number>
+    </property>
     <item>
      <property name="text">
       <string>10,000</string>
@@ -419,14 +425,14 @@
      </font>
     </property>
     <property name="text">
-     <string>Apply Filter</string>
+     <string>Search</string>
     </property>
    </widget>
    <widget class="QLabel" name="invalidSalaryLabel">
     <property name="geometry">
      <rect>
       <x>880</x>
-      <y>240</y>
+      <y>130</y>
       <width>171</width>
       <height>16</height>
      </rect>
@@ -477,6 +483,91 @@
      <string>Min must be less than Max</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="applyJobFilter">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>240</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply Filter</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="applyLocFilter">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>240</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply Filter</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="applySalaryFilter">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>240</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply Filter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeFilters">
+    <property name="geometry">
+     <rect>
+      <x>155</x>
+      <y>130</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove Filter X</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="allFilters">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>130</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply All</string>
+    </property>
+   </widget>
+   <zorder>allFilters</zorder>
+   <zorder>listingsLabel</zorder>
+   <zorder>searchButton</zorder>
+   <zorder>descriptionLabel</zorder>
+   <zorder>jobTypeButton</zorder>
+   <zorder>locationTypeButton</zorder>
+   <zorder>promptMin</zorder>
+   <zorder>profilePicture</zorder>
+   <zorder>searchBar</zorder>
+   <zorder>searchJobFilter</zorder>
+   <zorder>searchLocationFilter</zorder>
+   <zorder>scrollArea</zorder>
+   <zorder>minComboBox</zorder>
+   <zorder>maxComboBox</zorder>
+   <zorder>salaryTypeButton</zorder>
+   <zorder>invalidSalaryLabel</zorder>
+   <zorder>applyJobFilter</zorder>
+   <zorder>applyLocFilter</zorder>
+   <zorder>applySalaryFilter</zorder>
+   <zorder>removeFilters</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

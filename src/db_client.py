@@ -19,8 +19,13 @@ class DB_Client:
         self.dbCollection = self.dbName[db_collection]
         self.intitialized = initialized
 
-    def general_search(self, general_text, projection):
-        loc_query = { "$or": [ { "job_title" : {"$regex":general_text}}, { "description": {"$regex":general_text}},{ "location" : {"$regex":general_text}} ] }
+    def general_search(self,general_text, projection):
+        loc_query = { "$or": [ { "job_title" : {"$regex":general_text}},{"job_description": {"$regex":general_text}}, { "location" : {"$regex":general_text}},{"$and": [{"min_salary_range":{"$gte":general_text}},{"max_salary_range":{"$lte":general_text}}]} ] }
+        fil_document = self.dbCollection.find(loc_query, projection)
+        return fil_document
+
+    def fil_search(self, str_job, str_loc,flt_min,flt_max, projection):
+        loc_query = { "$and": [ { "job_title" : {"$regex":str_job}}, { "location" : {"$regex":str_loc}},{"$and": [{"min_salary_range":{"$gte":flt_min}},{"max_salary_range":{"$lte":flt_max}}]} ] }
         fil_document = self.dbCollection.find(loc_query, projection)
         return fil_document
 

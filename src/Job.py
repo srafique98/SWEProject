@@ -35,5 +35,5 @@ class Job(QWidget):
 
 	def getLayout(self):
 		return self.vert
-
+		
 

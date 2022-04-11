@@ -21,30 +21,38 @@ class Listing(Window):
 
         # Search text and button
         self.searchBar = self.findChild(QLineEdit, "searchBar")
-
         self.searchButton = self.findChild(QPushButton, "searchButton")  # From mainwindow.ui
         self.searchButton.clicked.connect(self.getSearch)
 
-        # Field filter text and button
+        # Job filter text and button
         self.jobFilter = self.findChild(QLineEdit, "searchJobFilter")
         self.jobTypeButton = self.findChild(QPushButton, "jobTypeButton")  # From mainwindow.ui
         self.jobTypeButton.clicked.connect(self.getJobFilter)
-
+        self.applyJobFil = self.findChild(QCheckBox, "applyJobFilter")
         # Location filter text and button
         self.locFilter = self.findChild(QLineEdit, "searchLocationFilter")
         self.locationTypeButton = self.findChild(QPushButton, "locationTypeButton")  # From mainwindow.ui
         self.locationTypeButton.clicked.connect(self.getLocFilter)
+        self.applyLocFil = self.findChild(QCheckBox, "applyLocFilter")
 
         # Salary min and max filter text and button
         self.minSalaryFilter = self.findChild(QComboBox, "minComboBox")
         self.maxSalaryFilter = self.findChild(QComboBox, "maxComboBox")
         self.salaryButton = self.findChild(QPushButton, "salaryTypeButton")  # From mainwindow.ui
         self.salaryButton.clicked.connect(self.getSalaryFilter)
-        
+        self.applySalaryFil = self.findChild(QCheckBox, "applySalaryFilter")
+
+        # Remove filter
+        self.removeFilterButton = self.findChild(QPushButton,"removeFilters")
+        self.removeFilterButton.clicked.connect(self.removeFilters)
+        self.applyAllFilterButton = self.findChild(QPushButton, "allFilters")
+        self.applyAllFilterButton.clicked.connect(self.applyAllFilters)
+
         # Error message
         self.invalidSalary = self.findChild(QLabel, "invalidSalaryLabel")
         self.invalidSalary.hide()
 
+        # List view 
         self.scrollArea = self.findChild(QScrollArea, "scrollArea")
         self.vertJobs = self.findChild(QVBoxLayout, "jobDisplay")
 
@@ -62,9 +70,17 @@ class Listing(Window):
     # Stores text field
     def getSearch(self):
         self.clearSummaries()
-        searchKeyword = self.searchBar.text()
-        newJobs = self.connection.general_search(searchKeyword, {})
 
+        if((not self.applyJobFil.isChecked()) and (not self.applyLocFil.isChecked()) 
+                                                and (not self.applySalaryFil.isChecked())):
+            searchKeyword = self.searchBar.text()
+            newJobs = self.connection.general_search(searchKeyword, {})
+        # else if 
+        elif(((self.applyJobFil.isChecked()) or (self.applyLocFil.isChecked())) 
+                                                or (self.applySalaryFil.isChecked())): 
+            salaryTemp = self.getSalaryKey()
+            newJobs = self.connection.fil_search(self.getJobKeyword(), self.getLocationKey(),
+                                                            salaryTemp[0], salaryTemp[1], {})
         for count, job in enumerate(newJobs):
             if count >= 20:
                 break
@@ -75,17 +91,18 @@ class Listing(Window):
                                                      maxSal=job["max_salary_range"])
             self.jobSummaries.append(Job(newTitle, newSector, newSalary))
             self.vertJobs.addWidget(self.jobSummaries[count])
+    
+    
+    
+    def getJobKeyword(self):
+        jobKeyword = self.jobFilter.text()
+        return jobKeyword
 
-    # Stores text field
-    def getLocFilter(self):
-        locKeyword = self.locFilter.text()
-        document = self.connection.fil_location(locKeyword)
-        for field in document:
-            print(field["job_title"], field["location"])
-        #print(locKeyword)
+    def getLocationKey(self):
+        locationKeyword = self.locFilter.text()
+        return locationKeyword
 
-    # Stores text field
-    def getSalaryFilter(self):
+    def getSalaryKey(self):
         minSalaryKeyword = self.minSalaryFilter.currentText()
         minSalary = minSalaryKeyword.replace(',', "")
         minSalary = float(minSalary)
@@ -93,22 +110,70 @@ class Listing(Window):
         maxSalaryKeyword = self.maxSalaryFilter.currentText()
         maxSalary = maxSalaryKeyword.replace(',', "") 
         maxSalary = float(maxSalary)
-        print(minSalary,maxSalary)
+        #print(minSalary,maxSalary)
+        return minSalary, maxSalary
+
+    # def search(self):
+    #     # If filters are applied
+    #     if((not self.applyJobFil.isChecked()) and (not self.applyLocFil.isChecked()) 
+    #                                             and (not self.applySalaryFil.isChecked())):
+    #         #print("No filters")
+    #         document = self.connection.general_search(self.getSearchKey(), {})
+        
+    #     elif(((self.applyJobFil.isChecked()) or (self.applyLocFil.isChecked())) 
+    #                                             and ((self.applySalaryFil.isChecked()))): 
+    #         #print("FILTER ON\n\n\n\n")
+    #         salaryTemp = self.getSalaryKey()
+    #         document = self.connection.fil_search(self.getJobKeyword(), self.getLocationKey(),
+    #                                                         salaryTemp[0], salaryTemp[1], {})
+        # self.clearSummaries()
+
+        # for count, job in enumerate(document):
+        #     if count >= 20:
+        #         break
+
+        #     newTitle = job["job_title"]
+        #     newSector = job["sector"] if job["sector"] else "Sector not reported"
+        #     newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
+        #                                              maxSal=job["max_salary_range"])
+        #     self.jobSummaries.append(Job(newTitle, newSector, newSalary))
+        #     self.vertJobs.addWidget(self.jobSummaries[count])
+        
+    
+  
+    def getJobFilter(self):
+        document = self.connection.fil_sect_profession(self.getJobKeyword())
+        for field in document:
+            print(field["job_title"], field["location"])
+        #(fieldKeyword)
+
+    def getLocFilter(self):
+        document = self.connection.fil_location(self.getLocationKey())
+        for field in document:
+            print(field["job_title"], field["location"])
+        #print(locKeyword)
+
+    # Stores text field
+    def getSalaryFilter(self):
+        salary = self.getSalaryKey()
         # Max must be higher
-        if(minSalary < maxSalary):
+        if(salary[0] < salary[1]):
             self.invalidSalary.hide()
-            document = self.connection.fil_salary_range(minSalary, maxSalary)
+            document = self.connection.fil_salary_range(salary[0], salary[1])
             for field in document:
                 print(field["job_title"], field["location"], field["min_salary_range"], field["max_salary_range"])
         else: 
             self.invalidSalary.show()
+    
+    def removeFilters(self):
+        self.applyJobFil.setChecked(False)
+        self.applyLocFil.setChecked(False)
+        self.applySalaryFil.setChecked(False)
 
-    def getJobFilter(self):
-        fieldKeyword = self.jobFilter.text()
-        document = self.connection.fil_sect_profession(fieldKeyword)
-        for field in document:
-            print(field["job_title"], field["location"])
-        #(fieldKeyword)
+    def applyAllFilters(self):
+        self.applyJobFil.setChecked(True)
+        self.applyLocFil.setChecked(True)
+        self.applySalaryFil.setChecked(True)
 
     def clearSummaries(self):
         for job in self.jobSummaries:
