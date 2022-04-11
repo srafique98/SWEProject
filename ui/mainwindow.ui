@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1523</width>
-    <height>1111</height>
+    <width>1763</width>
+    <height>1137</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -100,7 +100,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Apply Filter</string>
+     <string>Search</string>
     </property>
    </widget>
    <widget class="QPushButton" name="locationTypeButton">
@@ -125,7 +125,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Apply Filter</string>
+     <string>Search</string>
     </property>
    </widget>
    <widget class="QLabel" name="promptMin">
@@ -223,54 +223,45 @@
      <string>Enter Location Filter...</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="jobListings">
+   <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>350</y>
-      <width>621</width>
-      <height>711</height>
+      <y>340</y>
+      <width>661</width>
+      <height>771</height>
      </rect>
     </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
-    <property name="alternatingRowColors">
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="widgetResizable">
      <bool>true</bool>
     </property>
-    <attribute name="horizontalHeaderVisible">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="horizontalHeaderCascadingSectionResizes">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="horizontalHeaderStretchLastSection">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderCascadingSectionResizes">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderStretchLastSection">
-     <bool>false</bool>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>Job Title</string>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>645</width>
+       <height>769</height>
+      </rect>
      </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Sector</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Salary</string>
-     </property>
-    </column>
+     <layout class="QVBoxLayout" name="verticalLayout_10">
+      <item>
+       <layout class="QVBoxLayout" name="jobDisplay"/>
+      </item>
+     </layout>
+    </widget>
    </widget>
    <widget class="QComboBox" name="minComboBox">
     <property name="geometry">
@@ -355,6 +346,12 @@
       <underline>false</underline>
      </font>
     </property>
+    <property name="currentText">
+     <string>100,000</string>
+    </property>
+    <property name="currentIndex">
+     <number>9</number>
+    </property>
     <item>
      <property name="text">
       <string>10,000</string>
@@ -428,14 +425,14 @@
      </font>
     </property>
     <property name="text">
-     <string>Apply Filter</string>
+     <string>Search</string>
     </property>
    </widget>
    <widget class="QLabel" name="invalidSalaryLabel">
     <property name="geometry">
      <rect>
       <x>880</x>
-      <y>240</y>
+      <y>130</y>
       <width>171</width>
       <height>16</height>
      </rect>
@@ -486,13 +483,98 @@
      <string>Min must be less than Max</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="applyJobFilter">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>240</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply Filter</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="applyLocFilter">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>240</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply Filter</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="applySalaryFilter">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>240</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply Filter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeFilters">
+    <property name="geometry">
+     <rect>
+      <x>155</x>
+      <y>130</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove Filter X</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="allFilters">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>130</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply All</string>
+    </property>
+   </widget>
+   <zorder>allFilters</zorder>
+   <zorder>listingsLabel</zorder>
+   <zorder>searchButton</zorder>
+   <zorder>descriptionLabel</zorder>
+   <zorder>jobTypeButton</zorder>
+   <zorder>locationTypeButton</zorder>
+   <zorder>promptMin</zorder>
+   <zorder>profilePicture</zorder>
+   <zorder>searchBar</zorder>
+   <zorder>searchJobFilter</zorder>
+   <zorder>searchLocationFilter</zorder>
+   <zorder>scrollArea</zorder>
+   <zorder>minComboBox</zorder>
+   <zorder>maxComboBox</zorder>
+   <zorder>salaryTypeButton</zorder>
+   <zorder>invalidSalaryLabel</zorder>
+   <zorder>applyJobFilter</zorder>
+   <zorder>applyLocFilter</zorder>
+   <zorder>applySalaryFilter</zorder>
+   <zorder>removeFilters</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1523</width>
+     <width>1763</width>
      <height>21</height>
     </rect>
    </property>

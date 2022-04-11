@@ -1,7 +1,9 @@
 from dataclasses import field
 import socket
-import src.db_clientt as db_cli
+import src.db_client as db_cli
 from datetime import datetime
+
+
 class User:
     signed_in = False
     profile_info = {
@@ -20,7 +22,6 @@ class User:
         self.profile_info["host_addres"] = local_hostname
         self.profile_info["ip"] = socket.gethostbyname(local_hostname)
         self.profile_info["last_logged"] = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-        
 
     def validateUserLogin(self, email, pw):
         db_obj = db_cli.DB_Client(True,"Jobs","users")
