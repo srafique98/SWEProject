@@ -51,22 +51,30 @@ class Listing(Window):
         # self.jobs = self.getJobs()
         print(self.jobs)
 
-        for count, document in enumerate(self.jobs.collection.find()):
+        for count, document in enumerate(self.jobs.collection.find().limit(20)):
             newTitle = document["job_title"]
             newSector = document["sector"] if document["sector"] else "Sector not reported"
             newSalary = '{minSal} - {maxSal}'.format(minSal=document["min_salary_range"],
                                                      maxSal=document["max_salary_range"])
             self.jobSummaries.append(Job(newTitle, newSector, newSalary))
-
-        for i in range(0, 20):
-            self.vertJobs.addWidget(self.jobSummaries[i])
+            self.vertJobs.addWidget(self.jobSummaries[count])
 
     # Stores text field
     def getSearch(self):
+        self.clearSummaries()
         searchKeyword = self.searchBar.text()
-        document = self.connection.general_search(searchKeyword, {})
-        for field in document:
-            print(field["job_title"], field["location"])  # or do something with the document
+        newJobs = self.connection.general_search(searchKeyword, {})
+
+        for count, job in enumerate(newJobs):
+            if count >= 20:
+                break
+
+            newTitle = job["job_title"]
+            newSector = job["sector"] if job["sector"] else "Sector not reported"
+            newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
+                                                     maxSal=job["max_salary_range"])
+            self.jobSummaries.append(Job(newTitle, newSector, newSalary))
+            self.vertJobs.addWidget(self.jobSummaries[count])
 
     # Stores text field
     def getLocFilter(self):
@@ -101,3 +109,8 @@ class Listing(Window):
         for field in document:
             print(field["job_title"], field["location"])
         #(fieldKeyword)
+
+    def clearSummaries(self):
+        for job in self.jobSummaries:
+            job.deleteLater()
+        self.jobSummaries.clear()
