@@ -1,3 +1,4 @@
+from dataclasses import field
 import socket
 import src.db_clientt as db_cli
 from datetime import datetime
@@ -35,4 +36,23 @@ class User:
                 self.signed_in = True
                 return True
         return False    
+
         
+#   *****************************************
+# SIGN UP 
+
+#User creation
+#   user_1 = User()
+#signup ex
+# user_1.signUp("fake_email@uop.net","sonicthehedgehog","Doctor","Eggman")
+
+    def signUp(self, email, pw, f_name, l_name):
+        db_obj = db_cli.DB_Client(True,"Jobs","users")
+        largest_u_id = db_obj.dbCollection.find().sort("u_id",-1).limit(1)
+        high = None
+        for field in largest_u_id:
+            high = field["u_id"]
+        user_insert = {"u_id":high+1, "first_name":f_name, "last_name":l_name,"email":email,"Password":pw}
+        db_obj.dbCollection.insert_one(user_insert)
+
+#   *****************************************
