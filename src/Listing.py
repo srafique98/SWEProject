@@ -111,35 +111,7 @@ class Listing(Window):
         maxSalary = maxSalaryKeyword.replace(',', "") 
         maxSalary = float(maxSalary)
         #print(minSalary,maxSalary)
-        return minSalary, maxSalary
-
-    # def search(self):
-    #     # If filters are applied
-    #     if((not self.applyJobFil.isChecked()) and (not self.applyLocFil.isChecked()) 
-    #                                             and (not self.applySalaryFil.isChecked())):
-    #         #print("No filters")
-    #         document = self.connection.general_search(self.getSearchKey(), {})
-        
-    #     elif(((self.applyJobFil.isChecked()) or (self.applyLocFil.isChecked())) 
-    #                                             and ((self.applySalaryFil.isChecked()))): 
-    #         #print("FILTER ON\n\n\n\n")
-    #         salaryTemp = self.getSalaryKey()
-    #         document = self.connection.fil_search(self.getJobKeyword(), self.getLocationKey(),
-    #                                                         salaryTemp[0], salaryTemp[1], {})
-        # self.clearSummaries()
-
-        # for count, job in enumerate(document):
-        #     if count >= 20:
-        #         break
-
-        #     newTitle = job["job_title"]
-        #     newSector = job["sector"] if job["sector"] else "Sector not reported"
-        #     newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
-        #                                              maxSal=job["max_salary_range"])
-        #     self.jobSummaries.append(Job(newTitle, newSector, newSalary))
-        #     self.vertJobs.addWidget(self.jobSummaries[count])
-        
-    
+        return minSalary, maxSalary    
   
     def getJobFilter(self):
         document = self.connection.fil_sect_profession(self.getJobKeyword())
@@ -170,10 +142,14 @@ class Listing(Window):
         self.applyLocFil.setChecked(False)
         self.applySalaryFil.setChecked(False)
 
+        self.jobFilter.setText("")
+        self.locFilter.setText("")
+
     def applyAllFilters(self):
         self.applyJobFil.setChecked(True)
         self.applyLocFil.setChecked(True)
         self.applySalaryFil.setChecked(True)
+
 
     def clearSummaries(self):
         for job in self.jobSummaries:
