@@ -68,7 +68,7 @@ Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza
   ```
   Estimated Story Points: 9 Stories for 67 Points
 
-  Completed : 6 Stories for 36 points 
+  Completed : 6 Stories for 41 points 
   ```
     
 ## What was NOT Completed:
