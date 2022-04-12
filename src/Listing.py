@@ -2,7 +2,6 @@ from tokenize import Double
 from src.Window import Window
 from src.db_client import DB_Client
 from PySide6.QtWidgets import *
-#from PySide6.QtCore import *
 from PySide6 import QtCore
 from src.Job import Job
 
