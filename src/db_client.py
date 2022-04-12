@@ -19,6 +19,24 @@ class DB_Client:
         self.dbCollection = self.dbName[db_collection]
         self.intitialized = initialized
 
+    # Create new fields within all documents
+        # pass in the new field name (string) ex: "resume" or "item_number"
+        # pass in OPTIONAL argument for the value in field
+    def create_new_document_field(self, field_name, *args):
+        passed_value = None
+        for ar in args:
+            if len(args) > 1:
+                print("new field creation failed")
+            else:
+                passed_value = ar
+        if passed_value is not None:
+            new_q = {"$set": {field_name : passed_value}}
+            self.dbCollection.update_many({},new_q)
+        else:
+            new_q = {"$set": {field_name : None}}
+            self.dbCollection.update_many({},new_q)
+
+
     def general_search(self,general_text, projection):
         loc_query = { "$or": [ { "job_title" : {"$regex":general_text}},{"job_description": {"$regex":general_text}}, { "location" : {"$regex":general_text}},{"$and": [{"min_salary_range":{"$gte":general_text}},{"max_salary_range":{"$lte":general_text}}]} ] }
         fil_document = self.dbCollection.find(loc_query, projection)
@@ -44,7 +62,7 @@ class DB_Client:
         fil_document = self.dbCollection.find(loc_query)
         return fil_document
 
-    # Data retreival for user db connection
+    # Data retreival for USER db connection
     def get_all_users(self):
         fil_document = self.dbCollection.find()
         return fil_document
@@ -61,3 +79,4 @@ class DB_Client:
         for cursor_pointer in fil_document:
             u_name = (cursor_pointer["first_name"], cursor_pointer["last_name"])
         return u_name # returns a tuple of strings -> ("first_name", "last_name")
+
