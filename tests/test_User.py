@@ -30,7 +30,7 @@ def test_UserCorrectSignIn():
     # assert that the user is not signed in
     assert temp_user.signed_in == False, ae["uso"]
     #sign in with incorrect credentials
-    if(temp_user.validateUserLogin("s_higley@u.pacific.edu","toothpaste")):
+    if(temp_user.validateUserLogin("eldenlord@souls.net","moonviel")):
         print("test_user correct sign-in successful, EXPECTED")
         assert temp_user.signed_in == True, ae["usi"]
     else:
