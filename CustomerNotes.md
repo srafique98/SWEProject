@@ -10,5 +10,11 @@
   - In the future, avoid many columns and merge into one. It should be a single box detailing the current information into a single column.
   - (Optional) For location, if we input "H" then dropdown menu will recommend cities that start with "H". Maybe for job filter as well. 
   - Have a Job title stand out more to make it easier to read/find and bold to stand out more. Other info is smaller so it is not as distacting. 
-- Job description should be populated after clicking a button on the job listing side.
-- The job description should include all the information on the job and an easy way to apply.
+  - Job description should be populated after clicking a button on the job listing side.
+  - The job description should include all the information on the job and an easy way to apply.
+
+# Sprint 2 April 5th - March 29th
+## Insights 
+  - 
+## Feedback
+  - 
