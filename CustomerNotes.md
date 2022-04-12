@@ -24,4 +24,8 @@
   - For max values such as 100,000 add a + in front of it indicating the largest value 
   - A larger font is preffered for the job listing, to make the visibility easier.
   - Have the profiles name appear for the user logged in.
-  - Suggestion for search e.g. location and profession. 
+  - Suggestion for search e.g. location and profession.
+      - Would like to search by state by abbrevation and full name
+      - Filter by profession with drop down as the user type
+
+- When creating an account allow user to upload resume
