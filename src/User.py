@@ -45,6 +45,7 @@ class User:
 #User creation
 #   user_1 = User()
 #signup ex
+#                   email               paswword        firstname lastname
 # user_1.signUp("fake_email@uop.net","sonicthehedgehog","Doctor","Eggman")
 
     def signUp(self, email, pw, f_name, l_name):
