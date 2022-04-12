@@ -13,7 +13,7 @@
   - Job description should be populated after clicking a button on the job listing side.
   - The job description should include all the information on the job and an easy way to apply.
 
-# Sprint 2 April 5th - March 29th
+# Sprint 2 April 5th - April 12th
 ## Insights 
   - 
 ## Feedback
