@@ -46,28 +46,29 @@ Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza
 
 # Sprint 2 April 5th - April 12th:
 ## What was Completed:
-  - Create a user clas that allows the user to sign in and have user info connect to mongoDB 
-  - [ ] [8 points] Story 7: User Class
+  - [x] [8 points] Story 7: User Class
 
-  -  Create basic interface layout for listings, search, and description
-  - [ ] [13 points] Story 8: User Interface 
+  - Create a user clas that allows the user to sign in and have user info connect to mongoDB 
+  - [x] [13 points] Story 8: User Interface 
+
+  - Create basic interface layout for listings, search, and description
+  - [x] [5 points] Story 13: Filter: Profession/Field UI Update
 
   - Filter for profession updates on the user interface
-  - [ ] [5 points] Story 13: Filter: Profession/Field UI Update
+  - [x] [5 points] Story 14: Filter: Salary UI Update
 
   - Filter for salary updates on the user interface
-  - [ ] [5 points] Story 14: Filter: Salary UI Update
+  - [x] [5 points] Story 15: Filter: Location UI Update
 
   - Filter for location updates on the user interface
-  - [ ] [5 points] Story 15: Filter: Location UI Update
+  - [x] [5 points] Story 16: Min and Max Salary Fields
 
   - Based of customer feeback, split the inputs for min and max as drop boxes
-  - [ ] [5 points] Story 16: Min and Max Salary Fields
 
   ```
   Estimated Story Points: 9 Stories for 67 Points
 
-  Completed : 6 Stories for 36 points 
+  Completed : 6 Stories for 41 points 
   ```
     
 ## What was NOT Completed:
