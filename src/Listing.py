@@ -51,6 +51,12 @@ class Listing(Window):
         self.invalidSalary = self.findChild(QLabel, "invalidSalaryLabel")
         self.invalidSalary.hide()
 
+        # Profile
+        self.name = self.findChild(QLabel, "label")
+        self.profileButton = self.findChild(QPushButton, "profileButton")
+        #self.profileButton.connect.clicked(self.viewProfile)
+        
+
         # List view 
         self.scrollArea = self.findChild(QScrollArea, "scrollArea")
         self.vertJobs = self.findChild(QVBoxLayout, "jobDisplay")
@@ -154,3 +160,8 @@ class Listing(Window):
         for job in self.jobSummaries:
             job.deleteLater()
         self.jobSummaries.clear()
+
+    # def viewProfile(self):
+    #     self.close()
+    #     self.nextWindow = Profile()
+    #     super().nextWindow(self.window)

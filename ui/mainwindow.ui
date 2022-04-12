@@ -548,6 +548,89 @@
      <string>Apply All</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="profileButton">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>90</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>101</red>
+          <green>102</green>
+          <blue>104</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>64</red>
+          <green>65</green>
+          <blue>66</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>101</red>
+          <green>102</green>
+          <blue>104</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>View Profile</string>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>95</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>firstName</string>
+    </property>
+   </widget>
    <zorder>allFilters</zorder>
    <zorder>listingsLabel</zorder>
    <zorder>searchButton</zorder>
@@ -568,6 +651,8 @@
    <zorder>applyLocFilter</zorder>
    <zorder>applySalaryFilter</zorder>
    <zorder>removeFilters</zorder>
+   <zorder>profileButton</zorder>
+   <zorder>label</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
