@@ -1,6 +1,6 @@
 from src.Window import Window
 from src.Listing import Listing
-#from src.NewUser import NewUser
+from src.NewUser import NewUser
 from src.User import User
 from PySide6.QtWidgets import *
 from PySide6 import QtCore
@@ -26,7 +26,7 @@ class Menu(Window):
 
         # Sign up
         self.createAccount = self.findChild(QPushButton, "signUpButton")
-        #self.createAccount.clicked.connect(self.signUp)
+        self.createAccount.clicked.connect(self.signUp)
 
 
     def start(self):
@@ -42,10 +42,10 @@ class Menu(Window):
         else: 
             self.invalidSignIn.show()
 
-    # def signUp(self):
-    #     self.close()
-    #     self.nextWindow = NewUser()
-    #     super().nextWindow(self.window)
+    def signUp(self):
+        self.close()
+        self.nextWindow = NewUser()
+        super().nextWindow(self.window)
 
 
 
