@@ -77,6 +77,10 @@ Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza
   - [ ] User 12: Returning User
   - [ ] Story 11: Employer's Perspective
  
+# Sprint 3 April 12th - April 19th:
+## What was Completed:
+## What was NOT Completed:
+ 
 ## Customer interaction with the application
 1. Not deployable as of right now
 2. Will host DB on the cloud (24/7 access from the cloud rather than our local host)
