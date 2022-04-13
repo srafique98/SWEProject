@@ -126,13 +126,14 @@ class User:
         else:
             print(uso + "User.uploadResume()")
 
-    # profile_info = {
-    #     "username" : None,
-    #     "email" : None,
-    #     "account_lvl" : None,
-    #     "last_logged" : None,
-    #     "ip" : None,
-    #     "host_address" : None,
-    #     "u_id": None,
-    #     "fullname" : None
-    # }
+    def downloadResume(self, DIRECTORY):
+        if self.signed_in:
+            db_obj = db_cli.DB_Client(True,"Jobs","users")
+            user_query = {"u_id": self.profile_info["u_id"]}
+            user_doc_cursor = db_obj.dbCollection.find_one(user_query)
+            byte_string = None
+            for x in user_doc_cursor:
+                byte_string = x["resume"]
+            with open(DIRECTORY+"pdf_download.pdf","wb") as f:
+                f.write(byte_string)   
+
