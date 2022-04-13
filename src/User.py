@@ -79,3 +79,13 @@ class User:
         db_obj.dbCollection.update_one(user_query, user_update)
         print("Changed " + self.profile_info["fullname"] + " " + field + " to " + ("*"*len(value)))
 
+# QUERY USER SPECIFIC DATA
+    def getUserField(self, field):
+        db_obj = db_cli.DB_Client(True, "Jobs", "users")
+        user_query = {"u_id": self.profile_info["u_id"] }
+        db_cursor = db_obj.dbCollection.find(user_query)
+        field_value = None
+        for doc in db_cursor:
+            field_value = doc[field]
+        print(field_value)
+        return field_value
