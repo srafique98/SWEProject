@@ -38,16 +38,16 @@ def test_UserCorrectSignIn():
         assert temp_user.signed_in == False, ae["usi"]
 
 
-def test_signUp():
-# initialize a User object
-    temp_user = User()
-    # assert that the user is not signed in
-    assert temp_user.signed_in == False, ae["uso"]
-    #sign in with correct credentials
-    temp_user.signUp("bionicle@lego.com","thegoldenmask","Joe","Bio")
+# def test_signUp():
+# # initialize a User object
+#     temp_user = User()
+#     # assert that the user is not signed in
+#     assert temp_user.signed_in == False, ae["uso"]
+#     #sign in with correct credentials
+#     temp_user.signUp("bionicle@lego.com","thegoldenmask","Joe","Bio")
     
-    # validate that user exists in db and assert that they can sign-in
-    assert temp_user.validateUserLogin("bionicle@lego.com","thegoldenmask") == True, ae["uso"]
+#     # validate that user exists in db and assert that they can sign-in
+#     assert temp_user.validateUserLogin("bionicle@lego.com","thegoldenmask") == True, ae["uso"]
     
 
 def test_changeUserData():
