@@ -99,7 +99,9 @@ class Listing(Window):
             newSector = job["sector"] if job["sector"] else "Sector not reported"
             newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
                                                      maxSal=job["max_salary_range"])
-            self.jobSummaries.append(Job(newTitle, newSector, newSalary))
+            newJob = Job(newTitle, newSector, newSalary)
+            newJob.clicked.connect(self.testClicked)
+            self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
     
     
