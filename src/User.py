@@ -109,7 +109,7 @@ class User:
                 self.profile_info["u_id"] = doc["u_id"]
                 self.profile_info["fullname"] = doc["first_name"] + " " + doc["last_name"]
                 self.profile_info["email"] = doc["email"]
-            print("Updated user: "+ sstr(elf.profile_info["u_id"]))
+            print("Updated user: "+ str(self.profile_info["u_id"]))
             print(self.profile_info)
         else:
             print(uso + "User.updateLocalInfo()")
@@ -125,12 +125,6 @@ class User:
             print("Uploaded resume for " + self.profile_info["fullname"])
         else:
             print(uso + "User.uploadResume()")
-
-
-
-
-
-        
 
     # profile_info = {
     #     "username" : None,
