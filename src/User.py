@@ -2,7 +2,10 @@ from dataclasses import field
 import socket
 import src.db_client as db_cli
 from datetime import datetime
+from src.query_helper import usr_q_by_id
+import base64
 
+uso = "User not signed in! Error running: "
 
 class User:
     signed_in = False
@@ -73,19 +76,69 @@ class User:
     # Pass in the 'field' that you want to change
     # Pass in the 'value' that you would like to change it to
     def changeUserData(self, field, value): # self, string, (int or string)
-        db_obj = db_cli.DB_Client(True, "Jobs", "users")
-        user_query = {"u_id": self.profile_info["u_id"] }
-        user_update = {"$set":{ field : value }}
-        db_obj.dbCollection.update_one(user_query, user_update)
-        print("Changed " + self.profile_info["fullname"] + " " + field + " to " + ("*"*len(value)))
+        if self.signed_in:
+            db_obj = db_cli.DB_Client(True, "Jobs", "users")
+            user_query = {"u_id": self.profile_info["u_id"] }
+            user_update = {"$set":{ field : value }}
+            db_obj.dbCollection.update_one(user_query, user_update)
+            print("Changed " + self.profile_info["fullname"] + " " + field + " to " + ("*"*len(value)))
+        else:
+            print(uso + "User.changeUserData()")
 
 # QUERY USER SPECIFIC DATA
     def getUserField(self, field):
-        db_obj = db_cli.DB_Client(True, "Jobs", "users")
-        user_query = {"u_id": self.profile_info["u_id"] }
-        db_cursor = db_obj.dbCollection.find(user_query)
-        field_value = None
-        for doc in db_cursor:
-            field_value = doc[field]
-        print(field_value)
-        return field_value
+        if self.signed_in:
+            db_obj = db_cli.DB_Client(True, "Jobs", "users")
+            user_query = {"u_id": self.profile_info["u_id"] }
+            db_cursor = db_obj.dbCollection.find(user_query)
+            field_value = None
+            for doc in db_cursor:
+                field_value = doc[field]
+            print(field_value)
+            return field_value
+        else:
+            print(uso + "User.getUserField()")
+            return None
+
+# repopulate local user info
+    def updateLocalInfo(self):
+        if self.signed_in:
+            db_obj = db_cli.DB_Client(True,"Jobs","users")
+            doc_cursor = db_obj.get_user_by_id(int(self.profile_info["u_id"]))
+            for doc in doc_cursor:
+                self.profile_info["u_id"] = doc["u_id"]
+                self.profile_info["fullname"] = doc["first_name"] + " " + doc["last_name"]
+                self.profile_info["email"] = doc["email"]
+            print("Updated user: "+ sstr(elf.profile_info["u_id"]))
+            print(self.profile_info)
+        else:
+            print(uso + "User.updateLocalInfo()")
+    
+    def uploadResume(self, FILE_PATH):
+        if self.signed_in:
+            db_obj = db_cli.DB_Client(True,"Jobs","users")
+            with open(FILE_PATH,"rb") as pdf_file:
+                encoded_string = base64.b64encode(pdf_file.read())    
+            user_query = {"u_id": self.profile_info["u_id"] }
+            user_update = {"$set":{ "resume" : encoded_string }}
+            db_obj.dbCollection.update_one(user_query, user_update)
+            print("Uploaded resume for " + self.profile_info["fullname"])
+        else:
+            print(uso + "User.uploadResume()")
+
+
+
+
+
+        
+
+    # profile_info = {
+    #     "username" : None,
+    #     "email" : None,
+    #     "account_lvl" : None,
+    #     "last_logged" : None,
+    #     "ip" : None,
+    #     "host_address" : None,
+    #     "u_id": None,
+    #     "fullname" : None
+    # }
