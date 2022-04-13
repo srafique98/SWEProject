@@ -56,7 +56,6 @@ class Listing(Window):
         self.name = self.findChild(QLabel, "label")
         self.profileButton = self.findChild(QPushButton, "profileButton")
         self.profileButton.clicked.connect(self.viewProfile)
-        
 
         # List view 
         self.scrollArea = self.findChild(QScrollArea, "scrollArea")
@@ -70,8 +69,13 @@ class Listing(Window):
             newSector = document["sector"] if document["sector"] else "Sector not reported"
             newSalary = '{minSal} - {maxSal}'.format(minSal=document["min_salary_range"],
                                                      maxSal=document["max_salary_range"])
-            self.jobSummaries.append(Job(newTitle, newSector, newSalary))
+            newJob = Job(newTitle, newSector, newSalary)
+            newJob.clicked.connect(self.testClicked)
+            self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
+
+    def testClicked(self):
+        print("it works!!!")
 
     # Stores text field
     def getSearch(self):
@@ -164,5 +168,7 @@ class Listing(Window):
 
     def viewProfile(self):
         self.close()
-        self.nextWindow = Profile()
+        self.nextWindow = Profile(self.window)
         super().nextWindow(self.window)
+
+

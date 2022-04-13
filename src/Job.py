@@ -3,9 +3,13 @@ from PySide6.QtWidgets import QLabel
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QSizePolicy
+from PySide6.QtGui import QMouseEvent
+from PySide6.QtCore import Signal as QtSignal
 
 
 class Job(QWidget):
+	clicked = QtSignal()
+
 	def __init__(self, jobTitle, salary, sector):
 		super().__init__()
 		self.vert = QVBoxLayout()
@@ -35,5 +39,10 @@ class Job(QWidget):
 
 	def getLayout(self):
 		return self.vert
+
+	def mousePressEvent(self, e):
+		self.clicked.emit()
+		print("does it work")
+		print(QMouseEvent.pos)
 		
 
