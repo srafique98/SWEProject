@@ -60,5 +60,6 @@ def test_changeUserData():
 #   modify first name field
     random_string = ''.join(random.choices(string.ascii_lowercase,k=5))
     temp_user.changeUserData("first_name",random_string)
+    
 #   assert that the value was changed in the DB
     assert temp_user.getUserField("first_name") == random_string, ae["wfv"]
