@@ -24,4 +24,3 @@ class Window(QMainWindow):
 
     def nextWindow(self, previousWindow):
         previousWindow.hide()
-        self.hide()
