@@ -78,56 +78,6 @@
      <string>Job Description</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="jobTypeButton">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>169</y>
-      <width>179</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>180</width>
-      <height>75</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Search</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="locationTypeButton">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>169</y>
-      <width>179</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>180</width>
-      <height>75</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Search</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="promptMin">
     <property name="geometry">
      <rect>
@@ -186,7 +136,7 @@
      <rect>
       <x>40</x>
       <y>170</y>
-      <width>221</width>
+      <width>300</width>
       <height>63</height>
      </rect>
     </property>
@@ -207,7 +157,7 @@
      <rect>
       <x>460</x>
       <y>170</y>
-      <width>221</width>
+      <width>300</width>
       <height>63</height>
      </rect>
     </property>
@@ -402,31 +352,6 @@
       <string>100,000</string>
      </property>
     </item>
-   </widget>
-   <widget class="QPushButton" name="salaryTypeButton">
-    <property name="geometry">
-     <rect>
-      <x>1102</x>
-      <y>169</y>
-      <width>179</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>180</width>
-      <height>75</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Search</string>
-    </property>
    </widget>
    <widget class="QLabel" name="invalidSalaryLabel">
     <property name="geometry">
@@ -689,8 +614,6 @@
    <zorder>listingsLabel</zorder>
    <zorder>searchButton</zorder>
    <zorder>descriptionLabel</zorder>
-   <zorder>jobTypeButton</zorder>
-   <zorder>locationTypeButton</zorder>
    <zorder>promptMin</zorder>
    <zorder>profilePicture</zorder>
    <zorder>searchBar</zorder>
@@ -699,7 +622,6 @@
    <zorder>scrollArea</zorder>
    <zorder>minComboBox</zorder>
    <zorder>maxComboBox</zorder>
-   <zorder>salaryTypeButton</zorder>
    <zorder>invalidSalaryLabel</zorder>
    <zorder>applyJobFilter</zorder>
    <zorder>applyLocFilter</zorder>
@@ -715,7 +637,7 @@
      <x>0</x>
      <y>0</y>
      <width>1775</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

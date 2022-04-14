@@ -36,29 +36,34 @@ class Listing(Window):
         self.searchButton.clicked.connect(self.getSearch)
 
         # Job filter text and button
+        suggestedJobs = self.connection.fil_location("")
+        jobsList = []
+        for someJobs in suggestedJobs:
+            jobsList.append(someJobs["job_title"])
+        suggestedJobSearch = QCompleter(jobsList, self)
         self.jobFilter = self.findChild(QLineEdit, "searchJobFilter")
-        self.jobTypeButton = self.findChild(QPushButton, "jobTypeButton")  # From mainwindow.ui
-        self.jobTypeButton.clicked.connect(self.getJobFilter)
+        self.jobFilter.setCompleter(suggestedJobSearch)
+        # self.jobTypeButton = self.findChild(QPushButton, "jobTypeButton")  # From mainwindow.ui
+        # self.jobTypeButton.clicked.connect(self.getJobFilter)
         self.applyJobFil = self.findChild(QCheckBox, "applyJobFilter")
 
         # Location filter text and button
-        sugLoc = self.connection.fil_location("")
-        data = []
-        for someLoc in sugLoc:
-            data.append(someLoc["location"])
-        
-        completer = QCompleter(data, self)
+        suggestedLocations = self.connection.fil_location("")
+        locationsList = []
+        for someLocation in suggestedLocations:
+            locationsList.append(someLocation["location"])
+        suggestedLocationSearch = QCompleter(locationsList, self)
         self.locFilter = self.findChild(QLineEdit, "searchLocationFilter")
-        self.locFilter.setCompleter(completer)
-        self.locationTypeButton = self.findChild(QPushButton, "locationTypeButton")  # From mainwindow.ui
-        self.locationTypeButton.clicked.connect(self.getLocFilter)
+        self.locFilter.setCompleter(suggestedLocationSearch)
+        # self.locationTypeButton = self.findChild(QPushButton, "locationTypeButton")  # From mainwindow.ui
+        # self.locationTypeButton.clicked.connect(self.getLocFilter)
         self.applyLocFil = self.findChild(QCheckBox, "applyLocFilter")
 
         # Salary min and max filter text and button
         self.minSalaryFilter = self.findChild(QComboBox, "minComboBox")
         self.maxSalaryFilter = self.findChild(QComboBox, "maxComboBox")
-        self.salaryButton = self.findChild(QPushButton, "salaryTypeButton")  # From mainwindow.ui
-        self.salaryButton.clicked.connect(self.getSalaryFilter)
+        # self.salaryButton = self.findChild(QPushButton, "salaryTypeButton")  # From mainwindow.ui
+        # self.salaryButton.clicked.connect(self.getSalaryFilter)
         self.applySalaryFil = self.findChild(QCheckBox, "applySalaryFilter")
 
         # Remove filter
@@ -118,7 +123,7 @@ class Listing(Window):
             newJobs = self.connection.general_search(searchKeyword, {})
         # else if 
         elif((self.applyJobFil.isChecked() or self.applyLocFil.isChecked())
-                                                or (self.applySalaryFil.isChecked())): 
+                                            or self.applySalaryFil.isChecked()): 
             salaryTemp = self.getSalaryKey()
             newJobs = self.connection.fil_search(self.getJobKeyword(), self.getLocationKey(),
                                                             salaryTemp[0], salaryTemp[1], {})
