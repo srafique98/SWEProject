@@ -1,10 +1,13 @@
 from tokenize import Double
+
+from PySide6.QtCore import Slot
+
 from src.Window import Window
 from src.db_client import DB_Client
 from src.Profile import Profile
 from PySide6.QtWidgets import *
 from PySide6 import QtCore
-from src.Job import Job
+from src.JobSummary import JobSummary
 
 
 class Listing(Window):
@@ -61,6 +64,9 @@ class Listing(Window):
         self.scrollArea = self.findChild(QScrollArea, "scrollArea")
         self.vertJobs = self.findChild(QVBoxLayout, "jobDisplay")
 
+        self.jobDescription = self.findChild(QFrame, "jobDesc")
+        self.jobTitle = self.jobDescription.findChild(QLabel, "jobTitle")
+
         # self.jobs = self.getJobs()
         print(self.jobs)
 
@@ -69,24 +75,29 @@ class Listing(Window):
             newSector = document["sector"] if document["sector"] else "Sector not reported"
             newSalary = '{minSal} - {maxSal}'.format(minSal=document["min_salary_range"],
                                                      maxSal=document["max_salary_range"])
-            newJob = Job(newTitle, newSector, newSalary)
-            newJob.clicked.connect(self.testClicked)
+            uid = document["_id"]
+            newJob = JobSummary(newTitle, newSector, newSalary, uid)
+            newJob.clicked.connect(lambda jobID=uid: self.displayJobDesc(jobID))
             self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
 
-    def testClicked(self):
-        print("it works!!!")
+    def displayJobDesc(self, jobID):
+        toDisplay = self.jobs.collection.find_one({"_id": jobID})
+        title = toDisplay["job_title"]
+        self.jobTitle.setText(str(title))
+        print(str(jobID))
 
     # Stores text field
     def getSearch(self):
         self.clearSummaries()
+        newJobs = []
 
         if((not self.applyJobFil.isChecked()) and (not self.applyLocFil.isChecked()) 
                                                 and (not self.applySalaryFil.isChecked())):
             searchKeyword = self.searchBar.text()
             newJobs = self.connection.general_search(searchKeyword, {})
         # else if 
-        elif(((self.applyJobFil.isChecked()) or (self.applyLocFil.isChecked())) 
+        elif((self.applyJobFil.isChecked() or self.applyLocFil.isChecked())
                                                 or (self.applySalaryFil.isChecked())): 
             salaryTemp = self.getSalaryKey()
             newJobs = self.connection.fil_search(self.getJobKeyword(), self.getLocationKey(),
@@ -99,8 +110,8 @@ class Listing(Window):
             newSector = job["sector"] if job["sector"] else "Sector not reported"
             newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
                                                      maxSal=job["max_salary_range"])
-            newJob = Job(newTitle, newSector, newSalary)
-            newJob.clicked.connect(self.testClicked)
+            newJob = JobSummary(newTitle, newSector, newSalary)
+            newJob.clicked.connect(self.displayJobDesc)
             self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
     

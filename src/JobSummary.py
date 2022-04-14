@@ -7,19 +7,21 @@ from PySide6.QtGui import QMouseEvent
 from PySide6.QtCore import Signal as QtSignal
 
 
-class Job(QWidget):
+class JobSummary(QWidget):
 	clicked = QtSignal()
 
-	def __init__(self, jobTitle, salary, sector):
+	def __init__(self, jobTitle, salary, sector, uid):
 		super().__init__()
 		self.vert = QVBoxLayout()
 		self.vert.setStretch(0, 0)
 		self.vert.setSpacing(0)
 		self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
 
-		self.jobFont = QFont("Segoe UI", 9)
-		self.salaryFont = QFont("Segoe UI", 9)
-		self.sectorFont = QFont("Segoe UI", 9)
+		self.uid = uid
+
+		self.jobFont = QFont("Sans Serif", 12)
+		self.salaryFont = QFont("Sans Serif", 12)
+		self.sectorFont = QFont("Sans Serif", 12)
 
 		self.jobTitle = QLabel(jobTitle)
 		self.jobTitle.setFont(self.jobFont)
@@ -44,5 +46,8 @@ class Job(QWidget):
 		self.clicked.emit()
 		print("does it work")
 		print(QMouseEvent.pos)
+
+	def getUID(self):
+		return self.uid
 		
 

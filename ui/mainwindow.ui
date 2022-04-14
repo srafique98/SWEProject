@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1763</width>
-    <height>1137</height>
+    <width>1775</width>
+    <height>1175</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -631,6 +631,35 @@
      <string>firstName</string>
     </property>
    </widget>
+   <widget class="QFrame" name="jobDesc">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>340</y>
+      <width>681</width>
+      <height>771</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="jobTitle">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>10</y>
+       <width>461</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>JOB TITLE</string>
+     </property>
+    </widget>
+   </widget>
    <zorder>allFilters</zorder>
    <zorder>listingsLabel</zorder>
    <zorder>searchButton</zorder>
@@ -653,14 +682,15 @@
    <zorder>removeFilters</zorder>
    <zorder>profileButton</zorder>
    <zorder>label</zorder>
+   <zorder>jobDesc</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1763</width>
-     <height>21</height>
+     <width>1775</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
