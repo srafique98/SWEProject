@@ -40,8 +40,16 @@ class Listing(Window):
         self.jobTypeButton = self.findChild(QPushButton, "jobTypeButton")  # From mainwindow.ui
         self.jobTypeButton.clicked.connect(self.getJobFilter)
         self.applyJobFil = self.findChild(QCheckBox, "applyJobFilter")
+
         # Location filter text and button
+        sugLoc = self.connection.fil_location("")
+        data = []
+        for someLoc in sugLoc:
+            data.append(someLoc["location"])
+        
+        completer = QCompleter(data, self)
         self.locFilter = self.findChild(QLineEdit, "searchLocationFilter")
+        self.locFilter.setCompleter(completer)
         self.locationTypeButton = self.findChild(QPushButton, "locationTypeButton")  # From mainwindow.ui
         self.locationTypeButton.clicked.connect(self.getLocFilter)
         self.applyLocFil = self.findChild(QCheckBox, "applyLocFilter")
@@ -196,5 +204,13 @@ class Listing(Window):
         self.close()
         self.nextWindow = Profile(self.window, self.currentUser, self.currentPass)
         super().nextWindow(self.window)
+     
+    def suggestedLocations(self):
+        sugLoc = self.connection.fil_location("")
+        data = []
+        for someLoc in sugLoc:
+            data.append(someLoc["location"])
+        #print(data)
+        return data
 
 

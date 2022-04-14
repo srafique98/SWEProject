@@ -14,7 +14,7 @@ class Menu(Window):
 
         # Open application
         self.window = super().windowInit(uiFileName, self)
-        #self.window.startButton.clicked.connect(self.start)
+        self.window.startButton.clicked.connect(self.start)
 
         # Sign in 
         self.username = self.findChild(QLineEdit, "userNameBar")
@@ -42,6 +42,11 @@ class Menu(Window):
     def signUp(self):
         self.close()
         self.nextWindow = NewUser()
+        super().nextWindow(self.window)
+
+    def start(self):
+        self.close()
+        self.nextWindow = Listing("eldenlord@souls.net","moonviel")
         super().nextWindow(self.window)
 
 
