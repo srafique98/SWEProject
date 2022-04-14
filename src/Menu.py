@@ -14,7 +14,7 @@ class Menu(Window):
 
         # Open application
         self.window = super().windowInit(uiFileName, self)
-        self.window.startButton.clicked.connect(self.start)
+        #self.window.startButton.clicked.connect(self.start)
 
         # Sign in 
         self.username = self.findChild(QLineEdit, "userNameBar")
@@ -28,17 +28,14 @@ class Menu(Window):
         self.createAccount = self.findChild(QPushButton, "signUpButton")
         self.createAccount.clicked.connect(self.signUp)
 
-
-    def start(self):
-        self.close()
-        self.nextWindow = Listing()
-        super().nextWindow(self.window)
-
     def signIn(self):
         currentUser = User()
         valid = currentUser.validateUserLogin(self.username.text(),self.password.text())
         if(valid):
-            self.start()
+            self.close()
+            self.nextWindow = Listing(self.username.text(),self.password.text())
+            super().nextWindow(self.window)
+
         else: 
             self.invalidSignIn.show()
 

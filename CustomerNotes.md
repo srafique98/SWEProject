@@ -30,6 +30,6 @@
 
 - When creating an account allow user to upload resume
 
-# Sprint 1 March 29th - April 5th
+# Sprint 3 April 5th - April 19th
 ## Insights 
 ## Feedback

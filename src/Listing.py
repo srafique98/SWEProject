@@ -5,13 +5,14 @@ from PySide6.QtCore import Slot
 from src.Window import Window
 from src.db_client import DB_Client
 from src.Profile import Profile
+from src.User import User
 from PySide6.QtWidgets import *
 from PySide6 import QtCore
 from src.JobSummary import JobSummary
 
 
 class Listing(Window):
-    def __init__(self):
+    def __init__(self, email, password):
         uiFile = "ui/mainwindow.ui"
         super().__init__()
         self.window = super().windowInit(uiFile, self)
@@ -21,6 +22,13 @@ class Listing(Window):
         self.jobs = self.connection.general_search({""}, {"job_title": 1, "sector": 1, "min_salary_range": 1,
                                                           "max_salary_range": 1})
         self.jobSummaries = []
+        # User 
+        self.user = self.findChild(QLabel, "label")
+        tempUser = User()
+        self.currentUser = email 
+        self.currentPass =  password
+        validate = tempUser.validateUserLogin(email, password)
+        self.user.setText(tempUser.getUserField("first_name"))
 
         # Search text and button
         self.searchBar = self.findChild(QLineEdit, "searchBar")
@@ -181,7 +189,7 @@ class Listing(Window):
 
     def viewProfile(self):
         self.close()
-        self.nextWindow = Profile(self.window)
+        self.nextWindow = Profile(self.window, self.currentUser, self.currentPass)
         super().nextWindow(self.window)
 
 
