@@ -80,14 +80,14 @@ class Listing(Window):
         # self.jobs = self.getJobs()
         print(self.jobs)
 
-        for count, document in enumerate(self.jobs.collection.find().limit(20)):
-            newTitle = document["job_title"]
-            newSector = document["sector"] if document["sector"] else "Sector not reported"
-            newSalary = '{minSal} - {maxSal}'.format(minSal=document["min_salary_range"],
-                                                     maxSal=document["max_salary_range"])
-            uid = document["_id"]
-            newJob = JobSummary(newTitle, newSector, newSalary, uid)
-            newJob.clicked.connect(lambda jobID=uid: self.displayJobDesc(jobID))
+        for count, job in enumerate(self.jobs.collection.find().limit(20)):
+            newTitle = job["job_title"]
+            newSector = job["sector"] if job["sector"] else "Sector not reported"
+            newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
+                                                     maxSal=job["max_salary_range"])
+            newUID = job["_id"]
+            newJob = JobSummary(newTitle, newSector, newSalary, newUID)
+            newJob.clicked.connect(lambda jobID=newUID: self.displayJobDesc(jobID))
             self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
 
@@ -122,8 +122,9 @@ class Listing(Window):
             newSector = job["sector"] if job["sector"] else "Sector not reported"
             newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
                                                      maxSal=job["max_salary_range"])
-            newJob = JobSummary(newTitle, newSector, newSalary)
-            newJob.clicked.connect(self.displayJobDesc)
+            newUID = job["_id"]
+            newJob = JobSummary(newTitle, newSector, newSalary, newUID)
+            newJob.clicked.connect(lambda jobID=newUID: self.displayJobDesc(jobID))
             self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
     
