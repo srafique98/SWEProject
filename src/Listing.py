@@ -74,6 +74,8 @@ class Listing(Window):
 
         self.jobDescription = self.findChild(QFrame, "jobDesc")
         self.jobTitle = self.jobDescription.findChild(QLabel, "jobTitle")
+        self.fullDesc = self.jobDescription.findChild(QLabel, "fullDesc")
+        self.fullDesc.setScaledContents(True)
 
         # self.jobs = self.getJobs()
         print(self.jobs)
@@ -92,7 +94,9 @@ class Listing(Window):
     def displayJobDesc(self, jobID):
         toDisplay = self.jobs.collection.find_one({"_id": jobID})
         title = toDisplay["job_title"]
+        desc = toDisplay["job_description"]
         self.jobTitle.setText(str(title))
+        self.fullDesc.setText(str(desc))
         print(str(jobID))
 
     # Stores text field
