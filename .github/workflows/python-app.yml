@@ -25,7 +25,7 @@ jobs:
         sudo apt-get update
         sudo apt install -y xvfb x11-utils libxkbcommon-x11-0
         python -m pip install --upgrade pip
-        pip install flake8 pytest "pymongo[srv]" certifi PySide6 pytest-qt
+        pip install flake8 pytest "pymongo[srv]" certifi PySide6 pytest-qt coverage
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
@@ -37,4 +37,5 @@ jobs:
       env:
         QT_DEBUG_PLUGINS: 1
       run: |
+        ulimit -c unlimited
         catchsegv xvfb-run --auto-servernum `which coverage` run -m pytest
