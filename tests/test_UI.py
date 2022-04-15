@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QApplication
 import sys
 
 
-def test_WindowInit():
+def WindowInit():
     try:
         app = QApplication(sys.argv)
         window = Menu()
