@@ -23,9 +23,9 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install libgles2-mesa
+        sudo apt install -y xvfb x11-utils libxkbcommon-x11-0
         python -m pip install --upgrade pip
-        pip install flake8 pytest "pymongo[srv]" certifi PySide6
+        pip install flake8 pytest "pymongo[srv]" certifi PySide6 pytest-qt
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
