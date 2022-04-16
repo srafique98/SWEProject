@@ -43,8 +43,6 @@ class Listing(Window):
         suggestedJobSearch = QCompleter(jobsList, self)
         self.jobFilter = self.findChild(QLineEdit, "searchJobFilter")
         self.jobFilter.setCompleter(suggestedJobSearch)
-        # self.jobTypeButton = self.findChild(QPushButton, "jobTypeButton")  # From mainwindow.ui
-        # self.jobTypeButton.clicked.connect(self.getJobFilter)
         self.applyJobFil = self.findChild(QCheckBox, "applyJobFilter")
 
         # Location filter text and button
@@ -52,18 +50,15 @@ class Listing(Window):
         locationsList = []
         for someLocation in suggestedLocations:
             locationsList.append(someLocation["location"])
+
         suggestedLocationSearch = QCompleter(locationsList, self)
         self.locFilter = self.findChild(QLineEdit, "searchLocationFilter")
         self.locFilter.setCompleter(suggestedLocationSearch)
-        # self.locationTypeButton = self.findChild(QPushButton, "locationTypeButton")  # From mainwindow.ui
-        # self.locationTypeButton.clicked.connect(self.getLocFilter)
         self.applyLocFil = self.findChild(QCheckBox, "applyLocFilter")
 
         # Salary min and max filter text and button
         self.minSalaryFilter = self.findChild(QComboBox, "minComboBox")
         self.maxSalaryFilter = self.findChild(QComboBox, "maxComboBox")
-        # self.salaryButton = self.findChild(QPushButton, "salaryTypeButton")  # From mainwindow.ui
-        # self.salaryButton.clicked.connect(self.getSalaryFilter)
         self.applySalaryFil = self.findChild(QCheckBox, "applySalaryFilter")
 
         # Remove filter
@@ -161,30 +156,6 @@ class Listing(Window):
         maxSalary = float(maxSalary)
         #print(minSalary,maxSalary)
         return minSalary, maxSalary    
-  
-    def getJobFilter(self):
-        document = self.connection.fil_sect_profession(self.getJobKeyword())
-        for field in document:
-            print(field["job_title"], field["location"])
-        #(fieldKeyword)
-
-    def getLocFilter(self):
-        document = self.connection.fil_location(self.getLocationKey())
-        for field in document:
-            print(field["job_title"], field["location"])
-        #print(locKeyword)
-
-    # Stores text field
-    def getSalaryFilter(self):
-        salary = self.getSalaryKey()
-        # Max must be higher
-        if(salary[0] < salary[1]):
-            self.invalidSalary.hide()
-            document = self.connection.fil_salary_range(salary[0], salary[1])
-            for field in document:
-                print(field["job_title"], field["location"], field["min_salary_range"], field["max_salary_range"])
-        else: 
-            self.invalidSalary.show()
     
     def removeFilters(self):
         self.applyJobFil.setChecked(False)
@@ -210,12 +181,4 @@ class Listing(Window):
         self.nextWindow = Profile(self.window, self.currentUser, self.currentPass)
         super().nextWindow(self.window)
      
-    def suggestedLocations(self):
-        sugLoc = self.connection.fil_location("")
-        data = []
-        for someLoc in sugLoc:
-            data.append(someLoc["location"])
-        #print(data)
-        return data
-
 
