@@ -1,3 +1,4 @@
+from select import select
 import pymongo
 import certifi
 import src.db_library as dblib
@@ -44,11 +45,14 @@ class DB_Client:
 
     def fil_search(self, str_job, str_loc,flt_min,flt_max, projection):
         loc_query = { "$and": [ { "job_title" : {"$regex":str_job}}, { "location" : {"$regex":str_loc}},{"$and": [{"min_salary_range":{"$gte":flt_min}},{"max_salary_range":{"$lte":flt_max}}]} ] }
+        print(loc_query)
         fil_document = self.dbCollection.find(loc_query, projection)
+        print(fil_document)
         return fil_document
 
     def fil_location(self,in_str):
-        loc_query = {"location" : {"$regex":in_str}}
+        loc_query = {"location" : {"$regex":in_str, "$options" : "i"}}
+        # loc_query = { "$or": [ {"Full_State": {"$regex":in_str}},{ "City" : {"$regex":in_str}}, { "State" : {"$regex":in_str}}, { "Zip Code" : {"$regex":in_str}} ] }
         fil_document = self.dbCollection.find(loc_query)
         return fil_document
 
