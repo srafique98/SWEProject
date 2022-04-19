@@ -154,13 +154,19 @@ class Listing(Window):
 
     def getSalaryKey(self):
         minSalaryKeyword = self.minSalaryFilter.currentText()
-        minSalary = minSalaryKeyword.replace(',', "")
+        tempMinSalary = minSalaryKeyword.replace('$', "")
+        minSalary = tempMinSalary.replace(',', "")
         minSalary = float(minSalary)
         
         maxSalaryKeyword = self.maxSalaryFilter.currentText()
-        maxSalary = maxSalaryKeyword.replace(',', "") 
+        tempMaxSalary = maxSalaryKeyword.replace('$', "")
+        tempMaxSalary2 = tempMaxSalary.replace(',', "")
+        maxSalary = tempMaxSalary2.replace('+', "0")  
         maxSalary = float(maxSalary)
+        
         #print(minSalary,maxSalary)
+        if(maxSalary > 100000):
+            maxSalary = 249500000
         return minSalary, maxSalary    
     
     def removeFilters(self):
