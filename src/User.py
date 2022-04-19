@@ -126,7 +126,7 @@ class User:
         else:
             print(uso + "User.uploadResume()")
 
-    def downloadResume(self, DIRECTORY):
+    def downloadResume(self, DIRECTORY_PATH):
         if self.signed_in:
             db_obj = db_cli.DB_Client(True,"Jobs","users")
             user_query = {"u_id": self.profile_info["u_id"]}
@@ -134,6 +134,6 @@ class User:
             byte_string = None
             for x in user_doc_cursor:
                 byte_string = x["resume"]
-            with open(DIRECTORY+"pdf_download.pdf","wb") as f:
+            with open(DIRECTORY_PATH+"pdf_download.pdf","wb") as f:
                 f.write(byte_string)   
 

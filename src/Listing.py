@@ -12,12 +12,14 @@ from src.JobSummary import JobSummary
 
 
 class Listing(Window):
+    db_name = "Jobs"
+    db_collection = "NewJobsPrt2"
     def __init__(self, email, password):
         uiFile = "ui/mainwindow.ui"
         super().__init__()
         self.window = super().windowInit(uiFile, self)
 
-        self.connection = DB_Client(True, "Jobs", "NewJobs")
+        self.connection = DB_Client(True, self.db_name, self.db_collection)
         self.jobButton = self.findChild(QPushButton, "pushButton")  # From mainwindow.ui
         self.jobs = self.connection.general_search({""}, {"job_title": 1, "sector": 1, "min_salary_range": 1,
                                                           "max_salary_range": 1})
@@ -41,6 +43,8 @@ class Listing(Window):
         for someJobs in suggestedJobs:
             jobsList.append(someJobs["job_title"])
         suggestedJobSearch = QCompleter(jobsList, self)
+        suggestedJobSearch.setFilterMode(QtCore.Qt.MatchContains)
+        suggestedJobSearch.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.jobFilter = self.findChild(QLineEdit, "searchJobFilter")
         self.jobFilter.setCompleter(suggestedJobSearch)
         self.applyJobFil = self.findChild(QCheckBox, "applyJobFilter")
@@ -52,6 +56,8 @@ class Listing(Window):
             locationsList.append(someLocation["location"])
 
         suggestedLocationSearch = QCompleter(locationsList, self)
+        suggestedLocationSearch.setFilterMode(QtCore.Qt.MatchContains)
+        suggestedLocationSearch.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.locFilter = self.findChild(QLineEdit, "searchLocationFilter")
         self.locFilter.setCompleter(suggestedLocationSearch)
         self.applyLocFil = self.findChild(QCheckBox, "applyLocFilter")
