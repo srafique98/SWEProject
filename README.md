@@ -79,7 +79,29 @@ Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza
  
 # Sprint 3 April 12th - April 19th:
 ## What was Completed:
+  - [x] Cusotmer Story: First and Last Name infor on Signup
+  - [x] Story 9: Profile Page
+  - [x] PDF Upload/Download
+  - [x] Story 12: Returning User
+  - [x] Story 18: Extended Job Description
+  - [x] Customer Story: Change Listing Font
+  - [x] Story 17: Location Suggestions
+
+
 ## What was NOT Completed:
+  - [ ] Change Drop Box Info
+  - [ ] Location filter by zip code and state abbrev
+  - [ ] PDF UI Display
+  - [ ] Pagination for job listings
+  - [ ] Set number og enteries per page
+  - [ ] Quick apply
+  - [ ] Employers Perspective
+ 
+   ```
+  Estimated Story Points: 7 Stories for 38 Points
+
+  Completed : 7 Stories for 30 points 
+  ```
  
 ## Customer interaction with the application
 1. Not deployable as of right now
