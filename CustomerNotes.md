@@ -38,6 +38,7 @@
 - Taking time to see the details 
 - Multiple attempts to see different search results 
 - Taking more time to test features in profile 
+- When registering, the customer did not input two fields which led to the program crashing
 ## Feedback
 - The search suggestions is approved (but filter out position from locations) 
 - Remove "in 'some location'" from all job positions
