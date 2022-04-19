@@ -40,7 +40,7 @@
 - Taking more time to test features in profile 
 - When registering, the customer did not input two fields which led to the program crashing
 ## Feedback
-- The search suggestions is approved (but filter out position from locations) 
+- The search suggestions is approved (but filter out job positions from locations) 
 - Remove "in 'some location'" from all job positions
 - In extended job description, add poistion and salary 
 - For sign up page, allow resume to be an option (previously missed) 
