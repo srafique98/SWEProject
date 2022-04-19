@@ -30,6 +30,24 @@
 
 - When creating an account allow user to upload resume
 
-# Sprint 3 April 5th - April 19th
-## Insights 
+# Sprint 3 April 12th - April 19th
+## Insights
+- Testing the features again to see if there are any changes
+	- Helpful for bugs
+- Navigating as usual
+- Taking time to see the details 
+- Multiple attempts to see different search results 
+- Taking more time to test features in profile 
+- When registering, the customer did not input two fields which led to the program crashing
+## Feedback
+- The search suggestions is approved (but filter out job positions from locations) 
+- Remove "in 'some location'" from all job positions
+- In extended job description, add poistion and salary 
+- For sign up page, allow resume to be an option (previously missed) 
+- Highlight the job description being accessed. 
+- Allows abbreviations and full state names to result in suggested search
+- Include $ and commas where currency is refrenced. 
+
+# Sprint 4 April 19th - April 26th
+## Insights
 ## Feedback
