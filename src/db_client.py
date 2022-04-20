@@ -51,9 +51,10 @@ class DB_Client:
         return fil_document
 
     def fil_location(self,in_str):
-        loc_query = {"location" : {"$regex":in_str, "$options" : "i"}}
+        agg_query = [{ '$match': {'$or': [ {  'Full_State': in_str }, { 'State': in_str },{"Zip Code":in_str},{"City":in_str},{"location":in_str}]}}]
+        #loc_query = {"location" : {"$regex":in_str, "$options" : "i"}}
         # loc_query = { "$or": [ {"Full_State": {"$regex":in_str}},{ "City" : {"$regex":in_str}}, { "State" : {"$regex":in_str}}, { "Zip Code" : {"$regex":in_str}} ] }
-        fil_document = self.dbCollection.find(loc_query)
+        fil_document = self.dbCollection.aggregate(agg_query)
         return fil_document
 
     def fil_sect_profession(self,in_str):
