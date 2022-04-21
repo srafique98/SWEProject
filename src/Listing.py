@@ -24,6 +24,8 @@ class Listing(Window):
         self.jobs = self.connection.general_search({""}, {"job_title": 1, "sector": 1, "min_salary_range": 1,
                                                           "max_salary_range": 1})
         self.jobSummaries = []
+
+        self.highlightedSummary = None
         # User 
         self.user = self.findChild(QLabel, "label")
         tempUser = User()
@@ -106,6 +108,20 @@ class Listing(Window):
             self.vertJobs.addWidget(self.jobSummaries[count])
 
     def displayJobDesc(self, jobID):
+
+        # Go through the list of jobSummaries and find the one with jobID and then call a set color function on it
+        jobToHighlight = None
+        for job in self.jobSummaries:
+            if job.getUID() == jobID:
+                jobToHighlight = job
+                break
+
+        if self.highlightedSummary:
+            self.highlightedSummary.toggleHighlight()
+
+        self.highlightedSummary = jobToHighlight
+        self.highlightedSummary.toggleHighlight()
+
         toDisplay = self.jobs.collection.find_one({"_id": jobID})
         title = toDisplay["job_title"]
         desc = toDisplay["job_description"]
