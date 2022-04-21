@@ -205,6 +205,44 @@ p, li { white-space: pre-wrap; }
      <string>File Uploaded: </string>
     </property>
    </widget>
+   <widget class="QLabel" name="user_2">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>580</y>
+      <width>171</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string>Ready to go back to seeking?</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="returnButton">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>580</y>
+      <width>131</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Return</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

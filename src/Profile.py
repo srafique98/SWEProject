@@ -15,6 +15,8 @@ class Profile(Window):
 
         # User
         tempUser = User()
+        self.currentUser = email 
+        self.currentPass =  password
         validate = tempUser.validateUserLogin(email, password)
         self.user = self.findChild(QLabel, "user")
         self.user.setText(tempUser.getUserField("first_name"))
@@ -34,6 +36,8 @@ class Profile(Window):
         self.resumePath = self.resumeButton.clicked.connect(self.getResumePath)
 
         self.parentWindow = parentWindow
+        self.returnToListing = self.findChild(QPushButton, "returnButton")
+        self.returnToListing.clicked.connect(self.testBack)
 
     def testBack(self):
         super().nextWindow(self.window)
@@ -53,7 +57,6 @@ class Profile(Window):
         self.app.setQuitOnLastWindowClosed(False)
         resumeFullPath, resumeType = QFileDialog.getOpenFileNames(self)
         if resumeFullPath:
-            # print("--", resumeFullPath)
             self.filePath.setText(str(resumeFullPath))
         self.app.setQuitOnLastWindowClosed(True)
         return resumeFullPath
