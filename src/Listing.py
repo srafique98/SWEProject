@@ -9,6 +9,7 @@ from src.User import User
 from PySide6.QtWidgets import *
 from PySide6 import QtCore
 from src.JobSummary import JobSummary
+import gc
 
 
 class Listing(Window):
@@ -161,9 +162,10 @@ class Listing(Window):
                                                    maxSal=maxSal)
         newUID = job["_id"]
         newJob = JobSummary(newTitle, newSector, newSalary, newUID, self)
-        newJob.clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
         self.jobSummaries.append(newJob)
+        self.jobSummaries[count].clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
         self.vertJobs.addWidget(self.jobSummaries[count])
+
 
     def getJobKeyword(self):
         jobKeyword = self.jobFilter.text()
@@ -204,13 +206,9 @@ class Listing(Window):
         self.applySalaryFil.setChecked(True)
 
     def clearSummaries(self):
-        for i in range(0, len(self.jobSummaries)):
-            self.jobSummaries[i].clicked.disconnect()
+        for i in range(len(self.jobSummaries)-1, -1, -1):
             self.jobSummaries[i].deleteLater()
-
-        #for job in self.jobSummaries:
-            #job.clicked.disconnect()
-            #job.deleteLater()
+            self.highlightedSummary = None
         self.jobSummaries.clear()
 
     def viewProfile(self):
