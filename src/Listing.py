@@ -103,31 +103,33 @@ class Listing(Window):
                                                      maxSal=job["max_salary_range"])
             newUID = job["_id"]
             newJob = JobSummary(newTitle, newSector, newSalary, newUID)
-            newJob.clicked.connect(lambda jobID=newUID: self.displayJobDesc(jobID))
+            newJob.clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
             self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
 
-    def displayJobDesc(self, jobID):
+    def handleClick(self, jobID):
+        self.highlightSelected(jobID)
+        self.displayDescription(jobID)
 
-        # Go through the list of jobSummaries and find the one with jobID and then call a set color function on it
-        jobToHighlight = None
-        for job in self.jobSummaries:
-            if job.getUID() == jobID:
-                jobToHighlight = job
-                break
-
-        if self.highlightedSummary:
-            self.highlightedSummary.toggleHighlight()
-
-        self.highlightedSummary = jobToHighlight
-        self.highlightedSummary.toggleHighlight()
-
+    def displayDescription(self, jobID):
         toDisplay = self.jobs.collection.find_one({"_id": jobID})
         title = toDisplay["job_title"]
         desc = toDisplay["job_description"]
         self.jobTitle.setText(str(title))
         self.fullDesc.setText(str(desc))
         print(str(jobID))
+
+    def highlightSelected(self, jobID):
+        # Go through the list of jobSummaries and find the one with jobID and then call a set color function on it
+        jobToHighlight = None
+        for job in self.jobSummaries:
+            if job.getUID() == jobID:
+                jobToHighlight = job
+                break
+        if self.highlightedSummary:
+            self.highlightedSummary.toggleHighlight()
+        self.highlightedSummary = jobToHighlight
+        self.highlightedSummary.toggleHighlight()
 
     # Stores text field
     def getSearch(self):
@@ -154,7 +156,7 @@ class Listing(Window):
                                                      maxSal=job["max_salary_range"])
             newUID = job["_id"]
             newJob = JobSummary(newTitle, newSector, newSalary, newUID)
-            newJob.clicked.connect(lambda jobID=newUID: self.displayJobDesc(jobID))
+            newJob.clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
             self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
     
