@@ -8,6 +8,7 @@ from src.Profile import Profile
 from src.User import User
 from PySide6.QtWidgets import *
 from PySide6 import QtCore
+from PySide6.QtGui import QIcon
 from src.JobSummary import JobSummary
 import gc
 
@@ -96,12 +97,24 @@ class Listing(Window):
         self.salary = self.findChild(QLabel, "salary")
         self.numberOfEntries = self.findChild(QComboBox, "entriesPerPage")
         self.numberOfEntries.currentIndexChanged.connect(self.getSearch)
+        self.nextPageButton = self.findChild(QPushButton, "nextPage")
+        self.previousPageButton = self.findChild(QPushButton, "previousPage")
+        self.nextPageButton.setIcon(QIcon("./media/forwardArrow.svg"))
+        self.previousPageButton.setIcon(QIcon("./media/backArrow.svg"))
+        self.nextPageButton.clicked.connect(self.nextPage)
+        self.previousPageButton.clicked.connect(self.previousPage)
 
         # self.jobs = self.getJobs()
         print(self.jobs)
 
         for count, job in enumerate(self.jobs.collection.find().limit(int(self.numberOfEntries.currentText()))):
             self.createJobSummary(count, job)
+
+    def nextPage(self):
+        pass
+
+    def previousPage(self):
+        pass
 
     def handleClick(self, jobID):
         self.highlightSelected(jobID)

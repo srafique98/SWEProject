@@ -829,7 +829,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>&lt;-</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="nextPage">
@@ -842,7 +842,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>-&gt;</string>
+     <string/>
     </property>
    </widget>
    <zorder>allFilters</zorder>
@@ -876,7 +876,7 @@
      <x>0</x>
      <y>0</y>
      <width>1775</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
