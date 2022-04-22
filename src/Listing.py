@@ -121,7 +121,11 @@ class Listing(Window):
         desc = toDisplay["job_description"]
         self.jobTitle.setText(str(title))
         self.fullDesc.setText(str(desc))
-        #self.salary.setText(str(salary))
+        minSal = (format(int(toDisplay["min_salary_range"]), ',d'))
+        maxSal = (format(int(toDisplay["max_salary_range"]), ',d'))
+        newSalary = '${minSal} - ${maxSal}'.format(minSal=minSal,
+                                                   maxSal=maxSal)
+        self.salary.setText(newSalary)
         print(str(jobID))
 
     def highlightSelected(self, jobID):
