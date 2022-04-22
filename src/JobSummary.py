@@ -10,8 +10,8 @@ from PySide6.QtCore import Signal as QtSignal
 class JobSummary(QWidget):
 	clicked = QtSignal()
 
-	def __init__(self, jobTitle, salary, sector, uid):
-		super().__init__()
+	def __init__(self, jobTitle, salary, sector, uid, parent):
+		super().__init__(parent)
 		self.vert = QVBoxLayout()
 		self.vert.setStretch(0, 0)
 		self.vert.setSpacing(0)

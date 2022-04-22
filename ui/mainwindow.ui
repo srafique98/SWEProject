@@ -17,8 +17,8 @@
    <widget class="QLabel" name="listingsLabel">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>280</y>
+      <x>270</x>
+      <y>270</y>
       <width>301</width>
       <height>81</height>
      </rect>
@@ -753,6 +753,98 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QComboBox" name="entriesPerPage">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>300</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="currentText">
+     <string>20</string>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>10</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>20</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>40</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>50</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>60</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>70</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>80</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>90</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>100</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="previousPage">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>310</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;-</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="nextPage">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>310</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>-&gt;</string>
+    </property>
+   </widget>
    <zorder>allFilters</zorder>
    <zorder>listingsLabel</zorder>
    <zorder>searchButton</zorder>
@@ -774,6 +866,9 @@
    <zorder>label</zorder>
    <zorder>pushButton</zorder>
    <zorder>descriptionScroll</zorder>
+   <zorder>entriesPerPage</zorder>
+   <zorder>previousPage</zorder>
+   <zorder>nextPage</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

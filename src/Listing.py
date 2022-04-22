@@ -70,7 +70,7 @@ class Listing(Window):
         self.applySalaryFil = self.findChild(QCheckBox, "applySalaryFilter")
 
         # Remove filter
-        self.removeFilterButton = self.findChild(QPushButton,"removeFilters")
+        self.removeFilterButton = self.findChild(QPushButton, "removeFilters")
         self.removeFilterButton.clicked.connect(self.removeFilters)
         self.applyAllFilterButton = self.findChild(QPushButton, "allFilters")
         self.applyAllFilterButton.clicked.connect(self.applyAllFilters)
@@ -93,23 +93,14 @@ class Listing(Window):
         self.jobTitle = self.findChild(QLabel, "jobTitle")
         self.fullDesc = self.findChild(QLabel, "fullDesc")
         self.salary = self.findChild(QLabel, "salary")
-        #self.fullDesc.setScaledContents(True)
+        self.numberOfEntries = self.findChild(QComboBox, "entriesPerPage")
+        self.numberOfEntries.currentIndexChanged.connect(self.getSearch)
 
         # self.jobs = self.getJobs()
         print(self.jobs)
 
-        for count, job in enumerate(self.jobs.collection.find().limit(20)):
-            newTitle = job["job_title"]
-            newSector = job["sector"] if job["sector"] else "Sector not reported"
-            minSal = (format(int(job["min_salary_range"]), ',d'))
-            maxSal = (format(int(job["max_salary_range"]), ',d'))
-            newSalary = '${minSal} - ${maxSal}'.format(minSal=minSal,
-                                                       maxSal=maxSal)
-            newUID = job["_id"]
-            newJob = JobSummary(newTitle, newSector, newSalary, newUID)
-            newJob.clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
-            self.jobSummaries.append(newJob)
-            self.vertJobs.addWidget(self.jobSummaries[count])
+        for count, job in enumerate(self.jobs.collection.find().limit(int(self.numberOfEntries.currentText()))):
+            self.createJobSummary(count, job)
 
     def handleClick(self, jobID):
         self.highlightSelected(jobID)
@@ -154,23 +145,26 @@ class Listing(Window):
              or self.applySalaryFil.isChecked()):
             salaryTemp = self.getSalaryKey()
             newJobs = self.connection.fil_search(self.getJobKeyword(), self.getLocationKey(),
-                                                            salaryTemp[0], salaryTemp[1], {})
+                                                 salaryTemp[0], salaryTemp[1], {})
         for count, job in enumerate(newJobs):
-            if count >= 20:
+            if count >= int(self.numberOfEntries.currentText()):
                 break
 
-            newTitle = job["job_title"]
-            newSector = job["sector"] if job["sector"] else "Sector not reported"
-            minSal = (format(int(job["min_salary_range"]), ',d'))
-            maxSal = (format(int(job["max_salary_range"]), ',d'))
-            newSalary = '${minSal} - ${maxSal}'.format(minSal=minSal,
-                                                       maxSal=maxSal)
-            newUID = job["_id"]
-            newJob = JobSummary(newTitle, newSector, newSalary, newUID)
-            newJob.clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
-            self.jobSummaries.append(newJob)
-            self.vertJobs.addWidget(self.jobSummaries[count])
-    
+            self.createJobSummary(count, job)
+
+    def createJobSummary(self, count, job):
+        newTitle = job["job_title"]
+        newSector = job["sector"] if job["sector"] else "Sector not reported"
+        minSal = (format(int(job["min_salary_range"]), ',d'))
+        maxSal = (format(int(job["max_salary_range"]), ',d'))
+        newSalary = '${minSal} - ${maxSal}'.format(minSal=minSal,
+                                                   maxSal=maxSal)
+        newUID = job["_id"]
+        newJob = JobSummary(newTitle, newSector, newSalary, newUID, self)
+        newJob.clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
+        self.jobSummaries.append(newJob)
+        self.vertJobs.addWidget(self.jobSummaries[count])
+
     def getJobKeyword(self):
         jobKeyword = self.jobFilter.text()
         return jobKeyword
@@ -209,10 +203,14 @@ class Listing(Window):
         self.applyLocFil.setChecked(True)
         self.applySalaryFil.setChecked(True)
 
-
     def clearSummaries(self):
-        for job in self.jobSummaries:
-            job.deleteLater()
+        for i in range(0, len(self.jobSummaries)):
+            self.jobSummaries[i].clicked.disconnect()
+            self.jobSummaries[i].deleteLater()
+
+        #for job in self.jobSummaries:
+            #job.clicked.disconnect()
+            #job.deleteLater()
         self.jobSummaries.clear()
 
     def viewProfile(self):
