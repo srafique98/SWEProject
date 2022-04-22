@@ -85,13 +85,15 @@ class Listing(Window):
         self.profileButton.clicked.connect(self.viewProfile)
 
         # List view 
-        self.scrollArea = self.findChild(QScrollArea, "scrollArea")
+        self.summaryScroll = self.findChild(QScrollArea, "summaryScroll")
         self.vertJobs = self.findChild(QVBoxLayout, "jobDisplay")
 
-        self.jobDescription = self.findChild(QFrame, "jobDesc")
-        self.jobTitle = self.jobDescription.findChild(QLabel, "jobTitle")
-        self.fullDesc = self.jobDescription.findChild(QLabel, "fullDesc")
-        self.fullDesc.setScaledContents(True)
+        self.descriptionScroll = self.findChild(QScrollArea, "descriptionScroll")
+        self.jobDescription = self.descriptionScroll.findChild(QVBoxLayout, "jobDesc")
+        self.jobTitle = self.findChild(QLabel, "jobTitle")
+        self.fullDesc = self.findChild(QLabel, "fullDesc")
+        self.salary = self.findChild(QLabel, "salary")
+        #self.fullDesc.setScaledContents(True)
 
         # self.jobs = self.getJobs()
         print(self.jobs)
@@ -99,8 +101,10 @@ class Listing(Window):
         for count, job in enumerate(self.jobs.collection.find().limit(20)):
             newTitle = job["job_title"]
             newSector = job["sector"] if job["sector"] else "Sector not reported"
-            newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
-                                                     maxSal=job["max_salary_range"])
+            minSal = (format(int(job["min_salary_range"]), ',d'))
+            maxSal = (format(int(job["max_salary_range"]), ',d'))
+            newSalary = '${minSal} - ${maxSal}'.format(minSal=minSal,
+                                                       maxSal=maxSal)
             newUID = job["_id"]
             newJob = JobSummary(newTitle, newSector, newSalary, newUID)
             newJob.clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
@@ -117,6 +121,7 @@ class Listing(Window):
         desc = toDisplay["job_description"]
         self.jobTitle.setText(str(title))
         self.fullDesc.setText(str(desc))
+        #self.salary.setText(str(salary))
         print(str(jobID))
 
     def highlightSelected(self, jobID):
@@ -136,13 +141,13 @@ class Listing(Window):
         self.clearSummaries()
         newJobs = []
 
-        if((not self.applyJobFil.isChecked()) and (not self.applyLocFil.isChecked()) 
-                                                and (not self.applySalaryFil.isChecked())):
+        if((not self.applyJobFil.isChecked()) and (not self.applyLocFil.isChecked())
+                and (not self.applySalaryFil.isChecked())):
             searchKeyword = self.searchBar.text()
             newJobs = self.connection.general_search(searchKeyword, {})
         # else if 
         elif((self.applyJobFil.isChecked() or self.applyLocFil.isChecked())
-                                            or self.applySalaryFil.isChecked()): 
+             or self.applySalaryFil.isChecked()):
             salaryTemp = self.getSalaryKey()
             newJobs = self.connection.fil_search(self.getJobKeyword(), self.getLocationKey(),
                                                             salaryTemp[0], salaryTemp[1], {})
@@ -152,15 +157,15 @@ class Listing(Window):
 
             newTitle = job["job_title"]
             newSector = job["sector"] if job["sector"] else "Sector not reported"
-            newSalary = '{minSal} - {maxSal}'.format(minSal=job["min_salary_range"],
-                                                     maxSal=job["max_salary_range"])
+            minSal = (format(int(job["min_salary_range"]), ',d'))
+            maxSal = (format(int(job["max_salary_range"]), ',d'))
+            newSalary = '${minSal} - ${maxSal}'.format(minSal=minSal,
+                                                       maxSal=maxSal)
             newUID = job["_id"]
             newJob = JobSummary(newTitle, newSector, newSalary, newUID)
             newJob.clicked.connect(lambda jobID=newUID: self.handleClick(jobID))
             self.jobSummaries.append(newJob)
             self.vertJobs.addWidget(self.jobSummaries[count])
-    
-    
     
     def getJobKeyword(self):
         jobKeyword = self.jobFilter.text()
@@ -183,7 +188,7 @@ class Listing(Window):
         maxSalary = float(maxSalary)
         
         #print(minSalary,maxSalary)
-        if(maxSalary > 100000):
+        if maxSalary > 100000:
             maxSalary = 249500000
         return minSalary, maxSalary    
     
