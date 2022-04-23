@@ -25,7 +25,7 @@ class Listing(Window):
         self.user = self.findChild(QLabel, "label")
         tempUser = User()
         self.currentUser = email 
-        self.currentPass =  password
+        self.currentPass = password
         validate = tempUser.validateUserLogin(email, password)
         self.user.setText(tempUser.getUserField("first_name"))
 
@@ -159,6 +159,7 @@ class Listing(Window):
 
     # Stores text field
     def getSearch(self):
+        self.curPage = 0
         self.clearSummaries()
         newJobs = []
 
