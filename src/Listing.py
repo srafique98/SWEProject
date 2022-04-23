@@ -119,7 +119,7 @@ class Listing(Window):
             self.createJobSummary(count, job)
 
     def previousPage(self):
-        if self.curPage >= 0:
+        if self.curPage > 0:
             print("going prev")
             self.clearSummaries()
             self.curPage -= 1
