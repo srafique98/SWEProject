@@ -8,6 +8,7 @@ import sys
 
 class Profile(Window):
 
+    
     def __init__(self, parentWindow, email, password):
         uiFile = "ui/profilePage.ui"
         super().__init__()
@@ -15,6 +16,7 @@ class Profile(Window):
 
         # User
         tempUser = User()
+
         self.currentUser = email 
         self.currentPass =  password
         validate = tempUser.validateUserLogin(email, password)
@@ -28,13 +30,17 @@ class Profile(Window):
         self.modifySummary.clicked.connect(self.modifyData)
         self.saveSummary = self.findChild(QPushButton, "saveSummary")
         self.saveSummary.clicked.connect(self.saveData)
-
-        self.resumeButton = self.findChild(QPushButton, "pushButton")
-        self.filePath = self.findChild(QLabel, "label_6")
-
+        
         # click upload resume button
+        self.resumeButton = self.findChild(QPushButton, "pushButton")
+        self.filePath = self.findChild(QLabel, "resumeUploaded")
         self.resumePath = self.resumeButton.clicked.connect(self.getResumePath)
 
+        self.coverLetterButton = self.findChild(QPushButton,"pushButton_2")
+        self.filePath2 = self.findChild(QLabel,"letterUploadedButton")
+        self.coverLetter = self.coverLetterButton.clicked.connect(self.getLetterPath)
+
+        # Return
         self.parentWindow = parentWindow
         self.returnToListing = self.findChild(QPushButton, "returnButton")
         self.returnToListing.clicked.connect(self.testBack)
@@ -53,13 +59,38 @@ class Profile(Window):
         tempUser.changeUserData("summary", self.summary.toPlainText())
 
     def getResumePath(self):
+        tempUser = User()
         self.app = QApplication.instance()
         self.app.setQuitOnLastWindowClosed(False)
         resumeFullPath, resumeType = QFileDialog.getOpenFileNames(self)
         if resumeFullPath:
+            validate = tempUser.validateUserLogin(self.currentUser, self.currentPass)
             self.filePath.setText(str(resumeFullPath))
+            path = str(resumeFullPath)
+            exclude = ["[","]","'"]
+            for index in range(len(exclude)):
+                path = path.replace(exclude[index],"")
+            tempUser.uploadResume(path)
         self.app.setQuitOnLastWindowClosed(True)
+       
         return resumeFullPath
+
+    def getLetterPath(self):
+        tempUser = User()
+        self.app = QApplication.instance()
+        self.app.setQuitOnLastWindowClosed(False)
+        coverLetterFullPath, resumeType = QFileDialog.getOpenFileNames(self)
+        if coverLetterFullPath:
+            self.filePath2.setText(str(coverLetterFullPath))
+            validate = tempUser.validateUserLogin(self.currentUser, self.currentPass)
+            self.filePath2.setText(str(coverLetterFullPath))
+            path = str(coverLetterFullPath)
+            exclude = ["[","]","'"]
+            for index in range(len(exclude)):
+                path = path.replace(exclude[index],"")
+            tempUser.uploadLetter(path)
+        self.app.setQuitOnLastWindowClosed(True)
+        return coverLetterFullPath
         
         
    

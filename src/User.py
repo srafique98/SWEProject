@@ -165,3 +165,15 @@ class User:
                 print("added userID to job: " + job_id)
         else:
             print(uso + "User.applyForJob()")
+    def uploadLetter(self, FILE_PATH):
+        if self.signed_in:
+            db_obj = db_cli.DB_Client(True,"Jobs","users")
+            with open(FILE_PATH,"rb") as pdf_file:
+                encoded_string = base64.b64encode(pdf_file.read())    
+            user_query = {"u_id": self.profile_info["u_id"] }
+            user_update = {"$set":{ "cover_letter" : encoded_string }}
+            db_obj.dbCollection.update_one(user_query, user_update)
+            print("Uploaded letter for " + self.profile_info["fullname"])
+        else:
+            print(uso + "User.uploadLetter()")
+
