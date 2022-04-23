@@ -51,6 +51,6 @@ class NewUser(Window):
     
     def returnToLogin(self):
         self.close()
-        self.nextWindow = Listing()
+        self.nextWindow = Listing(self.email.text(),self.password.text())
         super().nextWindow(self.window)
                                                                                                 

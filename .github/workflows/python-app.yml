@@ -5,7 +5,7 @@ name: Python application
 
 on:
   push:
-    branches: [ main ]
+    branches: [ ui-testing ]
   pull_request:
     branches: [ main ]
 
@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install libgles2-mesa
+        sudo apt install -y xvfb x11-utils libxkbcommon-x11-0
         python -m pip install --upgrade pip
         pip install flake8 pytest "pymongo[srv]" certifi
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
@@ -34,5 +34,8 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
+      env:
+        QT_DEBUG_PLUGINS: 1
       run: |
-        pytest
+        ulimit -c unlimited
+        catchsegv xvfb-run --auto-servernum `which coverage` run -m pytest

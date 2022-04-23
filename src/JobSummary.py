@@ -10,12 +10,13 @@ from PySide6.QtCore import Signal as QtSignal
 class JobSummary(QWidget):
 	clicked = QtSignal()
 
-	def __init__(self, jobTitle, salary, sector, uid):
-		super().__init__()
+	def __init__(self, jobTitle, salary, sector, uid, parent):
+		super().__init__(parent)
 		self.vert = QVBoxLayout()
 		self.vert.setStretch(0, 0)
 		self.vert.setSpacing(0)
 		self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+		self.highlighted = False
 
 		self.uid = uid
 
@@ -46,6 +47,14 @@ class JobSummary(QWidget):
 		self.clicked.emit()
 		print("does it work")
 		print(QMouseEvent.pos)
+
+	def toggleHighlight(self):
+		if self.highlighted:
+			self.highlighted = False
+			self.setStyleSheet("background-color: none")
+		else:
+			self.highlighted = True
+			self.setStyleSheet("background-color: lightBlue")
 
 	def getUID(self):
 		return self.uid
