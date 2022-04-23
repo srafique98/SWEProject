@@ -85,3 +85,10 @@ class DB_Client:
             u_name = (cursor_pointer["first_name"], cursor_pointer["last_name"])
         return u_name # returns a tuple of strings -> ("first_name", "last_name")
 
+    def get_resume_by_u_id(self, user_id):
+        loc_query = {"u_id":user_id}
+        fil_document = self.dbCollection.find(loc_query)
+        pdf_bytes = None
+        for pointer in fil_document:
+            pdf_bytes = pointer["resume"]
+        return pdf_bytes
