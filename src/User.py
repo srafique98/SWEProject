@@ -135,5 +135,33 @@ class User:
             for x in user_doc_cursor:
                 byte_string = x["resume"]
             with open(DIRECTORY_PATH+"pdf_download.pdf","wb") as f:
-                f.write(byte_string)   
+                f.write(byte_string) 
+        else:
+            print(uso + "User.downloadResume()")  
 
+    def applyForJob(self, job_id): 
+        # job_id is a string in NewJobsPrt2 this would be '_id' field
+        # when clicking quick apply the job should be queried so the _id
+        # field should be accessable. This must be passed here so as to add the u_id 
+        # of the user to the list field 'users_applied'
+        if self.signed_in:
+            my_id = self.profile_info["u_id"]
+            db_obj = db_cli.DB_Client(True,"Jobs","NewJobsPrt2")
+            job_query = {"_id":job_id}
+            job_cursor = db_obj.dbCollection.find_one(job_query)
+            u_ids_to_check = None
+            for x in job_cursor:
+                u_ids_to_check = x["users_applied"]
+            if u_ids_to_check is not None:
+                if my_id not in u_ids_to_check:
+                    db_obj.dbCollection.update_one(job_query,{"$push":{"users_applied":my_id}})
+                    print("added userID to job: " + job_id)
+                else:
+                    print("User has already applied")
+            else:
+                id_list = None
+                id_list.append(my_id)
+                db_obj.dbCollection.update_one(job_query,{"users_applied":id_list})
+                print("added userID to job: " + job_id)
+        else:
+            print(uso + "User.applyForJob()")
