@@ -8,6 +8,6 @@ field_name = input("Enter the name of the field you want to create(use underscor
 if users_or_new_jobs == "1":
     new_cil = DB_Client(True, "Jobs", "users")
 else:
-    new_cil = DB_Client(True, "Jobs", "NewJobs")
+    new_cil = DB_Client(True, "Jobs", "NewJobsPrt2")
 
 new_cil.create_new_document_field(field_name)

@@ -40,48 +40,55 @@ class DB_Client:
 
     def general_search(self,general_text, projection):
         loc_query = { "$or": [ { "job_title" : {"$regex":general_text}},{"job_description": {"$regex":general_text}}, { "location" : {"$regex":general_text}},{"$and": [{"min_salary_range":{"$gte":general_text}},{"max_salary_range":{"$lte":general_text}}]} ] }
-        fil_document = self.dbCollection.find(loc_query, projection)
-        return fil_document
+        doc_cursor = self.dbCollection.find(loc_query, projection)
+        return doc_cursor
 
     def fil_search(self, str_job, str_loc,flt_min,flt_max, projection):
         loc_query = { "$and": [ { "job_title" : {"$regex":str_job}}, { "location" : {"$regex":str_loc}},{"$and": [{"min_salary_range":{"$gte":flt_min}},{"max_salary_range":{"$lte":flt_max}}]} ] }
         print(loc_query)
-        fil_document = self.dbCollection.find(loc_query, projection)
-        print(fil_document)
-        return fil_document
+        doc_cursor = self.dbCollection.find(loc_query, projection)
+        print(doc_cursor)
+        return doc_cursor
 
     def fil_location(self,in_str):
         agg_query = [{ '$match': {'$or': [ {  'Full_State': in_str }, { 'State': in_str },{"Zip Code":in_str},{"City":in_str},{"location":in_str}]}}]
         #loc_query = {"location" : {"$regex":in_str, "$options" : "i"}}
         # loc_query = { "$or": [ {"Full_State": {"$regex":in_str}},{ "City" : {"$regex":in_str}}, { "State" : {"$regex":in_str}}, { "Zip Code" : {"$regex":in_str}} ] }
-        fil_document = self.dbCollection.aggregate(agg_query)
-        return fil_document
+        doc_cursor = self.dbCollection.aggregate(agg_query)
+        return doc_cursor
 
     def fil_sect_profession(self,in_str):
         loc_query = {"job_title" : {"$regex":in_str}}
-        fil_document = self.dbCollection.find(loc_query)
-        return fil_document
+        doc_cursor = self.dbCollection.find(loc_query)
+        return doc_cursor
     
     def fil_salary_range(self, min_sal, max_sal):
         loc_query = {"$and": [{"min_salary_range":{"$gte":min_sal}},{"max_salary_range":{"$lte":max_sal}}]}
-        fil_document = self.dbCollection.find(loc_query)
-        return fil_document
+        doc_cursor = self.dbCollection.find(loc_query)
+        return doc_cursor
 
     # Data retreival for USER db connection
     def get_all_users(self):
-        fil_document = self.dbCollection.find()
-        return fil_document
+        doc_cursor = self.dbCollection.find()
+        return doc_cursor
     
     def get_user_by_id(self,user_id):
         loc_query = {"u_id":user_id}
-        fil_document = self.dbCollection.find(loc_query)
-        return fil_document
+        doc_cursor = self.dbCollection.find(loc_query)
+        return doc_cursor
 
     def get_name_by_id(self,user_id):
         loc_query = {"u_id":user_id}
-        fil_document = self.dbCollection.find(loc_query)
+        doc_cursor = self.dbCollection.find(loc_query)
         u_name = None
-        for cursor_pointer in fil_document:
+        for cursor_pointer in doc_cursor:
             u_name = (cursor_pointer["first_name"], cursor_pointer["last_name"])
         return u_name # returns a tuple of strings -> ("first_name", "last_name")
 
+    def get_resume_by_u_id(self, user_id):
+        loc_query = {"u_id":user_id}
+        doc_cursor = self.dbCollection.find(loc_query)
+        pdf_bytes = None
+        for pointer in doc_cursor:
+            pdf_bytes = pointer["resume"]
+        return pdf_bytes
