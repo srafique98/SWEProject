@@ -3,7 +3,6 @@ from src.Listing import Listing
 from src.NewUser import NewUser
 from src.User import User
 from PySide6.QtWidgets import *
-from PySide6 import QtCore
 
 
 class Menu(Window):

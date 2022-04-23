@@ -1,7 +1,3 @@
-from tokenize import Double
-
-from PySide6.QtCore import Slot
-
 from src.Window import Window
 from src.db_client import DB_Client
 from src.Profile import Profile
@@ -10,12 +6,12 @@ from PySide6.QtWidgets import *
 from PySide6 import QtCore
 from PySide6.QtGui import QIcon
 from src.JobSummary import JobSummary
-import gc
 
 
 class Listing(Window):
     db_name = "Jobs"
     db_collection = "NewJobsPrt2"
+
     def __init__(self, email, password):
         uiFile = "ui/mainwindow.ui"
         super().__init__()
@@ -25,10 +21,7 @@ class Listing(Window):
         self.jobButton = self.findChild(QPushButton, "pushButton")  # From mainwindow.ui
         self.jobs = self.connection.general_search({""}, {"job_title": 1, "sector": 1, "min_salary_range": 1,
                                                           "max_salary_range": 1})
-        self.jobSummaries = []
-
-        self.highlightedSummary = None
-        # User 
+        # User
         self.user = self.findChild(QLabel, "label")
         tempUser = User()
         self.currentUser = email 
@@ -87,16 +80,23 @@ class Listing(Window):
         self.profileButton.clicked.connect(self.viewProfile)
 
         # List view 
+        self.jobSummaries = []
+
+        self.highlightedSummary = None
+
         self.summaryScroll = self.findChild(QScrollArea, "summaryScroll")
         self.vertJobs = self.findChild(QVBoxLayout, "jobDisplay")
 
         self.descriptionScroll = self.findChild(QScrollArea, "descriptionScroll")
         self.jobDescription = self.descriptionScroll.findChild(QVBoxLayout, "jobDesc")
+
         self.jobTitle = self.findChild(QLabel, "jobTitle")
         self.fullDesc = self.findChild(QLabel, "fullDesc")
         self.salary = self.findChild(QLabel, "salary")
+
         self.numberOfEntries = self.findChild(QComboBox, "entriesPerPage")
         self.numberOfEntries.currentIndexChanged.connect(self.getSearch)
+
         self.nextPageButton = self.findChild(QPushButton, "nextPage")
         self.previousPageButton = self.findChild(QPushButton, "previousPage")
         self.nextPageButton.setIcon(QIcon("./media/forwardArrow.svg"))
@@ -104,17 +104,29 @@ class Listing(Window):
         self.nextPageButton.clicked.connect(self.nextPage)
         self.previousPageButton.clicked.connect(self.previousPage)
 
-        # self.jobs = self.getJobs()
-        print(self.jobs)
+        self.curPage = 0
 
         for count, job in enumerate(self.jobs.collection.find().limit(int(self.numberOfEntries.currentText()))):
             self.createJobSummary(count, job)
 
     def nextPage(self):
-        pass
+        print("going next")
+        self.clearSummaries()
+        self.curPage += 1
+        self.jobs.rewind()
+        entriesPerPage = int(self.numberOfEntries.currentText())
+        for count, job in enumerate(self.jobs.collection.find().skip(entriesPerPage*self.curPage).limit(entriesPerPage)):
+            self.createJobSummary(count, job)
 
     def previousPage(self):
-        pass
+        if self.curPage >= 0:
+            print("going prev")
+            self.clearSummaries()
+            self.curPage -= 1
+            self.jobs.rewind()
+            entriesPerPage = int(self.numberOfEntries.currentText())
+            for count, job in enumerate(self.jobs.collection.find().skip(entriesPerPage*self.curPage).limit(entriesPerPage)):
+                self.createJobSummary(count, job)
 
     def handleClick(self, jobID):
         self.highlightSelected(jobID)
