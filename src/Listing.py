@@ -102,12 +102,18 @@ class Listing(Window):
         self.nextPageButton.setIcon(QIcon("./media/forwardArrow.svg"))
         self.previousPageButton.setIcon(QIcon("./media/backArrow.svg"))
         self.nextPageButton.clicked.connect(self.nextPage)
+
         self.previousPageButton.clicked.connect(self.previousPage)
 
         self.curPage = 0
 
+        self.quickApplyButton = self.findChild(QPushButton, "quickApplyButton")
+        self.jobToApply = None
+        self.quickApplyButton.clicked.connect(self.quickApply)
+
         for count, job in enumerate(self.jobs.collection.find().limit(int(self.numberOfEntries.currentText()))):
             self.createJobSummary(count, job)
+
 
     def nextPage(self):
         print("going next")
@@ -143,6 +149,7 @@ class Listing(Window):
         newSalary = '${minSal} - ${maxSal}'.format(minSal=minSal,
                                                    maxSal=maxSal)
         self.salary.setText(newSalary)
+        self.jobToApply = str(jobID)
         print(str(jobID))
 
     def highlightSelected(self, jobID):
@@ -242,4 +249,13 @@ class Listing(Window):
         self.nextWindow = Profile(self.window, self.currentUser, self.currentPass)
         super().nextWindow(self.window)
      
+    def quickApply(self):
+         # Quick apply
+        tempUser = User()
+        tempUser.validateUserLogin(self.currentUser, self.currentPass)
+        if self.jobToApply is not None:
+            print("Job is highlighted so you can apply") 
+        # tempUser.applyForJob(self.jobToApply)
+        else: 
+            print("Select a job to apply")
 

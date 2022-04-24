@@ -545,9 +545,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>95</y>
-      <width>71</width>
+      <x>1050</x>
+      <y>93</y>
+      <width>111</width>
       <height>16</height>
      </rect>
     </property>
@@ -560,8 +560,11 @@
     <property name="text">
      <string>firstName</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="quickApplyButton">
     <property name="geometry">
      <rect>
       <x>1120</x>
@@ -713,12 +716,18 @@
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="salary">
             <property name="text">
              <string>SALARY</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
             </property>
            </widget>
           </item>
@@ -742,6 +751,9 @@
           </property>
           <property name="scaledContents">
            <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -864,7 +876,7 @@
    <zorder>removeFilters</zorder>
    <zorder>profileButton</zorder>
    <zorder>label</zorder>
-   <zorder>pushButton</zorder>
+   <zorder>quickApplyButton</zorder>
    <zorder>descriptionScroll</zorder>
    <zorder>entriesPerPage</zorder>
    <zorder>previousPage</zorder>
