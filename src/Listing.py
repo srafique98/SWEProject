@@ -10,7 +10,7 @@ from src.JobSummary import JobSummary
 
 class Listing(Window):
     db_name = "Jobs"
-    db_collection = "NewJobsPrt2"
+    db_collection = "NewJobsPrt3"
 
     def __init__(self, email, password):
         uiFile = "ui/mainwindow.ui"
@@ -188,6 +188,9 @@ class Listing(Window):
 
     def createJobSummary(self, count, job):
         newTitle = job["job_title"]
+        if job["State"]:
+            newTitle = newTitle.strip()
+            newTitle += ", " + job["State"]
         newSector = job["sector"] if job["sector"] else "Sector not reported"
         minSal = (format(int(job["min_salary_range"]), ',d'))
         maxSal = (format(int(job["max_salary_range"]), ',d'))
