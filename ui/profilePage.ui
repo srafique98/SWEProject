@@ -163,8 +163,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>933</x>
-      <y>450</y>
+      <x>1200</x>
+      <y>180</y>
       <width>211</width>
       <height>21</height>
      </rect>
@@ -195,8 +195,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>300</y>
+      <x>920</x>
+      <y>80</y>
       <width>81</width>
       <height>41</height>
      </rect>
@@ -246,8 +246,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>510</y>
+      <x>1200</x>
+      <y>230</y>
       <width>251</width>
       <height>31</height>
      </rect>
@@ -259,8 +259,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>580</y>
+      <x>920</x>
+      <y>130</y>
       <width>81</width>
       <height>41</height>
      </rect>
@@ -272,8 +272,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="resumeUploaded">
     <property name="geometry">
      <rect>
-      <x>1010</x>
-      <y>300</y>
+      <x>1000</x>
+      <y>130</y>
       <width>341</width>
       <height>41</height>
      </rect>
@@ -294,6 +294,47 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string/>
     </property>
+   </widget>
+   <widget class="QScrollArea" name="descriptionScroll">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>280</y>
+      <width>671</width>
+      <height>781</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>655</width>
+       <height>779</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="jobTitle">
+        <property name="text">
+         <string>Please Upload Resume and or Cover Letter</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter|Qt::AlignTop</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

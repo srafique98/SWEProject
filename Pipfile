@@ -9,6 +9,7 @@ pytest = "*"
 pymongo = {extras = ["srv"], version = "*"}
 certifi = "*"
 pypdfium2 = "*"
+pillow = "*"
 
 [dev-packages]
 

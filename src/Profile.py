@@ -3,7 +3,7 @@ from src.Window import Window
 from src.User import User 
 from PySide6.QtWidgets import *
 from PySide6 import QtCore, QtGui
-import sys
+import pypdfium2 as pdfium
 
 
 class Profile(Window):
@@ -60,37 +60,53 @@ class Profile(Window):
 
     def getResumePath(self):
         tempUser = User()
+        resumePng = "resume_1.jpg"
         self.app = QApplication.instance()
         self.app.setQuitOnLastWindowClosed(False)
-        resumeFullPath, resumeType = QFileDialog.getOpenFileNames(self)
-        if resumeFullPath:
+
+        resumePdf, resumeType = QFileDialog.getOpenFileName(
+            parent=self,
+            caption="Choose a Resume",
+            filter = "PDF Files (*.pdf)"
+        )
+        if resumePdf:
+            self.filePath.setText(resumePdf)
             validate = tempUser.validateUserLogin(self.currentUser, self.currentPass)
-            self.filePath.setText(str(resumeFullPath))
-            path = str(resumeFullPath)
-            exclude = ["[","]","'"]
-            for index in range(len(exclude)):
-                path = path.replace(exclude[index],"")
-            tempUser.uploadResume(path)
+            tempUser.uploadResume(resumePdf)
+
         self.app.setQuitOnLastWindowClosed(True)
-       
-        return resumeFullPath
+        self.pdfToPng(resumePdf,resumePng)
+        plzUploadLabel = self.findChild(QLabel, "jobTitle")
+        pixma =  QtGui.QPixmap(resumePng)
+        plzUploadLabel.setPixmap(pixma)
+        return resumePdf
+
+    def pdfToPng(self,pdfPath, outPutFileName):
+        with pdfium.PdfContext(pdfPath) as pdf:
+            image = pdfium.render_page_topil(pdf,0)
+            image.save(outPutFileName)
 
     def getLetterPath(self):
         tempUser = User()
+        coverLetterPng = "coverLetter_1.png"
         self.app = QApplication.instance()
         self.app.setQuitOnLastWindowClosed(False)
-        coverLetterFullPath, resumeType = QFileDialog.getOpenFileNames(self)
-        if coverLetterFullPath:
-            self.filePath2.setText(str(coverLetterFullPath))
+
+        coverLetterPdf, resumeType = QFileDialog.getOpenFileName(
+            parent=self,
+            caption="Choose a Resume",
+            filter = "PDF Files (*.pdf)"
+        )
+        if coverLetterPdf:
+            self.filePath2.setText(coverLetterPdf)
             validate = tempUser.validateUserLogin(self.currentUser, self.currentPass)
-            self.filePath2.setText(str(coverLetterFullPath))
-            path = str(coverLetterFullPath)
-            exclude = ["[","]","'"]
-            for index in range(len(exclude)):
-                path = path.replace(exclude[index],"")
-            tempUser.uploadLetter(path)
+            tempUser.uploadLetter(coverLetterPdf)
+        
         self.app.setQuitOnLastWindowClosed(True)
-        return coverLetterFullPath
+        self.pdfToPng(coverLetterPdf,coverLetterPng)
+        plzUploadLabel = self.findChild(QLabel, "jobTitle")
+        pixma =  QtGui.QPixmap(coverLetterPng)
+        plzUploadLabel.setPixmap(pixma)
+        return coverLetterPdf
         
         
-   
