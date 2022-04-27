@@ -32,22 +32,41 @@
 
 # Sprint 3 April 12th - April 19th
 ## Insights
-- Testing the features again to see if there are any changes
+ - Testing the features again to see if there are any changes
 	- Helpful for bugs
-- Navigating as usual
-- Taking time to see the details 
-- Multiple attempts to see different search results 
-- Taking more time to test features in profile 
-- When registering, the customer did not input two fields which led to the program crashing
+ - Navigating as usual
+ - Taking time to see the details 
+ - Multiple attempts to see different search results 
+ - Taking more time to test features in profile 
+ - When registering, the customer did not input two fields which led to the program crashing
 ## Feedback
-- The search suggestions is approved (but filter out job positions from locations) 
-- Remove "in 'some location'" from all job positions
-- In extended job description, add poistion and salary 
-- For sign up page, allow resume to be an option (previously missed) 
-- Highlight the job description being accessed. 
-- Allows abbreviations and full state names to result in suggested search
-- Include $ and commas where currency is refrenced. 
+ - The search suggestions is approved (but filter out job positions from locations) 
+ - Remove "in 'some location'" from all job positions
+ - In extended job description, add poistion and salary 
+ - For sign up page, allow resume to be an option (previously missed) 
+ - Highlight the job description being accessed. 
+ - Allows abbreviations and full state names to result in suggested search
+ - Include $ and commas where currency is refrenced
 
 # Sprint 4 April 19th - April 26th
+## Insights
+ - Testing login with previous account made (successful) 
+ - Testing list display
+ - Using the paganation feature. Adjusted entries per page and flipped through them
+ - Trying different fields for searching 
+ - Testing state name and abbreviations. For example Texas and TX 
+ - Quick apply feature was attempted. Not fully implemented
+ - Uploaded a pdf to profile
+## Feedback
+ - Label stating PDF is only accepted
+ - Have PDF displayed if there is a resume uploaded to that profile 
+ - Log out feature 
+ - Return button for user who miss clicks
+ - Overall approval
+ - Search is complete
+ - Resume should be in sign up page 
+ - Clicking on job, have it a differnet color. Orange perhaps. 
+ - Formatting issues with description 
+# Sprint 5 April 26th - May 3th
 ## Insights
 ## Feedback

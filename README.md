@@ -102,6 +102,29 @@ Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza
 
   Completed : 7 Stories for 30 points 
   ```
+  
+# Sprint 4 April 19th - April 26th:
+## What was Completed:
+  - [x] Customer Story: Pagination for job listings
+  - [x] Customer Story: Set number of entries per page
+  - [x] Customer Story: Remove "in location" from Jobs
+  - [x] Story 24: Location filter by zip code, and state abbreviation
+  - [x] Customer Story: Extended Job Description/List#30
+  - [x] Story: Case insensitive filters
+  - [x] Customer: Change Drop Box Info
+  - [x] Story: Quick Apply UI
+  - [x] Story: PDF UI Display
+
+
+## What was NOT Completed:
+  All complete this week.
+  
+   ```
+  Estimated Story Points: 9 Stories for 38 Points
+
+  Completed : 9 Stories for 38 points 
+  ```
+# Sprint 4 April 26th - May 3rd:
  
 ## Customer interaction with the application
 1. Not deployable as of right now
