@@ -37,7 +37,6 @@ class DB_Client:
             new_q = {"$set": {field_name : None}}
             self.dbCollection.update_many({},new_q)
 
-
     def general_search(self,general_text, projection):
         loc_query = { "$or": [ { "job_title" : {"$regex":general_text}},{"job_description": {"$regex":general_text}}, { "location" : {"$regex":general_text}},{"$and": [{"min_salary_range":{"$gte":general_text}},{"max_salary_range":{"$lte":general_text}}]} ] }
         doc_cursor = self.dbCollection.find(loc_query, projection)

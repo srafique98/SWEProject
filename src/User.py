@@ -50,7 +50,6 @@ class User:
                 self.signed_in = True
                 return True
         return False    
-
         
 #   *****************************************
 # SIGN UP 
@@ -165,6 +164,7 @@ class User:
                 print("added userID to job: " + job_id)
         else:
             print(uso + "User.applyForJob()")
+    
     def uploadLetter(self, FILE_PATH):
         if self.signed_in:
             db_obj = db_cli.DB_Client(True,"Jobs","users")
