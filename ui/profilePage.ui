@@ -336,6 +336,32 @@ p, li { white-space: pre-wrap; }
      </layout>
     </widget>
    </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>935</x>
+      <y>195</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Status: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="statusPDF">
+    <property name="geometry">
+     <rect>
+      <x>980</x>
+      <y>195</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Not Uploaded</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

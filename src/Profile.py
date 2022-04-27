@@ -36,6 +36,13 @@ class Profile(Window):
         self.filePath = self.findChild(QLabel, "resumeUploaded")
         self.resumePath = self.resumeButton.clicked.connect(self.getResumePath)
 
+        self.status = tempUser.getUserField("resume")
+        self.statusPDF = self.findChild(QLabel, "statusPDF")
+        if(self.status == None):
+            self.statusPDF.setText("Not Applied")
+        else: 
+            self.statusPDF.setText("Applied")
+
         self.coverLetterButton = self.findChild(QPushButton,"pushButton_2")
         self.filePath2 = self.findChild(QLabel,"letterUploadedButton")
         self.coverLetter = self.coverLetterButton.clicked.connect(self.getLetterPath)
@@ -73,6 +80,7 @@ class Profile(Window):
             self.filePath.setText(resumePdf)
             validate = tempUser.validateUserLogin(self.currentUser, self.currentPass)
             tempUser.uploadResume(resumePdf)
+            self.statusPDF.setText("Applied")
 
         self.app.setQuitOnLastWindowClosed(True)
         self.pdfToPng(resumePdf,resumePng)

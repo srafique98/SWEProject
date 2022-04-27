@@ -38,6 +38,7 @@ class NewUser(Window):
             newProfile.signUp(self.email.text(),self.password.text(),
                             self.firstName.text(),self.lastName.text())
             self.login.show()
+            self.pdf.show()
             self.firstName.setReadOnly(True)
             self.lastName.setReadOnly(True)
             self.email.setReadOnly(True)
@@ -52,7 +53,7 @@ class NewUser(Window):
             print("Not valid")
         else: 
             self.emailValidation(self.email.text())
-            self.pdf.show()
+            
             # Read Only after create
     
     def loginNewUser(self):
