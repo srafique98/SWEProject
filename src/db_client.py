@@ -37,11 +37,15 @@ class DB_Client:
             new_q = {"$set": {field_name : None}}
             self.dbCollection.update_many({},new_q)
 
+#   General search used in the top search bar in Listing Window
+#       (general_text) pass in text to regex for in DB
+#       (projection) field value to be returned
     def general_search(self,general_text, projection):
         loc_query = { "$or": [ { "job_title" : {"$regex":general_text}},{"job_description": {"$regex":general_text}}, { "location" : {"$regex":general_text}},{"$and": [{"min_salary_range":{"$gte":general_text}},{"max_salary_range":{"$lte":general_text}}]} ] }
         doc_cursor = self.dbCollection.find(loc_query, projection)
         return doc_cursor
 
+#   Depricated search function *as to Sean's understanding*
     def fil_search(self, str_job, str_loc,flt_min,flt_max, projection):
         loc_query = { "$and": [ { "job_title" : {"$regex":str_job}}, { "location" : {"$regex":str_loc}},{"$and": [{"min_salary_range":{"$gte":flt_min}},{"max_salary_range":{"$lte":flt_max}}]} ] }
         print(loc_query)
@@ -49,33 +53,44 @@ class DB_Client:
         print(doc_cursor)
         return doc_cursor
 
+#   Filter DB by location regex
+#       (in_str) regex to check against db location field values
     def fil_location(self,in_str):
         agg_query = [{ '$match': {'$or': [ {  'Full_State': in_str }, { 'State': in_str },{"Zip Code":in_str},{"City":in_str},{"location":in_str}]}}]
-        #loc_query = {"location" : {"$regex":in_str, "$options" : "i"}}
-        # loc_query = { "$or": [ {"Full_State": {"$regex":in_str}},{ "City" : {"$regex":in_str}}, { "State" : {"$regex":in_str}}, { "Zip Code" : {"$regex":in_str}} ] }
         doc_cursor = self.dbCollection.aggregate(agg_query)
         return doc_cursor
 
+#   Filter DB by profession regex
+#       (in_str) regex to check against db job_title field values
     def fil_sect_profession(self,in_str):
         loc_query = {"job_title" : {"$regex":in_str}}
         doc_cursor = self.dbCollection.find(loc_query)
         return doc_cursor
-    
+
+#   Filter DB by profession regex
+#       (in_str) regex to check against db job_title field values   
     def fil_salary_range(self, min_sal, max_sal):
         loc_query = {"$and": [{"min_salary_range":{"$gte":min_sal}},{"max_salary_range":{"$lte":max_sal}}]}
         doc_cursor = self.dbCollection.find(loc_query)
         return doc_cursor
 
-    # Data retreival for USER db connection
+# --------------------------------------------------------------------
+# Data retreival for USER db connection
+
+#   Returns document cursor object of all users and all fields in mongodb.Jobs.users
     def get_all_users(self):
         doc_cursor = self.dbCollection.find()
         return doc_cursor
-    
+
+#   Returns document cursor object of user by u_id value
+#       (user_id) unique integer value assigned to each user document 
     def get_user_by_id(self,user_id):
         loc_query = {"u_id":user_id}
         doc_cursor = self.dbCollection.find(loc_query)
         return doc_cursor
 
+#   Returns a tuple of strings ("first_name", "last_name") of a specific user filtered by u_id
+#       (user_id) unique integer value assigned to each user document
     def get_name_by_id(self,user_id):
         loc_query = {"u_id":user_id}
         doc_cursor = self.dbCollection.find(loc_query)
@@ -84,6 +99,8 @@ class DB_Client:
             u_name = (cursor_pointer["first_name"], cursor_pointer["last_name"])
         return u_name # returns a tuple of strings -> ("first_name", "last_name")
 
+#   Returns the base64 encoded bytes of a specific user filtered by u_id
+#       (user_id) unique integer value assigned to each user document 
     def get_resume_by_u_id(self, user_id):
         loc_query = {"u_id":user_id}
         doc_cursor = self.dbCollection.find(loc_query)
