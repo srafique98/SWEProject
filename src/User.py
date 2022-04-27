@@ -5,7 +5,7 @@ from datetime import datetime
 import base64
 
 # NOTES (updated Wed Apr 27, 2022) 
-#   jobs_client and user_client have been created and initialized in the
+#   jobs_client and users_client have been created and initialized in the
 #   User constructor to reduce load times and the number of active db clients
 
 uso = "User not signed in! Error running: " # error message string for console read-out
@@ -48,7 +48,7 @@ class User:
 #       (email) email associated with the user in the db
 #       (pw) password associated with the user in the db
     def validateUserLogin(self, email, pw):
-        doc_cursor = self.user_client.get_all_users()
+        doc_cursor = self.users_client.get_all_users()
         for usr_doc in doc_cursor:
             if usr_doc["email"] == email and usr_doc["Password"] == pw:
                 self.profile_info["email"] = usr_doc["email"]
@@ -58,7 +58,7 @@ class User:
                 user_query = {"u_id":self.profile_info["u_id"]}
                 user_insert = ({"$set":{"date_last_signin":self.profile_info["last_logged"]}},{"$set":{"last_ip":self.profile_info["ip"]}},{"$set":{"ip_hostname":self.profile_info["host_address"]}})
                 for db_insert in user_insert:
-                    self.user_client.dbCollection.update_one(user_query,db_insert)
+                    self.users_client.dbCollection.update_one(user_query,db_insert)
                 self.signed_in = True
                 return True
         return False    
@@ -73,12 +73,12 @@ class User:
 # user_1.signUp("fake_email@uop.net","sonicthehedgehog","Doctor","Eggman")
 
     def signUp(self, email, pw, f_name, l_name):
-        largest_u_id = self.user_client.dbCollection.find().sort("u_id",-1).limit(1)
+        largest_u_id = self.users_client.dbCollection.find().sort("u_id",-1).limit(1)
         high = None
         for field in largest_u_id:
             high = field["u_id"]
         user_insert = {"u_id":high+1, "first_name":f_name, "last_name":l_name,"email":email,"Password":pw,"date_last_signin":self.profile_info["last_logged"],"last_ip":self.profile_info["ip"]}
-        self.user_client.dbCollection.insert_one(user_insert)
+        self.users_client.dbCollection.insert_one(user_insert)
 
 #   *****************************************
 
@@ -89,7 +89,7 @@ class User:
         if self.signed_in:
             user_query = {"u_id": self.profile_info["u_id"] }
             user_update = {"$set":{ field : value }}
-            self.user_client.dbCollection.update_one(user_query, user_update)
+            self.users_client.dbCollection.update_one(user_query, user_update)
             print("Changed " + self.profile_info["fullname"] + " " + field + " to " + ("*"*len(value)))
         else:
             print(uso + "User.changeUserData()")
@@ -99,7 +99,7 @@ class User:
     def getUserField(self, field):
         if self.signed_in:
             user_query = {"u_id": self.profile_info["u_id"] }
-            db_cursor = self.user_client.dbCollection.find(user_query)
+            db_cursor = self.users_client.dbCollection.find(user_query)
             field_value = None
             for doc in db_cursor:
                 field_value = doc[field]
@@ -112,7 +112,7 @@ class User:
 #   UPDATES PROFILE INFO TO REDUCE OVERALL DB WORK
     def updateLocalInfo(self):
         if self.signed_in:
-            doc_cursor = self.user_client.get_user_by_id(int(self.profile_info["u_id"]))
+            doc_cursor = self.users_client.get_user_by_id(int(self.profile_info["u_id"]))
             for doc in doc_cursor:
                 self.profile_info["u_id"] = doc["u_id"]
                 self.profile_info["fullname"] = doc["first_name"] + " " + doc["last_name"]
@@ -133,7 +133,7 @@ class User:
             user_query = {"u_id": self.profile_info["u_id"] }
             user_update = {"$set":{ "resume" : encoded_string }}
             #   push encoded string to user 'resume' field
-            self.user_client.dbCollection.update_one(user_query, user_update)
+            self.users_client.dbCollection.update_one(user_query, user_update)
             print("Uploaded resume for " + self.profile_info["fullname"])
         else:
             print(uso + "User.uploadResume()")
@@ -146,7 +146,7 @@ class User:
                 encoded_string = base64.b64encode(pdf_file.read())    
             user_query = {"u_id": self.profile_info["u_id"] }
             user_update = {"$set":{ "cover_letter" : encoded_string }}
-            self.user_client.dbCollection.update_one(user_query, user_update)
+            self.users_client.dbCollection.update_one(user_query, user_update)
             print("Uploaded letter for " + self.profile_info["fullname"])
         else:
             print(uso + "User.uploadLetter()")
@@ -156,7 +156,7 @@ class User:
     def downloadResume(self, DIRECTORY_PATH):
         if self.signed_in:
             user_query = {"u_id": self.profile_info["u_id"]}
-            user_doc_cursor = self.user_client.dbCollection.find_one(user_query)
+            user_doc_cursor = self.users_client.dbCollection.find_one(user_query)
             byte_string = None
             for x in user_doc_cursor:
                 byte_string = x["resume"]
