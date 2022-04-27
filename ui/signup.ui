@@ -187,7 +187,7 @@
     <property name="geometry">
      <rect>
       <x>420</x>
-      <y>550</y>
+      <y>600</y>
       <width>521</width>
       <height>41</height>
      </rect>
@@ -199,6 +199,24 @@
     </property>
     <property name="text">
      <string>Login</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pdfButton">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>550</y>
+      <width>521</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Upload Resume</string>
     </property>
    </widget>
   </widget>

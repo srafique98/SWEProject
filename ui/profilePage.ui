@@ -146,7 +146,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>933</x>
       <y>180</y>
-      <width>91</width>
+      <width>181</width>
       <height>21</height>
      </rect>
     </property>
@@ -157,7 +157,7 @@ p, li { white-space: pre-wrap; }
      </font>
     </property>
     <property name="text">
-     <string>Resume</string>
+     <string>Resume (PDF ONLY)</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">

@@ -2,6 +2,7 @@ from src.Window import Window
 from src.Listing import Listing
 from src.User import User
 from PySide6.QtWidgets import *
+from src.Listing import Profile
 import re
 
 
@@ -20,9 +21,13 @@ class NewUser(Window):
         self.newProfile = self.findChild(QPushButton, "createButton")  # From mainwindow.ui
         self.newProfile.clicked.connect(self.createProfile)
 
+        self.pdf = self.findChild(QPushButton, "pdfButton")
+        self.pdf.hide()
+        self.pdf.clicked.connect(self.uploadPDF)
+
         self.login = self.findChild(QPushButton,"returnButton")
         self.login.hide()
-        self.login.clicked.connect(self.returnToLogin)
+        self.login.clicked.connect(self.loginNewUser)
 
 
     def emailValidation(self, strEmail):
@@ -47,10 +52,27 @@ class NewUser(Window):
             print("Not valid")
         else: 
             self.emailValidation(self.email.text())
+            self.pdf.show()
             # Read Only after create
     
-    def returnToLogin(self):
+    def loginNewUser(self):
         self.close()
         self.nextWindow = Listing(self.email.text(),self.password.text())
         super().nextWindow(self.window)
-                                                                                                
+
+    def uploadPDF(self): 
+        tempUser = User()
+        self.app = QApplication.instance()
+        self.app.setQuitOnLastWindowClosed(False)
+
+        resumePdf, resumeType = QFileDialog.getOpenFileName(
+            parent=self,
+            caption="Choose a Resume",
+            filter = "PDF Files (*.pdf)"
+        )
+        if resumePdf:
+            validate = tempUser.validateUserLogin(self.email.text(), self.password.text())
+            tempUser.uploadResume(resumePdf)
+
+        self.app.setQuitOnLastWindowClosed(True)      
+
