@@ -176,7 +176,7 @@ class User:
         if self.signed_in:
             my_id = self.profile_info["u_id"]
             job_query = {"_id":job_id}
-            job_cursor = self.jobs_client.dbCollection.find_one(job_query)
+            job_cursor = self.jobs_client.dbCollection.find(job_query)
             u_ids_to_check = None
             for x in job_cursor:
                 u_ids_to_check = x["users_applied"]
@@ -185,11 +185,11 @@ class User:
                     self.jobs_client.dbCollection.update_one(job_query,{"$push":{"users_applied":my_id}})
                     print("added userID to job: " + job_id)
                 else:
-                    print("User has already applied")
+                    print("User hasalready applied")
             else:
-                id_list = None
+                id_list = []
                 id_list.append(my_id)
-                self.jobs_client.dbCollection.update_one(job_query,{"users_applied":id_list})
+                self.jobs_client.dbCollection.update_one(job_query,{"$set":{"users_applied":id_list}})
                 print("added userID to job: " + job_id)
         else:
             print(uso + "User.applyForJob()")

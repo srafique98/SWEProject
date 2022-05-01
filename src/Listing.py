@@ -258,7 +258,7 @@ class Listing(Window):
         tempUser.validateUserLogin(self.currentUser, self.currentPass)
         if self.jobToApply is not None:
             print("Job is highlighted so you can apply") 
-        # tempUser.applyForJob(self.jobToApply)
+            tempUser.applyForJob(self.jobToApply)
         else: 
             print("Select a job to apply")
 
