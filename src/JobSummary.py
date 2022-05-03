@@ -54,7 +54,8 @@ class JobSummary(QWidget):
 			self.setStyleSheet("background-color: none")
 		else:
 			self.highlighted = True
-			self.setStyleSheet("background-color: orange")
+			self.setStyleSheet("color: black;"
+                        "background-color: yellow;")
 
 	def getUID(self):
 		return self.uid

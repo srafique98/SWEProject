@@ -12,6 +12,7 @@ pypdfium2 = "*"
 pillow = "*"
 pyinstaller = "*"
 aspose-words = "*"
+pyqtdarktheme = "*"
 
 [dev-packages]
 
