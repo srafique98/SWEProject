@@ -3,6 +3,7 @@ import socket
 import src.db_client as db_cli
 from datetime import datetime
 import base64
+from base64 import b64decode
 
 # NOTES (updated Wed Apr 27, 2022) 
 #   jobs_client and users_client have been created and initialized in the
@@ -157,12 +158,14 @@ class User:
         if self.signed_in:
             user_query = {"u_id": self.profile_info["u_id"]}
             user_doc_cursor = self.users_client.dbCollection.find_one(user_query)
-            byte_string = None
-            for x in user_doc_cursor:
-                byte_string = x["resume"]
+            #byte_string = None
+            # for x in user_doc_cursor:
+            byte_string = user_doc_cursor["resume"]
+            bytes = b64decode(byte_string, validate=True)
             #   write to file as pdf_download.pdf
             with open(DIRECTORY_PATH+"pdf_download.pdf","wb") as f:
-                f.write(byte_string) 
+                f.write(bytes) 
+            f.close()
         else:
             print(uso + "User.downloadResume()")  
 

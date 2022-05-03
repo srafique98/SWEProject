@@ -33,6 +33,7 @@ class Profile(Window):
         self.resumeButton = self.findChild(QPushButton, "pushButton")
         self.filePath = self.findChild(QLabel, "resumeUploaded")
         self.resumePath = self.resumeButton.clicked.connect(self.getResumePath)
+        self.plzUploadLabel = self.findChild(QLabel, "jobTitle")
 
         self.status = tempUser.getUserField("resume")
         self.statusPDF = self.findChild(QLabel, "statusPDF")
@@ -40,6 +41,11 @@ class Profile(Window):
             self.statusPDF.setText("Not Applied")
         else: 
             self.statusPDF.setText("Applied")
+            tempUser.downloadResume("")
+            resumePng = "resume_1.jpg"
+            self.pdfToPng("pdf_download.pdf",resumePng)
+            pixma =  QtGui.QPixmap(resumePng)
+            self.plzUploadLabel.setPixmap(pixma)
 
         self.coverLetterButton = self.findChild(QPushButton,"pushButton_2")
         self.filePath2 = self.findChild(QLabel,"letterUploadedButton")
@@ -82,9 +88,9 @@ class Profile(Window):
 
         self.app.setQuitOnLastWindowClosed(True)
         self.pdfToPng(resumePdf,resumePng)
-        plzUploadLabel = self.findChild(QLabel, "jobTitle")
+        #plzUploadLabel = self.findChild(QLabel, "jobTitle")
         pixma =  QtGui.QPixmap(resumePng)
-        plzUploadLabel.setPixmap(pixma)
+        self.plzUploadLabel.setPixmap(pixma)
         return resumePdf
 
     def pdfToPng(self,pdfPath, outPutFileName):
