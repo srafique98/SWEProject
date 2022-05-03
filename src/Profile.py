@@ -117,21 +117,30 @@ class Profile(Window):
         coverLetterPng = "coverLetter_1.png"
         self.app.setQuitOnLastWindowClosed(False)
 
-        coverLetterPdf, resumeType = QFileDialog.getOpenFileName(
+        coverLetterPdf, CoverLetterType = QFileDialog.getOpenFileName(
             parent=self,
-            caption="Choose a Resume",
-            filter="PDF Files (*.pdf)"
+            caption="Choose a Cover Letter",
+            filter="PDF Files (*.pdf);; docx Files (*.docx)"
         )
         if coverLetterPdf:
             self.filePath2.setText(coverLetterPdf)
             validate = tempUser.validateUserLogin(self.currentUser, self.currentPass)
             tempUser.uploadLetter(coverLetterPdf)
+        else:
+            return None
         
-        self.app.setQuitOnLastWindowClosed(True)
-        self.pdfToPng(coverLetterPdf,coverLetterPng)
-        plzUploadLabel = self.findChild(QLabel, "jobTitle")
-        pixma = QtGui.QPixmap(coverLetterPng)
-        plzUploadLabel.setPixmap(pixma)
+        if "PDF" in CoverLetterType:
+            tempUser.uploadResume(coverLetterPdf)
+            self.pdfToPng(coverLetterPdf,coverLetterPng)
+            self.displayToScreen(coverLetterPng)
+        elif "docx" in CoverLetterType:
+            self.wordToPDF(coverLetterPdf,"coverLetter_1.pdf")
+            tempUser.uploadResume("coverLetter_1.pdf")
+            self.pdfToPng("coverLetter_1.pdf",coverLetterPng)
+            self.displayToScreen(coverLetterPng)
+            return "coverLetter_1.pdf"
         return coverLetterPdf
+
+
         
         
