@@ -12,10 +12,12 @@ class Listing(Window):
     db_name = "Jobs"
     db_collection = "NewJobsPrt3"
 
-    def __init__(self, email, password):
+    def __init__(self, email, password, parent):
         uiFile = "ui/mainwindow.ui"
         super().__init__()
         self.window = super().windowInit(uiFile, self)
+        self.parentWindow = parent
+        self.nextWindow = None
 
         self.connection = DB_Client(True, self.db_name, self.db_collection)
         self.jobButton = self.findChild(QPushButton, "pushButton")  # From mainwindow.ui
@@ -111,9 +113,16 @@ class Listing(Window):
         self.jobToApply = None
         self.quickApplyButton.clicked.connect(self.quickApply)
 
+        self.logoutButton = self.findChild(QPushButton, "logoutButton")
+        self.logoutButton.clicked.connect(self.logout)
+
         for count, job in enumerate(self.jobs.collection.find().limit(int(self.numberOfEntries.currentText()))):
             self.createJobSummary(count, job)
 
+    def logout(self):
+        del self.connection
+        self.window.close()
+        self.parentWindow.show()
 
     def nextPage(self):
         print("going next")
@@ -248,10 +257,10 @@ class Listing(Window):
         self.jobSummaries.clear()
 
     def viewProfile(self):
-        self.close()
+        #self.close()
         self.nextWindow = Profile(self.window, self.currentUser, self.currentPass)
-        super().nextWindow(self.window)
-     
+        self.window.close()
+
     def quickApply(self):
          # Quick apply
         tempUser = User()

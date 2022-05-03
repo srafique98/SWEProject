@@ -10,6 +10,7 @@ class Menu(Window):
         #uiFileName = "ui/mainmenu.ui"
         uiFileName = "ui/signin.ui"
         super().__init__()
+        self.nextWindow = None
 
         # Open application
         self.window = super().windowInit(uiFileName, self)
@@ -29,24 +30,25 @@ class Menu(Window):
 
     def signIn(self):
         currentUser = User()
-        valid = currentUser.validateUserLogin(self.username.text(),self.password.text())
-        if(valid):
-            self.close()
-            self.nextWindow = Listing(self.username.text(),self.password.text())
-            super().nextWindow(self.window)
+        valid = currentUser.validateUserLogin(self.username.text(), self.password.text())
+        if valid:
+            #self.close()
+            self.nextWindow = Listing(self.username.text(), self.password.text(), self.window)
+            self.window.close()
 
         else: 
             self.invalidSignIn.show()
 
     def signUp(self):
-        self.close()
-        self.nextWindow = NewUser()
-        super().nextWindow(self.window)
+        #self.close()
+        self.nextWindow = NewUser(self.window)
+        self.window.close()
 
     def start(self):
         self.close()
-        self.nextWindow = Listing("eldenlord@souls.net","moonviel")
-        super().nextWindow(self.window)
+        self.nextWindow = Listing("eldenlord@souls.net", "moonviel", self.window)
+        self.window.close()
+        #super().nextWindow(self.window)
 
 
 

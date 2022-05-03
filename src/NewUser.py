@@ -8,10 +8,11 @@ import re
 
 class NewUser(Window):
 
-    def __init__(self):
+    def __init__(self, parent):
         uiFile = "ui/signup.ui"
         super().__init__()
         self.window = super().windowInit(uiFile, self)
+        self.nextWindow = None
         
         # Create account
         self.firstName = self.findChild(QLineEdit, "firstNameBar")
@@ -25,10 +26,17 @@ class NewUser(Window):
         self.pdf.hide()
         self.pdf.clicked.connect(self.uploadPDF)
 
-        self.login = self.findChild(QPushButton,"returnButton")
+        self.login = self.findChild(QPushButton, "returnButton")
         self.login.hide()
         self.login.clicked.connect(self.loginNewUser)
 
+        self.cancel = self.findChild(QPushButton, "cancelButton")
+        self.cancel.clicked.connect(self.cancelSignup)
+        self.parentWindow = parent
+
+    def cancelSignup(self):
+        self.window.close()
+        self.parentWindow.show()
 
     def emailValidation(self, strEmail):
         reg = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
@@ -57,9 +65,9 @@ class NewUser(Window):
             # Read Only after create
     
     def loginNewUser(self):
-        self.close()
+        #self.close()
         self.nextWindow = Listing(self.email.text(),self.password.text())
-        super().nextWindow(self.window)
+        self.window.close()
 
     def uploadPDF(self): 
         tempUser = User()

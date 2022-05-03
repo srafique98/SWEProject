@@ -10,7 +10,7 @@ class DB_Client:
     clientConnection = None
     dbName = None
     dbCollection = None
-    intitialized = False
+    initialized = False
 
     def __init__(self, initialized, db_name, db_collection):
         self.dbPassword = dblib.get_db_pw()
@@ -18,7 +18,10 @@ class DB_Client:
         self.clientConnection = pymongo.MongoClient(self.CONNECT_STRING, tlsCAFile=certifi.where())
         self.dbName = self.clientConnection[db_name]
         self.dbCollection = self.dbName[db_collection]
-        self.intitialized = initialized
+        self.initialized = initialized
+
+    def __del__(self):
+        self.clientConnection.close()
 
     # Create new fields within all documents
         # pass in the new field name (string) ex: "resume" or "item_number"
@@ -45,7 +48,7 @@ class DB_Client:
         doc_cursor = self.dbCollection.find(loc_query, projection)
         return doc_cursor
 
-#   Depricated search function *as to Sean's understanding*
+#   Deprecated search function *as to Sean's understanding*
     def fil_search(self, str_job, str_loc,flt_min,flt_max, projection):
         loc_query = { "$and": [ { "job_title" : {"$regex":str_job}}, { "location" : {"$regex":str_loc}},{"$and": [{"min_salary_range":{"$gte":flt_min}},{"max_salary_range":{"$lte":flt_max}}]} ] }
         print(loc_query)
@@ -75,7 +78,7 @@ class DB_Client:
         return doc_cursor
 
 # --------------------------------------------------------------------
-# Data retreival for USER db connection
+# Data retrieval for USER db connection
 
 #   Returns document cursor object of all users and all fields in mongodb.Jobs.users
     def get_all_users(self):

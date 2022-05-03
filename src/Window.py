@@ -21,6 +21,3 @@ class Window(QMainWindow):
             sys.exit(-1)
         window.show()
         return window
-
-    def nextWindow(self, previousWindow):
-        previousWindow.hide()

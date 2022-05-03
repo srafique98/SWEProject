@@ -7,8 +7,6 @@ import pypdfium2 as pdfium
 
 
 class Profile(Window):
-
-    
     def __init__(self, parentWindow, email, password):
         uiFile = "ui/profilePage.ui"
         super().__init__()
@@ -38,7 +36,7 @@ class Profile(Window):
 
         self.status = tempUser.getUserField("resume")
         self.statusPDF = self.findChild(QLabel, "statusPDF")
-        if(self.status == None):
+        if self.status is None:
             self.statusPDF.setText("Not Applied")
         else: 
             self.statusPDF.setText("Applied")
@@ -50,10 +48,10 @@ class Profile(Window):
         # Return
         self.parentWindow = parentWindow
         self.returnToListing = self.findChild(QPushButton, "returnButton")
-        self.returnToListing.clicked.connect(self.testBack)
+        self.returnToListing.clicked.connect(self.returnToPrevWindow)
 
-    def testBack(self):
-        super().nextWindow(self.window)
+    def returnToPrevWindow(self):
+        self.window.close()
         self.parentWindow.show()
     
     def modifyData(self):
@@ -74,7 +72,7 @@ class Profile(Window):
         resumePdf, resumeType = QFileDialog.getOpenFileName(
             parent=self,
             caption="Choose a Resume",
-            filter = "PDF Files (*.pdf)"
+            filter="PDF Files (*.pdf)"
         )
         if resumePdf:
             self.filePath.setText(resumePdf)
@@ -103,7 +101,7 @@ class Profile(Window):
         coverLetterPdf, resumeType = QFileDialog.getOpenFileName(
             parent=self,
             caption="Choose a Resume",
-            filter = "PDF Files (*.pdf)"
+            filter="PDF Files (*.pdf)"
         )
         if coverLetterPdf:
             self.filePath2.setText(coverLetterPdf)
@@ -113,7 +111,7 @@ class Profile(Window):
         self.app.setQuitOnLastWindowClosed(True)
         self.pdfToPng(coverLetterPdf,coverLetterPng)
         plzUploadLabel = self.findChild(QLabel, "jobTitle")
-        pixma =  QtGui.QPixmap(coverLetterPng)
+        pixma = QtGui.QPixmap(coverLetterPng)
         plzUploadLabel.setPixmap(pixma)
         return coverLetterPdf
         
