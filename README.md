@@ -125,8 +125,24 @@ Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza
   Completed : 9 Stories for 38 points 
   ```
 # Sprint 4 April 26th - May 3rd:
+## What was Completed:
+  - [x] Customer Story: Upload file with .pdf and .docs extension
+  - [x] Customer Story: Job Select
+  - [x] Story 10: Quick Apply Function
+  - [x] Customer Story: Sign-Up
+  - [x] Customer Story: PDF Uploaded
+  - [x] Customer Story: Return/Logout
+
+## What was NOT Completed:
+  - [ ] List of Jobs that the User has Applied to
+  
+   ```
+  Estimated Story Points: 7 Stories for 33 Points
+
+  Completed : 6 Stories for 28 points 
+  ```
  
-## Customer interaction with the application
+# Customer interaction with the application
 1. Not deployable as of right now
 2. Will host DB on the cloud (24/7 access from the cloud rather than our local host)
 3. Will interact through an executable
