@@ -4,7 +4,7 @@ from src.User import User
 from PySide6.QtWidgets import *
 from PySide6 import QtCore, QtGui
 import pypdfium2 as pdfium
-
+import aspose.words as aw
 
 class Profile(Window):
     def __init__(self, parentWindow, email, password):
@@ -78,25 +78,39 @@ class Profile(Window):
         resumePdf, resumeType = QFileDialog.getOpenFileName(
             parent=self,
             caption="Choose a Resume",
-            filter="PDF Files (*.pdf)"
+            filter="PDF Files (*.pdf);; docx Files (*.docx)"
         )
         if resumePdf:
             self.filePath.setText(resumePdf)
             validate = tempUser.validateUserLogin(self.currentUser, self.currentPass)
             tempUser.uploadResume(resumePdf)
             self.statusPDF.setText("Applied")
+        
+        if "PDF" in resumeType:
+            self.pdfToPng(resumePdf,resumePng)
+            self.displayToScreen(resumePdf,resumePng)
+        elif "docx" in resumeType:
+            self.wordToPng(resumePdf,resumePng)
+            self.displayToScreen(resumePdf,resumePng)
 
-        self.app.setQuitOnLastWindowClosed(True)
-        self.pdfToPng(resumePdf,resumePng)
-        #plzUploadLabel = self.findChild(QLabel, "jobTitle")
-        pixma =  QtGui.QPixmap(resumePng)
-        self.plzUploadLabel.setPixmap(pixma)
         return resumePdf
+    def displayToScreen(self,resume,outPuFile):
+            self.app.setQuitOnLastWindowClosed(True)
+            #plzUploadLabel = self.findChild(QLabel, "jobTitle")
+            pixma =  QtGui.QPixmap(outPuFile)
+            self.plzUploadLabel.setPixmap(pixma)
 
     def pdfToPng(self,pdfPath, outPutFileName):
         with pdfium.PdfContext(pdfPath) as pdf:
             image = pdfium.render_page_topil(pdf,0)
             image.save(outPutFileName)
+
+    def wordToPng(self,docxPath, outPutFileName):
+        doc = aw.Document(docxPath)
+        options = aw.saving.ImageSaveOptions(aw.SaveFormat.JPEG)
+        options.page_set = aw.saving.PageSet(0)
+        doc.save(outPutFileName, options)
+
 
     def getLetterPath(self):
         tempUser = User()
