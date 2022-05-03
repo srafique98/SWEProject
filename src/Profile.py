@@ -14,6 +14,7 @@ class Profile(Window):
 
         # User
         tempUser = User()
+        self.app = QApplication.instance()
 
         self.currentUser = email 
         self.currentPass =  password
@@ -44,8 +45,7 @@ class Profile(Window):
             tempUser.downloadResume("")
             resumePng = "resume_1.jpg"
             self.pdfToPng("pdf_download.pdf",resumePng)
-            pixma =  QtGui.QPixmap(resumePng)
-            self.plzUploadLabel.setPixmap(pixma)
+            self.displayToScreen(resumePng)
 
         self.coverLetterButton = self.findChild(QPushButton,"pushButton_2")
         self.filePath2 = self.findChild(QLabel,"letterUploadedButton")
@@ -72,7 +72,6 @@ class Profile(Window):
     def getResumePath(self):
         tempUser = User()
         resumePng = "resume_1.jpg"
-        self.app = QApplication.instance()
         self.app.setQuitOnLastWindowClosed(False)
 
         resumePdf, resumeType = QFileDialog.getOpenFileName(
@@ -83,20 +82,24 @@ class Profile(Window):
         if resumePdf:
             self.filePath.setText(resumePdf)
             validate = tempUser.validateUserLogin(self.currentUser, self.currentPass)
-            tempUser.uploadResume(resumePdf)
             self.statusPDF.setText("Applied")
+        else:
+            return None
         
+        self.app.setQuitOnLastWindowClosed(True)
         if "PDF" in resumeType:
+            tempUser.uploadResume(resumePdf)
             self.pdfToPng(resumePdf,resumePng)
-            self.displayToScreen(resumePdf,resumePng)
+            self.displayToScreen(resumePng)
         elif "docx" in resumeType:
-            self.wordToPng(resumePdf,resumePng)
-            self.displayToScreen(resumePdf,resumePng)
-
+            self.wordToPDF(resumePdf,"resume_1.pdf")
+            tempUser.uploadResume("resume_1.pdf")
+            self.pdfToPng("resume_1.pdf",resumePng)
+            self.displayToScreen(resumePng)
+            return "resume_1.pdf"
         return resumePdf
-    def displayToScreen(self,resume,outPuFile):
-            self.app.setQuitOnLastWindowClosed(True)
-            #plzUploadLabel = self.findChild(QLabel, "jobTitle")
+
+    def displayToScreen(self,outPuFile):
             pixma =  QtGui.QPixmap(outPuFile)
             self.plzUploadLabel.setPixmap(pixma)
 
@@ -105,17 +108,13 @@ class Profile(Window):
             image = pdfium.render_page_topil(pdf,0)
             image.save(outPutFileName)
 
-    def wordToPng(self,docxPath, outPutFileName):
+    def wordToPDF(self,docxPath, outPutFileName):
         doc = aw.Document(docxPath)
-        options = aw.saving.ImageSaveOptions(aw.SaveFormat.JPEG)
-        options.page_set = aw.saving.PageSet(0)
-        doc.save(outPutFileName, options)
-
+        doc.save(outPutFileName)
 
     def getLetterPath(self):
         tempUser = User()
         coverLetterPng = "coverLetter_1.png"
-        self.app = QApplication.instance()
         self.app.setQuitOnLastWindowClosed(False)
 
         coverLetterPdf, resumeType = QFileDialog.getOpenFileName(
