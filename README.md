@@ -6,6 +6,8 @@ Technical debt assignment found [here](https://github.com/comp129/customer-proje
 Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/CustomerNotes.md)
 
 Sprint specific information found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/Sprints.md)
+
+Traditional report found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/report.md)
  
 # Customer interaction with the application
 1. Not deployable as of right now
