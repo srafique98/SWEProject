@@ -1,5 +1,26 @@
 [![Python application](https://github.com/comp129/customer-project-rayquaza/actions/workflows/python-app.yml/badge.svg)](https://github.com/comp129/customer-project-rayquaza/actions/workflows/python-app.yml)
-# This is the repo for Rayquaza
+# Overview
+
+Team Rayquaza consists of David Leavenworth, Sean Higley, Shan Rafique, and Jesus Torres. With the help of our customer, Benjamin Vu, we developed and application in Python named JobSeeker. JobSeeker allows the user to sign up, or log in with an existing account, to search for a new job in a large database holding hundreds of positions. The user can filter out positions they seek and would wish to apply for. With these options, a user can find their dream position in their selected location and preferred salary. There will be no need for the user to upload a resume for each position they apply to. For the user who wishes to apply to more than one job, they have the freedom to quickly apply to as many positions as they desire.
+
+# Implementations
+## Signup/Login 
+
+## Filters
+###### Position: 
+###### Location:
+###### Salary Range: 
+
+## Job Listings
+###### Selection:
+###### Paganation:
+
+## Profile
+
+## Database 
+
+
+# Documents  
 
 Technical debt assignment found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/techDebt.md)
 
