@@ -39,16 +39,26 @@ For users who want to work near home, or far away from home, we added a filter f
 One of the most important factors when searching for a job is the salary offered for the position. For the user who wants to seek a preferred salary, they can filter out jobs that don't fit their criteria. No need to search for a job that will not pay the salary you seek. With hundreds of jobs in our database, we have filters ranging from $0-100,000+. Jobs ranging over $100,000 reach a salary of $20,000,000+.
  
 ## Job Listings
+<p align="center">
+  <img src="media/images/paganation.png" width="350"
+</p>
+ 
 ###### Selection:
-###### Paganation:
+Once a user searches for a job, or they decide to look at the position already on screen, the user can click and select a position from the listings. The selected position will populate the portion of the screen to the right of the listing. We will see the position title, salary range, and a description of the position. If the user wishes to see another job, the user can change by clicking on a different position; the process will repeat once done.
 
+###### Pagination:
+Following the same process as the selection option, pagination allows the user to browse more jobs, rather than the first few results. With the option to adjust the size of the populate list, the user can now navigate to a larger list to search through. If the user wishes to see even more listings, there are arrow keys provided to allow the user to flip through the results in intervals of the size set.
+  
 ## Quick Apply
-
+For the user that wishes to apply to as many places as possible, in a timely manner, we have a quick apply function. The quick apply button will apply to the job selected on the screen. If the quick apply button is clicked, the application will upload the user information to the position, meaning the position will record that the user applied to that job. This can be done on as many jobs as the user desires.
+  
 ## Profile
-
-## Database 
-
-
+<p align="center">
+  <img src="media/images/profileScreen.png" width="350"
+</p>
+  
+On the profile page, all the user information will be stored. Since our purpose is to help those who are seeking a job, we have all the needs for a profile page. The profile page includes three sections: a modifiable summary; an upload for a resume as a PDF, and an optional cover letter. If the user wishes to change any of their information, they can do so. The summary and resume are always on display for the user. There were plans to add a section for the jobs applied to the user, but do to deadlines we failed to include the extra feature.
+  
 # Documents  
 
 Technical debt assignment found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/techDebt.md)
