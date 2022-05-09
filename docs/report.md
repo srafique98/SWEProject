@@ -39,8 +39,110 @@ Other miscellaneous libraries we used include:
 The Qt library which PySide6 provides Python bindings for is written in C++. This creates an interesting situation where creating an object results in two objects being created, the Python object we created, and the UI element created by the Qt library. It is important to ensure that changes made to the Python object reflect in the C++ object and vice versa. For instance, it is entirely possible to keep a reference to a Python object but have lost all references to the underlying C++ object. When calling Qt methods for the still existing Python object this results in an exception. The solution is to ensure all references to the Python object are removed when the UI element the C++ object represents is removed. Essentially, more careful management of Python objects is necessary when programming with PySide6 than is normally required when using Python.
 
 ## Testing
-### Testing Plan and Strategies
-### Test Cases
+###### Testing Plan and Strategies (revised/updated)
+###### Sample Test Cases
+Story 2: Python Connection to MongoDB
+
+- Import relevant mongoDB library to python.
+- Establish connection between client python file and database.
+- Assert that the connection is stable and gives no errors
+- The data in any collection is viewable in a list on the applications main page.
+
+Story 3: Profession/Field Query (TEXT FILTER)
+
+- The user must be able to enter a string into a text box titled ‘filter profession’
+- the displayable list of jobs is updated to exclude those which do not relate to the entered value.
+
+Story 4: Filter: Location Query
+
+- The user must be able to enter a string into a text box titled ‘filter location’
+- displayable list of jobs is updated to exclude those which do not relate to the entered value.
+
+Story 5: Filter: Salary Query
+
+- Follows the same framework as Story 4 (above) based on salary range
+
+Story 7: User Class
+
+- The application user must be able to sign into an account with information saved on the
+database. 
+- User validation to ensure that the credentials match. 
+- The user must be able to create an account if they do not already have one. 
+- This user must then be able to be signed in thereafter.
+
+#####Database Unit Tests:
+
+[test\_dbClient\_connection.py](https://github.com/comp129/customer-project-rayquaza/blob/6a0c3252c09e71eb38c4dd99369c987e2afb7a6f/tests/test_dbClient_connection.py)
+
+test\_dbConnectionJobs()
+ 
+- Initializes database object db_client and establishes connection to Jobs. 
+- NewJobs collection. Asserts client object is initialized and connection is secure. 
+
+test\_dbConnectionUsers()
+
+- Initializes database object lient and establishes connection to Jobs.users collection.
+- Asserts client object is initialized and connection is secure.
+
+--
+
+[test\_dbClient\_filters.py](https://github.com/comp129/customer-project-rayquaza/blob/a2af02bff1037b1766feff9e0b93316b39a4e550/tests/test_dbClient_filters.py)
+
+test\_dbLocationFilter()
+
+- Initializes database object db\_client and establishes connection to Jobs.NewJobs collection. 
+- Assert connection is created. 
+- Assert query returns results that conform to the regex location value.
+
+test\_dbProfessionFilter()
+
+- Initializes database object db\_client and establishes connection to Jobs.NewJobs collection. 
+- Assert connection is created. 
+- Assert query returns results that conform to the regex profession value.
+
+--
+
+[test\_dbClient\_getNameByID.py](https://github.com/comp129/customer-project-rayquaza/blob/a2af02bff1037b1766feff9e0b93316b39a4e550/tests/test_dbClient_getNameByID.py)
+
+test\_dbGetNameByID()
+
+- Initializes database object db\_client and establishes connection to Jobs.users collection.
+- Assert connection is created.
+-  Query for 3 users by their u\_id field and assert that 3 full names are returned.
+
+--
+#####User Unit Tests:
+[test\_UserCreation.py](https://github.com/comp129/customer-project-rayquaza/blob/a2af02bff1037b1766feff9e0b93316b39a4e550/tests/test_UserCreation.py)
+
+test\_UserCreation()
+
+- Initialize user object and assert that the user is created and not signed in.
+- Call class function signup()
+- Assert that user is created and can be queried from the database.
+
+--
+
+[test\_UserModifyData.py](https://github.com/comp129/customer-project-rayquaza/blob/a2af02bff1037b1766feff9e0b93316b39a4e550/tests/test_UserModifyData.py)
+
+test\_changeUserData()
+
+- Initialize user object. 
+- Assert that the user is initialized and not signed in. 
+- Sign in user and assert that user is signed in. 
+- Modify specific user with email bionicle@lego.com, change first name to a randomly generated string. 
+- Query user name field and assert that name is modified.
+
+--
+
+[test\_UserSignIn.py](https://github.com/comp129/customer-project-rayquaza/blob/a2af02bff1037b1766feff9e0b93316b39a4e550/tests/test_UserSignIn.py)
+
+test\_UserCorrectSignIn()
+
+- Initialize user object and assert that the user is created and not signed in.
+- Call class function validateUserLogin(), with correct email and password.
+- Assert that user.signed\_in value is True. 
+- Assert that populated profile\_info dictionary is populated.
+
 ## Project Highlights (Retrospective)
 ### Parts of the actual software we are proud of
 - When the user uploads a PDF resume, the resume file is converted to a png file that displays inside the profile page. The profile page also displays the status of whether a resume has been uploaded.
