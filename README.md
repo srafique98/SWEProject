@@ -46,13 +46,13 @@ For the user that wishes to apply to as many places as possible, in a timely man
 On the profile page, all the user information will be stored. Since our purpose is to help those who are seeking a job, we have all the needs for a profile page. The profile page includes three sections: a modifiable summary; an upload for a resume as a PDF, and an optional cover letter. If the user wishes to change any of their information, they can do so. The summary and resume are always on display for the user. There were plans to add a section for the jobs applied to the user, but do to deadlines we failed to include the extra feature.
   
 # Documents  
-Technical debt assignment found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/techDebt.md)
+Technical debt assignment found [here](/docs/techDebt.md)
 
-Customer Notes found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/CustomerNotes.md)
+Customer Notes found [here](/docs/CustomerNotes.md)
 
-Sprint specific information found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/Sprints.md)
+Sprint specific information found [here](/docs/Sprints.md)
 
-Traditional report found [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/report.md)
+Traditional report found [here](/docs/report.md)
  
 # Customer interaction with the application
 1. Not deployable as of right now
