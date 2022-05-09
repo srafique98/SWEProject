@@ -4,7 +4,7 @@ David Leavenworth   - User Interface
 
 Sean Higley         -
 
-Shan Rafique        -
+Shan Rafique        - User Interface
 
 Jesus Torres        - User Interface
 
@@ -69,7 +69,11 @@ The Qt library which PySide6 provides Python bindings for is written in C++. Thi
 
 ###### Parts of your teamwork/process that you would improve on in the future
 - Although we did pair programming. More pair programming would help improve the team. It will help clear up any confusion.
+- Create more detailed user stories. 
+- Break up the work so each team member could get a taste of the different side of the project.
 
 ## Lessons Learned
 ###### Advice you have for future COMP 129 students:
 - Communication is key to having a very successful team. A large portion of our success can be credited to the team heavily communicating with one another. If you need help, or don't know how to do a task, don't be afraid to ask. We are a team for a reason.
+- Researching the tool that you are using will take the majority of your time. Learning a new tool is not an easy task but at the end it is defintely rewarding.
+
