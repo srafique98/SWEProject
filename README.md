@@ -13,17 +13,17 @@ Team Rayquaza consists of David Leavenworth, Sean Higley, Shan Rafique, and Jesu
 JobSeeker allows a returning user to login into their account and access the many jobs the application has to offer. When a user attempts to sign in with a non-existent account or with invalid credentials, then the user will not be allowed access. If the user is new, then they can sign up and create a new account that will be saved in our database. 
 
 ## Filters
-###### Position:
+### Position:
 ![Position Filter](media/images/positionFilter.png)
  
 For job seekers who want to narrow down the search results for their dream job, we have added a filter to populate the results to your specifications. No need to search through a list of positions that you are not interested in. With suggested searches, we will recommend search options for a job we believe the user is interested in.
   
-###### Location:
+### Location:
 ![Location Filter](media/images/locationFilter.png)
   
 For users who want to work near home, or far away from home, we added a filter for locations when searching for jobs. Compared to the position filter, the location filter works very similarly. With suggested searches, we will recommend search options for a location we believe the user is interested in. 
   
-###### Salary Range: 
+### Salary Range: 
 ![Salary Range](media/images/salaryRange.png)
  
 One of the most important factors when searching for a job is the salary offered for the position. For the user who wants to seek a preferred salary, they can filter out jobs that don't fit their criteria. No need to search for a job that will not pay the salary you seek. With hundreds of jobs in our database, we have filters ranging from $0-100,000+. Jobs ranging over $100,000 reach a salary of $20,000,000+.
@@ -31,10 +31,10 @@ One of the most important factors when searching for a job is the salary offered
 ## Job Listings
 ![Pagination](media/images/paganation.png)
  
-###### Selection:
+### Selection:
 Once a user searches for a job, or they decide to look at the position already on screen, the user can click and select a position from the listings. The selected position will populate the portion of the screen to the right of the listing. We will see the position title, salary range, and a description of the position. If the user wishes to see another job, the user can change by clicking on a different position; the process will repeat once done.
 
-###### Pagination:
+### Pagination:
 Following the same process as the selection option, pagination allows the user to browse more jobs, rather than the first few results. With the option to adjust the size of the populate list, the user can now navigate to a larger list to search through. If the user wishes to see even more listings, there are arrow keys provided to allow the user to flip through the results in intervals of the size set.
   
 ## Quick Apply
