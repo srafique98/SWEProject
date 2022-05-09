@@ -66,6 +66,7 @@ The Qt library which PySide6 provides Python bindings for is written in C++. Thi
 - Another improvement would be the suggested search for the abbreviation issue mentioned. This will allow for a better experience when searching for a location using abbreviations, which are commonly used.
 - Custom styling through the use of QML style sheets would improve the look and feel of our application. Our primary concern during the five weeks we had was implementing the major features our customer wanted - which was not custom styling - and as such our application has little to no custom styling. 
 - We were never able to successfully package our application for distribution, this likely has something to do with our directory structure. Unfortunately the import style we used depends on the current directory structure and would require significant reworking to package for distribution. If work was continued this would likely be the most pressing issue to fix.
+- Our unit tests only covered the database logic and none of the UI logic. This was considered out of scope for this project. In the future unit tests which test the UI behavior should be included in our development process.
 
 ###### Parts of our teamwork/process that we would improve on in the future
 - Although we did pair programming. More pair programming would help improve the team. It will help clear up any confusion.
