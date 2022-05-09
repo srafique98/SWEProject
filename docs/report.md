@@ -70,7 +70,7 @@ database.
 - The user must be able to create an account if they do not already have one. 
 - This user must then be able to be signed in thereafter.
 
-#####Database Unit Tests:
+##### Database Unit Tests:
 
 [test\_dbClient\_connection.py](https://github.com/comp129/customer-project-rayquaza/blob/6a0c3252c09e71eb38c4dd99369c987e2afb7a6f/tests/test_dbClient_connection.py)
 
@@ -111,7 +111,9 @@ test\_dbGetNameByID()
 -  Query for 3 users by their u\_id field and assert that 3 full names are returned.
 
 --
-#####User Unit Tests:
+
+##### User Unit Tests:
+
 [test\_UserCreation.py](https://github.com/comp129/customer-project-rayquaza/blob/a2af02bff1037b1766feff9e0b93316b39a4e550/tests/test_UserCreation.py)
 
 test\_UserCreation()
