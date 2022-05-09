@@ -2,7 +2,7 @@
 ## Team Members
 David Leavenworth   - User Interface 
 
-Sean Higley         -
+Sean Higley         - Database(Client), User and Testing
 
 Shan Rafique        - User Interface
 
