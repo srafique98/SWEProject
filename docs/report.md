@@ -10,21 +10,21 @@ Jesus Torres        - User Interface
 
 ## Project Objectives
 ######  Value delivered to your client:
-During the five-week period given to us by the customer, Ben, we were able to deliver a product up to the standards of the customer. After the end of each sprint, weekly interval, we received feedback from the customer, which we took and transformed the product in the direction of the customer. Overall, we received positive feedback and approval from the customer.
+Our customer, Ben, sought an application that assists in finding jobs and facilitating application to those jobs. During the five-week period given to us by our customer we were able to deliver a product up to the standards of the customer. After the end of each sprint, we received feedback from the customer, which we took and transformed the product in the direction of the customer. Overall, we satisfied our customer and implemented every major feature he wanted, along with some ancillary features he suggested during our feedback sessions.
 
 ## Project Design
 ###### Team goals:
-Our team goal is to deliver a high quality product that meets the needs and values of our customers. We planned to hit all the user cases provided to us by the customer. The user cases provided by the customer consisted of applying filters for a job search; uploading a pdf that is saved to the user profiles, and being able to apply to a job relatively quickly (quick apply). Along with those large criteria, we wanted the user interface to be user friendly and usable. Lastly, to create a welcoming and friendly environment for the team.
+Our team goal is to deliver a high quality product that meets the needs and values of our customers. We planned to implement all the use cases provided to us by the customer. The use cases provided by the customer consisted of applying filters for a job search; uploading a PDF that is saved to the user profiles, and being able to apply to a job relatively quickly (quick apply). Along with those large criteria, we wanted the user interface to be user-friendly and usable. Lastly, to create a welcoming and friendly environment for the team.
 
 ###### User stories completed:
-During the five-week period we completed a total of 35 stories for 197 points. We estimated a total of 38 stories for 231. The reason for the discrepancies has to do with overplanning stories, as well as pushing potential stories we planned to get to but ended up freezing. We have a file dedicated to the specifics of our sprints. If you wish to see more click [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/Sprints.md). 
+During the five-week period we completed a total of 35 stories for 197 points. We estimated a total of 38 stories for 231. The reason for the discrepancies has to do with over-planning stories, as well as pushing potential stories we planned to get to but ended up ice-boxing. We have a file dedicated to the specifics of our sprints. If you wish to see more click [here](https://github.com/comp129/customer-project-rayquaza/blob/main/docs/Sprints.md). 
 
 ## Implementation Details
 ###### Programming Languages Used:
 JobSeekers was programmed 100% in Python. Although the program was utilized in Python, we also used the MongoDB Query Language (MQL) to query data from the jobs and user database.
 
 ###### Libraries or Tools Used:
-On the backend, we used MongoDB to store all the data associated with the job listings and profiles created in JobSeekers. Our database is accessible 24/7 with the connection to a network due to our use of MongoDB Atlas, a database hosting service provided by the developers of MongoDB. Since we are working with a database, we use the MongoDB compass to query, optimize, and analyze our data. The use of this tool is purely for developers. When the application itself is retriving data we made use of pymongo, a library which provides a python API for accessing Mongo databases.
+On the backend, we used MongoDB to store all the data associated with the job listings and profiles created in JobSeekers. Our database is accessible 24/7 with the connection to a network due to our use of MongoDB Atlas, a database hosting service provided by the developers of MongoDB. Since we are working with a database, we use the MongoDB compass to query, optimize, and analyze our data. The use of this tool is purely for developers. When the application itself is retrieving data we made use of pymongo, a library which provides a python API for accessing Mongo databases.
 
 On the frontend we used PySide6, a library which provides Python bindings for the Qt library. When designing our user interface we made use of QtCreator/QtDesigner. This is a what you see is what you get (WYSIWYG) GUI editor which created .UI files. We then load these .UI files with PySide6 and add the necessary logic to the UI elements. This helped our productivity greatly as we never had to worry about "writing" the UI. Because of this WYSIWYG GUI editor we could focus most of our efforts on the logic behind the UI and the more complex UI features not possible from the editor.
 
@@ -64,10 +64,12 @@ The Qt library which PySide6 provides Python bindings for is written in C++. Thi
 ###### Parts of the software that you would improve
 - An improvement that would improve the product would be scaling. Since all the team members have different aspect ratio on their machines, the scaling of the software varies per user. Smaller screen size results in less to be seen on screen. 
 - Another improvement would be the suggested search for the abbreviation issue mentioned. This will allow for a better experience when searching for a location using abbreviations, which are commonly used.
+- Custom styling through the use of QML style sheets would improve the look and feel of our application. Our primary concern during the five weeks we had was implementing the major features our customer wanted - which was not custom styling - and as such our application has little to no custom styling. 
+- We were never able to successfully package our application for distribution, this likely has something to do with our directory structure. Unfortunately the import style we used depends on the current directory structure and would require significant reworking to package for distribution. If work was continued this would likely be the most pressing issue to fix.
 
 ###### Parts of your teamwork/process that you would improve on in the future
 - Although we did pair programming. More pair programming would help improve the team. It will help clear up any confusion.
-- 
+
 ## Lessons Learned
 ###### Advice you have for future COMP 129 students:
 - Communication is key to having a very successful team. A large portion of our success can be credited to the team heavily communicating with one another. If you need help, or don't know how to do a task, don't be afraid to ask. We are a team for a reason.
